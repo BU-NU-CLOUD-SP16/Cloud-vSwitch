@@ -1,0 +1,39 @@
+<!-- Page Heading -->
+<div ng-controller="InstanceCtrl">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                            My Organization <small>Instances</small>
+                        </h1>
+
+        </div>
+    </div>
+
+    <div >
+        <form class="form-inline" style="margin-bottom: 10px;">
+            <div class="form-group">
+                <button type="button" class="btn btn-default" ng-click="add_instance()">Create</button>
+                <input type="text" class="form-control" id="exampleInputName2" placeholder="Instance">
+            </div>
+        </form>
+    </div>
+    <!-- /.row -->
+
+    <div class="row">
+        <div class="col-lg-4" ng-repeat="i in instances track by $index">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-search"></i>
+                    <i class="fa fa-pencil"></i>
+                    <i class="fa fa-trash" ng-click=rem_instance()></i>
+                </div>
+                <div class="panel-body">
+                    Instance {{$index}}
+                
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- /.row -->
+</div>
