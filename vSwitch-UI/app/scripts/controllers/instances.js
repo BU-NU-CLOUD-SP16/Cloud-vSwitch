@@ -16,17 +16,27 @@ angular.module('vSwitchUiApp')
     ];
     
     
-    $scope.instances = [0];
+    $scope.instances = [];
     
     $scope.add_instance = add_instance;
     $scope.rem_instance = rem_instance;
     
     
     function add_instance() {
-      $scope.instances.push(1);
+      if (typeof($scope.instance_name) == "undefined" || $scope.instance_name == "") {
+        alert("Must type a name for the instance");
+        return;
+      } else {
+        
+        //TODO: call service add_organization
+        $scope.instances.push($scope.instance_name);
+        $scope.instance_name = "" 
+      }
+
     }
     
     function rem_instance(index) {
-      $scope.instances.splice(index, 1);
+      if (confirm("Are yoy sure you want to delete instance " + $scope.instances[index]))
+        $scope.instances.splice(index, 1);
     }
   });

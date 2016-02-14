@@ -1,30 +1,46 @@
-<div ng-controller="InstanceCtrl">
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">
-                            Invite 
-                        </h1>
+<div ng-controller="InvitationCtrl">
+    <div class="row" style="margin-top: 40px">
+        <div class="col-lg-4 col-lg-offset-4 col-sm-6 col-sm-offset-3">
 
+            <form ng-submit="invite()">
+                <fieldset>
+                    <label>Destination</label>
+                    <div ng-repeat="i in form.emails track by $index" style="margin-bottom: 15px;">
+                        <div class="input-group">
+                            <input type="email" class="form-control" ng-model="form.emails[$index]" required>
+                            <div ng-messages="form.emails[$index].$error">
+                                <div ng-message="required">This field is required</div>
+                            </div>
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default">
+                                    <i class="fa fa-trash action-icon" ng-click="rem_invitation($index)"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom:15px;">
+                        <a ng-click="add_invite()">invite other</a>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Select your organization</label>
+                        <select class="form-control" type="text" ng-model="form.organization" ng-options="i in organizations" required>
+                            <option value="Organization" selected="selected">Organization</option>
+                        </select>
+                        <div ng-messages="form.organization.$error">
+                            <div ng-message="required">This field is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea class="form-control" ng-model="form.msg" rows="3"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </fieldset>
+            </form>
         </div>
     </div>
-
-    <div class="form-group">
-        <label>Destination</label>
-        <input class="form-control" type="text" placeholder="email" required>
-    </div>
-
-    <div class="form-group">
-        <label>Select your organization</label>
-        <select class="form-control">
-            <option>My Organization</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label>Message</label>
-        <textarea class="form-control" rows="3"></textarea>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Send</button>
-
 </div>

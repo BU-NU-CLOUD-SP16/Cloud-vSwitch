@@ -10,33 +10,39 @@
     </div>
 
     <div>
+
         <form class="form-inline" style="margin-bottom: 10px;">
             <div class="form-group">
-                <button type="button" class="btn btn-default" ng-click="add_organization()">Create</button>
-                <input type="text" class="form-control" id="exampleInputName2" placeholder="Organization">
+                <input type="text" class="form-control" ng-model="organization.name" placeholder="Organization" style="margin-bottom: 15px;">
             </div>
+            <button type="button" class="btn btn-default" ng-click="add_organization()" style="width: 75px; margin-bottom: 15px;">Create</button>
             <div class="form-group">
-                <button type="button" class="btn btn-default" ng-click="add_organization()">Join</button>
-                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Invitation code">
+                <input type="text" class="form-control" ng-model="organization.code" placeholder="Invitation code" style="margin-bottom: 15px;">
             </div>
-
+            <button type="button" class="btn btn-default" ng-click="join_organization()" style="width: 75px; margin-bottom: 15px;">Join</button>
         </form>
     </div>
     <!-- /.row -->
 
     <div class="row">
-        <div class="col-lg-4 col-md-4" ng-repeat="i in organizations track by $index">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <a href="#/instances"><i class="fa fa-search"></i></a>
-                    <i class="fa fa-pencil"></i>
-                    <i class="fa fa-trash" ng-click="rem_organization($index)"></i>
-                </div>
-                <div class="panel-body">
-                   {{i}}
+        <form name="form">
+            <div class="col-lg-3 col-md-3 col-sm-4" ng-repeat="i in organizations track by $index">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div style="float: right">
+                            <a href="#/instances"><i class="fa fa-search action-icon"></i></a>
+                            <a class="pointer"><i class="fa fa-pencil action-icon" ng-click="edit=!edit" ></i></a>
+                            <a class="pointer"><i class="fa fa-trash action-icon" ng-click="rem_organization($index)"></i></a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="panel-body">
+                        <input type="text" class="no-border" ng-model="organizations[$index]" ng-show="edit"></input>
+                        <span ng-show="!edit">{{i}}</span>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 
     <!-- /.row -->

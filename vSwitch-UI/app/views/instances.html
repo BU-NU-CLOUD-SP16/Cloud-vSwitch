@@ -12,24 +12,28 @@
     <div >
         <form class="form-inline" style="margin-bottom: 10px;">
             <div class="form-group">
-                <button type="button" class="btn btn-default" ng-click="add_instance()">Create</button>
-                <input type="text" class="form-control" id="exampleInputName2" placeholder="Instance">
+                
+                <input type="text" class="form-control" ng-model="instance_name" placeholder="Instance" style="margin-bottom: 15px;">
             </div>
+            <button type="button" class="btn btn-default" ng-click="add_instance()" style="width: 75px; margin-bottom: 15px;">Create</button>
         </form>
     </div>
     <!-- /.row -->
 
     <div class="row">
-        <div class="col-lg-4" ng-repeat="i in instances track by $index">
+        <div class="col-lg-3 col-md-3 col-sm-4" ng-repeat="i in instances track by $index">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <i class="fa fa-search"></i>
-                    <i class="fa fa-pencil"></i>
-                    <i class="fa fa-trash" ng-click=rem_instance()></i>
+                    <div style="float: right">
+                    <a class="pointer"><i class="fa fa-search action-icon"></i></a>
+                    <a class="pointer"><i class="fa fa-pencil action-icon" ng-click="edit=!edit"></i></a>
+                    <a class="pointer"><i class="fa fa-trash action-icon" ng-click=rem_instance()></i></a>
+                    </div>
+                    <div class="clearfix"></div>
                 </div>
                 <div class="panel-body">
-                    Instance {{$index}}
-                
+                    <input type="text" class="no-border" ng-model="instances[$index]" ng-show="edit"></input>
+                        <span ng-show="!edit">{{i}}</span>
                 </div>
             </div>
         </div>

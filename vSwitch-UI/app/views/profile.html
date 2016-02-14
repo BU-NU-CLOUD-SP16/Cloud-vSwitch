@@ -1,7 +1,7 @@
-<div ng-controller="SessionCtrl">
+<div ng-controller="ProfileCtrl">
     <div class="row" style="margin-top: 40px">
         <div class="col-lg-4 col-lg-offset-4 col-sm-6 col-sm-offset-3">
-            <form ng-submit="signup()">
+            <form ng-submit="update()">
                 <fieldset>
                     <div class="form-group">
                         <input class="form-control" placeholder="Name" ng-model="user.name" type="text" autofocus required>
@@ -35,7 +35,7 @@
                     </div>
 
                     <!-- Change this to a button or input when using this as a form -->
-                    <button type=submit class="btn btn-success btn-block">Register</button>
+                    <button type=submit class="btn btn btn-success btn-block">Save</button>
                 </fieldset>
             </form>
         </div>
