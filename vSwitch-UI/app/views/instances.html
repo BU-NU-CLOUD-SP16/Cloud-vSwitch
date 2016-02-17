@@ -1,21 +1,38 @@
 <!-- Page Heading -->
-<div ng-controller="InstanceCtrl">
+<div>
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">
-                            My Organization <small>Instances</small>
-                        </h1>
+            <div class="page-header">
+                <h1 ng-controller="InstanceCtrl">{{organization.name}}</h1>
 
+                <div ng-controller="InstanceCtrl">
+                    <ul class="nav nav-pills">
+                        <li role="presentation"><a ng-click="installer()"><i class="fa fa-cloud-download"></i> Download Installer</a></li>
+                        <li role="presentation"><a ><i class="fa fa-cloud-download"></i> Request Certificate</a></li>
+                        <li role="presentation"><a ><i class="fa fa-share-alt"></i> Invite</a></li>
+                        <li role="presentation"><a ><i class="fa fa-sign-out"></i> Leave Organization</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
+
+
+
+    <h2 class="page-header" style="margin-top: 5px;"> <small> Instances</small></h2>
 
     <div >
         <form class="form-inline" style="margin-bottom: 10px;">
             <div class="form-group">
-                
+
                 <input type="text" class="form-control" ng-model="instance_name" placeholder="Instance" style="margin-bottom: 15px;">
             </div>
             <button type="button" class="btn btn-default" ng-click="add_instance()" style="width: 75px; margin-bottom: 15px;">Create</button>
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="code" placeholder="Invitation code" style="margin-bottom: 15px;">
+                <input type="text" class="form-control" placeholder="Invitation code" style="margin-bottom: 15px;" ng-if="!show_code">
+            </div>
+            <button type="button" class="btn btn-default" ng-click="show_code()" style="width: 75px; margin-bottom: 15px;">Code</button>
         </form>
     </div>
     <!-- /.row -->
@@ -24,16 +41,21 @@
         <div class="col-lg-3 col-md-3 col-sm-4" ng-repeat="i in instances track by $index">
             <div class="panel panel-default">
                 <div class="panel-heading">
+                    <div style="float: left">
+                            <a class="pointer"><i class="fa fa-play action-icon"></i></a>
+                            <a class="pointer"><i class="fa fa-pause action-icon"></i></a>
+                            <a class="pointer"><i class="fa fa-stop action-icon"></i></a>
+                    </div>
                     <div style="float: right">
-                    <a class="pointer"><i class="fa fa-search action-icon"></i></a>
-                    <a class="pointer"><i class="fa fa-pencil action-icon" ng-click="edit=!edit"></i></a>
-                    <a class="pointer"><i class="fa fa-trash action-icon" ng-click=rem_instance()></i></a>
+                        <a class="pointer"><i class="fa fa-search action-icon"></i></a>
+                        <a class="pointer"><i class="fa fa-pencil action-icon" ng-click="edit=!edit"></i></a>
+                        <a class="pointer"><i class="fa fa-trash action-icon" ng-click=rem_instance()></i></a>
                     </div>
                     <div class="clearfix"></div>
                 </div>
                 <div class="panel-body">
-                    <input type="text" class="no-border" ng-model="instances[$index]" ng-show="edit"></input>
-                        <span ng-show="!edit">{{i}}</span>
+                    <input type="text" class="no-border" ng-model="instances[$index]" ng-show="edit" ng-change="edit_instance()"></input>
+                    <span ng-show="!edit">{{i}}</span>
                 </div>
             </div>
         </div>

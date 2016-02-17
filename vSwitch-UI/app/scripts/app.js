@@ -21,8 +21,8 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/',{
-        templateUrl:'views/login.html',
-        controller: 'SessionCtrl'
+        templateUrl:'views/organizations.html',
+        controller: 'OrgCtrl'
       })
       .when('/organizations', {
         templateUrl: 'views/organizations.html',
@@ -35,6 +35,10 @@ angular
       .when('/invite', {
         templateUrl: 'views/invite.html',
         controller: 'InvitationCtrl'
+      })
+      .when('/login',{
+        templateUrl:'views/login.html',
+        controller: 'SessionCtrl'
       })
       .when('/signup',{
         templateUrl:'views/signup.html',

@@ -18,14 +18,11 @@ angular.module('vSwitchUiApp')
     $scope.update = update;
     
     // variables
-    $scope.user = {
-        name: "Jhon",
-        lastname: "Doe",
-        email: "jdoe@gmail.com"
-    };
+    $scope.user = JSON.parse(localStorage.getItem("user"));
     $scope.logged = true;
 
     function update() {
+        localStorage.setItem('user', JSON.stringify($scope.user));
         $location.path('/organizations');
     }
     

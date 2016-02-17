@@ -30,15 +30,15 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div style="float: right">
-                            <a href="#/instances"><i class="fa fa-search action-icon"></i></a>
+                            <a class="pointer"><i class="fa fa-search action-icon" ng-click="view_instances($index)"></i></a>
                             <a class="pointer"><i class="fa fa-pencil action-icon" ng-click="edit=!edit" ></i></a>
                             <a class="pointer"><i class="fa fa-trash action-icon" ng-click="rem_organization($index)"></i></a>
                         </div>
                         <div class="clearfix"></div>
                     </div>
                     <div class="panel-body">
-                        <input type="text" class="no-border" ng-model="organizations[$index]" ng-show="edit"></input>
-                        <span ng-show="!edit">{{i}}</span>
+                        <input type="text" class="no-border" ng-model="organizations[$index].name" ng-show="edit" ng-change="edit_organization($index)"></input>
+                        <span ng-show="!edit">{{i.name}}</span>
                     </div>
                 </div>
             </div>

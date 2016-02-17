@@ -23,7 +23,7 @@ angular.module('vSwitchUiApp')
       emails: [""]
     };
     
-    $scope.organizations = ["Organization"];
+    $scope.organizations = JSON.parse(localStorage.getItem('organizations'));
     
     function invite() {
       alert("Invitation sent")
