@@ -15,15 +15,21 @@ angular.module('vSwitchUiApp')
       'Karma'
     ];
     
+    // Local storage
+    $scope.organizations = JSON.parse(localStorage.getItem('organizations'));
+    
+    // Scope variables
+     $scope.form = {
+      emails: [""]
+    };
+    
+    // Scope functions
     $scope.invite = invite;
     $scope.add_invite = add_invite;
     $scope.rem_invitation = rem_invitation;
     
-    $scope.form = {
-      emails: [""]
-    };
-    
-    $scope.organizations = JSON.parse(localStorage.getItem('organizations'));
+   
+    // Functions
     
     function invite() {
       alert("Invitation sent")

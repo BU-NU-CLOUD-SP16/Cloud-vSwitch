@@ -15,16 +15,19 @@ angular.module('vSwitchUiApp')
       'Karma'
     ];
     
+    // Scope variables
+    $scope.user = {};
+    $scope.logged = true;
+    
+    // Scope functions
     $scope.login = login;
     $scope.logout = logout;
     $scope.signup = signup;
     $scope.update = update;
     
-    // variables
-    $scope.user = {};
-    $scope.logged = true;
+   
+    // Functions
 
-    
     function login() {
         $rootScope.logged = true;
         var dbUser = JSON.parse(localStorage.getItem("user"));
@@ -36,7 +39,7 @@ angular.module('vSwitchUiApp')
         }
     }
     
-     function logout() {
+    function logout() {
        $rootScope.logged = false;
         //$scope.logged = false;
         $location.path('/login');

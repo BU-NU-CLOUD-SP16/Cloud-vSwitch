@@ -15,20 +15,22 @@ angular.module('vSwitchUiApp')
       'Karma'
     ];
     
-    
+    // Local Storage
     $scope.organizations = localStorage.getItem('organizations') == null ? []: JSON.parse(localStorage.getItem('organizations'));
+    
+    // Scope variables
     $scope.organization  = {};
     
+    // Scope functions
     $scope.add_organization  = add_organization;
     $scope.join_organization = join_organization;
     $scope.rem_organization  = rem_organization;
     $scope.edit_organization = edit_organization;
     $scope.view_instances    = view_instances;
-    
-    $scope.installer = installer;
-    
+    $scope.installer         = installer;
     
     
+    // Functions
     
     function add_organization() {
       if (typeof($scope.organization.name) == "undefined" || $scope.organization.name == "") {

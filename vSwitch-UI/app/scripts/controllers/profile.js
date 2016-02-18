@@ -15,12 +15,14 @@ angular.module('vSwitchUiApp')
       'Karma'
     ];
     
-    $scope.update = update;
-    
-    // variables
+    // Scope variables
     $scope.user = JSON.parse(localStorage.getItem("user"));
     $scope.logged = true;
-
+    
+    // Scope functions
+    $scope.update = update;
+    
+    // Functions
     function update() {
         localStorage.setItem('user', JSON.stringify($scope.user));
         $location.path('/organizations');
