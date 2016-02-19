@@ -9,9 +9,8 @@
     "rc": "1.0.1",
     "sails": "~0.12.1-rc1",
     "sails-disk": "~0.10.9",
-    "sails-mongo": "^0.12.0",
-    "waterlock": "^0.1.2-rc1",
-    "waterlock-local-auth": "^0.1.2-rc1"
+    "sails-hook-jwt-auth": "^1.0.3",
+    "sails-mongo": "^0.12.0"
   },
   "scripts": {
     "debug": "node debug app.js",
