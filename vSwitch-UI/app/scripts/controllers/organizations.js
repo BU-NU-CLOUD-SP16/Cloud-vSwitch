@@ -8,7 +8,7 @@
  * Controller of the vSwitchUiApp
  */
 angular.module('vSwitchUiApp')
-  .controller('OrgCtrl', function($scope, $location) {
+  .controller('OrgCtrl', function($scope, $location, $timeout) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -39,11 +39,20 @@ angular.module('vSwitchUiApp')
       $scope.organizations.push({
         name: $scope.organization.name,
         instances: [],
-        code: "MYCODE"
+        code: "MYCODE",
+        ready: false
       });
       localStorage.setItem('organizations', JSON.stringify($scope.organizations));
       $scope.organization.name = ""
-
+  
+      var index = $scope.organizations.length - 1;
+      $timeout(function () {add_organization_complete(index)}, 3000);
+    }
+    
+     function add_organization_complete(index) {
+      $scope.organizations[index].ready = true;
+      localStorage.setItem('organizations', JSON.stringify($scope.organizations));
+      
     }
 
     function join_organization() {
@@ -54,11 +63,14 @@ angular.module('vSwitchUiApp')
       $scope.organizations.push({
         name: "Organization",
         instances: [],
-        code: "MYCODE"
+        code: "MYCODE",
+        ready: false
       });
       localStorage.setItem('organizations', JSON.stringify($scope.organizations));
       $scope.organization.code = ""
 
+      var index = $scope.organizations.length - 1;
+      $timeout(function () {add_organization_complete(index)}, 2000);
     }
 
     function edit_organization(index) {
@@ -69,6 +81,8 @@ angular.module('vSwitchUiApp')
     }
 
     function rem_organization(index) {
+      if (!$scope.organizations[index].ready) return;
+      
       if (confirm("Are you sure you want to remove " + $scope.organizations[index]))
         $scope.organizations.splice(index, 1);
 

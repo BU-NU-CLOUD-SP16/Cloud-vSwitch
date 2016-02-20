@@ -17,6 +17,9 @@ angular.module('vSwitchUiApp')
     
     // Local storage
     $scope.organizations = JSON.parse(localStorage.getItem('organizations'));
+    var current = localStorage.getItem("current");
+    // Scope variables
+    $scope.organization = $scope.organizations[current]
     
     // Scope variables
      $scope.form = {

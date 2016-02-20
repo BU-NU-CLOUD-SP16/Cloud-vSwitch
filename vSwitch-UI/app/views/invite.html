@@ -25,8 +25,8 @@
 
                     <div class="form-group">
                         <label>Select your organization</label>
-                        <select class="form-control" type="text" ng-model="form.organization" required>
-                            <option ng-repeat="organization in organizations" value="{{organization.name}}">{{organization.name}}</option>
+                        <select class="form-control" type="text" ng-model="organization.name" required>
+                            <option ng-repeat="org in organizations" value="{{org.name}}">{{org.name}}</option>
                         </select>
                         <div ng-messages="form.organization.$error">
                             <div ng-message="required">This field is required</div>
@@ -35,7 +35,7 @@
 
                     <div class="form-group">
                         <label>Message</label>
-                        <textarea class="form-control" ng-model="form.msg" rows="3"></textarea>
+                        <textarea class="form-control" ng-model="form.msg" rows="3" required></textarea>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Send</button>

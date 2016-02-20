@@ -65,8 +65,11 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="panel-body">
-                        <input type="text" class="no-border" ng-model="organizations[$index].name" ng-show="edit" ng-change="edit_organization($index)"></input>
-                        <span ng-show="!edit">{{i.name}}</span>
+                        <div ng-if="!organizations[$index].ready">
+                            <i class="fa fa-spinner fa-pulse" style="width:100%; text-align:center; color:#777"></i>
+                        </div>
+                        <input type="text" class="no-border" ng-model="organizations[$index].name" ng-show="edit" ng-if="organizations[$index].ready" ng-change="edit_organization($index)"></input>
+                        <span ng-show="!edit" ng-if="organizations[$index].ready">{{i.name}}</span>
                     </div>
                 </div>
             </div>
