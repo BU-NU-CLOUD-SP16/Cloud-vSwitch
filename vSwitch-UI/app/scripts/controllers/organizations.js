@@ -27,7 +27,7 @@ angular.module('vSwitchUiApp')
     $scope.rem_organization = rem_organization;
     $scope.edit_organization = edit_organization;
     $scope.view_instances = view_instances;
-    $scope.installer = installer;
+
 
 
     // Functions
@@ -92,11 +92,6 @@ angular.module('vSwitchUiApp')
     function view_instances(index) {
       localStorage.setItem('current', index);
       $location.path('/instances');
-    }
-
-    function installer() {
-      alert("Downloading installer")
-
     }
 
   });
