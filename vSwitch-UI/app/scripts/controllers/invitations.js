@@ -8,18 +8,31 @@
  * Controller of the vSwitchUiApp
  */
 angular.module('vSwitchUiApp')
-  .controller('InvitationCtrl', function ($scope) {
+  .controller('InvitationCtrl', function ($scope, OrgService) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
     
-    // Local storage
-    $scope.organizations = JSON.parse(localStorage.getItem('organizations'));
-    var current = localStorage.getItem("current");
-    // Scope variables
-    $scope.organization = $scope.organizations[current]
+    
+     get_organization();
+     get_organizations();
+
+    // Functions
+    
+    function get_organization() {
+      var id = localStorage.getItem("current");
+      OrgService.get(id, function(org) {
+        $scope.organization = org;
+      })
+    }
+    
+    function get_organizations() {
+      OrgService.list(function(orgs) {
+        $scope.organizations = orgs;
+      })
+    }    
     
     // Scope variables
      $scope.form = {

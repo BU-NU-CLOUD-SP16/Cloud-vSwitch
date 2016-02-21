@@ -8,20 +8,14 @@
  * Controller of the vSwitchUiApp
  */
 angular.module('vSwitchUiApp')
-  .controller('InstanceCtrl', function($scope, $timeout, $location) {
+  .controller('InstanceCtrl', function($scope, $timeout, $location, OrgService, InstanceService) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
 
-    // Local storage
-    $scope.organizations = JSON.parse(localStorage.getItem('organizations'));
-    var current = localStorage.getItem("current");
-
-    // Scope variables
-    $scope.organization = $scope.organizations[current]
-    $scope.instances = $scope.organization.instances;
+    // $scope variables
     $scope.code = "";
 
     // Scope functions
@@ -29,39 +23,44 @@ angular.module('vSwitchUiApp')
     $scope.rem_instance = rem_instance;
     $scope.edit_instance = edit_instance;
     $scope.show_code = show_code;
+    
+    get_organization();
 
     // Functions
-
-    function add_instance() {
-      //TODO: call service add_organization
-      $scope.instances.push({name: $scope.instance_name, ready: false});
-      localStorage.setItem('organizations', JSON.stringify($scope.organizations));
-      $scope.instance_name = ""
-      
-      var index = $scope.instances.length - 1;
-      $timeout(function () {add_instance_complete(index)}, 3000);
+    
+    function get_organization() {
+      var id = localStorage.getItem("current");
+      OrgService.get(id, function(org) {
+        $scope.organization = org;
+      })
+     
+     list_instances(); 
+    }
+  
+    function list_instances() {
+      InstanceService.list(function(instances) {
+        $scope.instances = instances
+      });
     }
     
-    function add_instance_complete(index) {
-      $scope.instances[index].ready = true;
-      localStorage.setItem('organizations', JSON.stringify($scope.organizations));
+    function add_instance() {
+      var instance = $scope.instance;
+      InstanceService.add(instance, list_instances);
       
     }
+    
 
     function rem_instance(index) {
-      
-      if (!$scope.instances[index].ready) return;
-      
+      var instance = $scope.instances[index];
       if (confirm("Are yoy sure you want to delete instance " + $scope.instances[index]))
-        $scope.instances.splice(index, 1);
-      localStorage.setItem('organizations', JSON.stringify($scope.organizations));
+         InstanceService.delete(instance, list_instances);
     }
 
     function edit_instance(index) {
-
-      localStorage.setItem('organizations', JSON.stringify($scope.organizations));
-
-      //TODO: call service edit_organization  
+      var instance = $scope.instances[index];
+      instance.edit = instance.edit ? false : true;
+      if (!instance.edit) 
+        InstanceService.update(instance);
     }
 
     function show_code() {

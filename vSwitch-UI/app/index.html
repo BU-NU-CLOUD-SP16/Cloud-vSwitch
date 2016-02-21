@@ -24,7 +24,7 @@
 
     <!-- Custom Fonts -->
     <link href="bower_components/components-font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+    <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.min.css" type="text/css" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -39,7 +39,7 @@
     <div id="wrapper" ng-controller="MainCtrl">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0" ng-if="$root.logged">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0" ng-if="logged">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -48,12 +48,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>-->
-                <a class="navbar-brand" href="index.html">Cloud vSwitch</a>
+                <a class="navbar-brand" href="/">Cloud vSwitch</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{$root.username}} <b class="caret"></b></a>
+                    <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{username}} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#/profile"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -94,6 +94,7 @@
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -109,6 +110,10 @@
     <script src="scripts/controllers/profile.js"></script>
 
     <!-- Services -->
+    <script src="scripts/services/sessions.js"></script>
+    <script src="scripts/services/organizations.js"></script>
+    <script src="scripts/services/instances.js"></script>
+    <script src="scripts/services/profile.js"></script>
     
     <!-- endbuild -->
 
