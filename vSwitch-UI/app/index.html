@@ -39,7 +39,7 @@
     <div id="wrapper" ng-controller="MainCtrl">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0" ng-if="$root.logged">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0" ng-if="logged">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -48,12 +48,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>-->
-                <a class="navbar-brand" href="index.html">Cloud vSwitch</a>
+                <a class="navbar-brand" href="/">Cloud vSwitch</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{$root.username}} <b class="caret"></b></a>
+                    <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{username}} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#/profile"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -109,6 +109,10 @@
     <script src="scripts/controllers/profile.js"></script>
 
     <!-- Services -->
+    <script src="scripts/services/sessions.js"></script>
+    <script src="scripts/services/organizations.js"></script>
+    <script src="scripts/services/instances.js"></script>
+    <script src="scripts/services/profile.js"></script>
     
     <!-- endbuild -->
 

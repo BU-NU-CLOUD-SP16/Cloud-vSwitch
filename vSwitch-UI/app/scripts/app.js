@@ -26,15 +26,24 @@ angular
       })
       .when('/organizations', {
         templateUrl: 'views/organizations.html',
-        controller: 'OrgCtrl'
+        controller: 'OrgCtrl',
+        resolve: {
+                authenticated: authenticated
+            }
       })
       .when('/instances', {
         templateUrl: 'views/instances.html',
-        controller: 'InstanceCtrl'
+        controller: 'InstanceCtrl',
+        resolve: {
+                authenticated: authenticated
+        }
       })
       .when('/invite', {
         templateUrl: 'views/invite.html',
-        controller: 'InvitationCtrl'
+        controller: 'InvitationCtrl',
+        resolve: {
+                authenticated: authenticated
+        }
       })
       .when('/login',{
         templateUrl:'views/login.html',
@@ -46,9 +55,26 @@ angular
       })
       .when('/profile',{
         templateUrl:'views/profile.html',
-        controller: 'SessionCtrl'
+        controller: 'SessionCtrl',
+        resolve: {
+                authenticated: authenticated
+        }
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/',
+        resolve: {
+                authenticated: authenticated
+        }
       });
   });
+  
+function authenticated ($q, $location) {
+    var def = $q.defer();
+   if ((localStorage.getItem("token") == null) || (localStorage.getItem('userid') == null)){
+     //alert("hello")
+      $location.path('/login');
+      def.reject();
+   } else {
+     def.resolve('authenticated');
+   }
+}

@@ -8,7 +8,7 @@
  * Controller of the vSwitchUiApp
  */
 angular.module('vSwitchUiApp')
-  .controller('ProfileCtrl', function ($scope, $location) {
+  .controller('ProfileCtrl', function ($scope, $location, ProfileService) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -16,16 +16,21 @@ angular.module('vSwitchUiApp')
     ];
     
     // Scope variables
-    $scope.user = JSON.parse(localStorage.getItem("user"));
-    $scope.logged = true;
+    getUser();
     
     // Scope functions
     $scope.update = update;
     
+    
+    function getUser() {
+      ProfileService.get(function(user) {
+        $scope.user = user;
+      }) 
+    }
+    
     // Functions
     function update() {
-        localStorage.setItem('user', JSON.stringify($scope.user));
-        $location.path('/organizations');
+        ProfileService.update($scope.user);
     }
     
   });

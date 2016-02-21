@@ -39,7 +39,7 @@
                 <form class="form-inline" style="margin-bottom: 10px;" ng-submit="join_organization()">
                     <div class="row">
                     <div class="form-group col-lg-8 col-md-9 col-sm-9 col-xs-9">
-                        <input type="text" class="form-control" ng-model="organization.code" placeholder="Invitation code" style="margin-bottom: 15px; width:100%" required>
+                        <input type="text" class="form-control" ng-model="code" placeholder="Invitation code" style="margin-bottom: 15px; width:100%" required>
                     </div>
                     <button type="submit" class="btn btn-default col-lg-1 col-md-3 col-sm-3 col-xs-3" style="width: 75px; margin-bottom: 15px;">Join</button>
                     <div ng-messages="organization.code.$error">
@@ -59,17 +59,17 @@
                     <div class="panel-heading">
                         <div style="float: right">
                             <a class="pointer"><i class="fa fa-search action-icon" ng-click="view_instances($index)"></i></a>
-                            <a class="pointer"><i class="fa fa-pencil action-icon" ng-click="edit=!edit" ></i></a>
+                            <a class="pointer"><i class="fa fa-pencil action-icon" ng-click="edit_organization($index)" ></i></a>
                             <a class="pointer"><i class="fa fa-trash action-icon" ng-click="rem_organization($index)"></i></a>
                         </div>
                         <div class="clearfix"></div>
                     </div>
                     <div class="panel-body">
-                        <div ng-if="!organizations[$index].ready">
+                        <div ng-if="organizations[$index].ready">
                             <i class="fa fa-spinner fa-pulse" style="width:100%; text-align:center; color:#777"></i>
                         </div>
-                        <input type="text" class="no-border" ng-model="organizations[$index].name" ng-show="edit" ng-if="organizations[$index].ready" ng-change="edit_organization($index)"></input>
-                        <span ng-show="!edit" ng-if="organizations[$index].ready">{{i.name}}</span>
+                        <input type="text" class="no-border" ng-model="organizations[$index].name" ng-show="organizations[$index].edit" ng-if="!organizations[$index].ready" ></input>
+                        <span ng-show="!organizations[$index].edit" ng-if="!organizations[$index].ready">{{i.name}}</span>
                     </div>
                 </div>
             </div>
