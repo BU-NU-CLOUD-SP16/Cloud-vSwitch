@@ -31,7 +31,7 @@ angular.module('vSwitchUiApp')
     // Functions
     function update() {
         ProfileService.update($scope.user, function() {
-          $location("/");
+          $location.path("/");
         });
     }
     

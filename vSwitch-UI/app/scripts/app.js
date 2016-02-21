@@ -70,13 +70,14 @@ angular
       });
   });
   
-function authenticated ($q, $location) {
+function authenticated ($q, $location, $rootScope) {
     var def = $q.defer();
-   if ((localStorage.getItem("token") == null) || (localStorage.getItem('userid') == null)){
+   if (localStorage.getItem('token') == null || localStorage.getItem('userid') == null){
      //alert("hello")
       $location.path('/login');
       def.reject();
    } else {
+     $rootScope.logged = false;
      def.resolve('authenticated');
    }
 }

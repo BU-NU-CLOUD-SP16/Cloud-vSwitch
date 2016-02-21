@@ -8,7 +8,7 @@
  * Controller of the vSwitchUiApp
  */
 angular.module('vSwitchUiApp')
-  .controller('InvitationCtrl', function ($scope, OrgService) {
+  .controller('InvitationCtrl', function ($scope, OrgService, InvitationService) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -48,7 +48,10 @@ angular.module('vSwitchUiApp')
     // Functions
     
     function invite() {
-      alert("Invitation sent")
+      var org = $scope.organization;
+      var emails = $scope.form.emails;
+      var msg = $scope.form.msg;
+      InvitationService.invite(org, emails);
     }
     
     function add_invite() {
