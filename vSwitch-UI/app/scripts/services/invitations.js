@@ -22,7 +22,7 @@ angular.module('vSwitchUiApp')
                 }
             }).then(function successCallback(response) {
                 toastr.success("Invitation sent");
-                callback();
+                $location.path('/');
             }, function errorCallback(response) {
                 toastr.error("There was an error");
             });
