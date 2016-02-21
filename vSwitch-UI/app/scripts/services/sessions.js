@@ -12,7 +12,6 @@ angular.module('vSwitchUiApp')
                 url: endpoint + '/signup/',
                 data: user
             }).then(function successCallback(response) {
-                localStorage.setItem("token", response.data.token);
                 callback();
             }, function errorCallback(response) {
                 toastr.error("There was an error");

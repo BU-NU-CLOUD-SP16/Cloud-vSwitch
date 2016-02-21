@@ -34,7 +34,7 @@ angular.module('vSwitchUiApp')
     function signup() {
         var user = $scope.user;
         SessionService.signup(user, function() {
-          $location('/login');
+          $location.path('/login');
         })
     }
   });
