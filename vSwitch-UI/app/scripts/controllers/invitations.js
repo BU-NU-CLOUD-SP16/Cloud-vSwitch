@@ -24,8 +24,7 @@ angular.module('vSwitchUiApp')
     function get_organization() {
       var id = localStorage.getItem("current");
       OrgService.get(id, function(org) {
-        $scope.organization = org
-        console.log(org)
+        $scope.organization = org;
       })
     }
     
@@ -34,7 +33,6 @@ angular.module('vSwitchUiApp')
         $scope.organizations = orgs;
       })
     }    
-
     
     // Scope variables
      $scope.form = {

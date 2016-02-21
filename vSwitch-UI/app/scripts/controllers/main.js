@@ -26,7 +26,6 @@ angular.module('vSwitchUiApp')
 
     function logout() {
       $rootScope.logged = false;
-      //$scope.logged = false;
       localStorage.clear();
       $location.path('/login');
     }

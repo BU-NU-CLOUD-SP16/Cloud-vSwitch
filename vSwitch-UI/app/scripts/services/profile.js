@@ -1,50 +1,48 @@
 angular.module('vSwitchUiApp')
-    .service('ProfileService', function($http, $location) {
+    .service('ProfileService', function($http, $location, toastr, endpoint) {
 
-    var endpoint = 'http://129.10.3.72:8080';
-    
-    this.get = function(callback) {
-
-            var token = localStorage.getItem("token")
-            var userid = localStorage.getItem("userid")
+        /**
+         * Service get user
+         * Get user by id
+         * @callback: function to be executed when done
+         **/
+        this.get = function(callback) {
+            var token = localStorage.getItem("token");
+            var id = localStorage.getItem("userid");
             $http({
                 method: 'GET',
-                url: endpoint + '/user/'+userid,
+                url: endpoint + '/user/' + id,
                 headers: {
                     'Authorization': "Bearer " + token
                 }
             }).then(function successCallback(response) {
-                // this callback will be called asynchronously
-                // when the response is available
-
                 callback(response.data);
             }, function errorCallback(response) {
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
-                alert('Wrong')
+                toastr.error("There was an error");
             });
         }
-    
-    this.update = function(user) {
-        var token = localStorage.getItem("token")
-            var userid = localStorage.getItem("userid")
+
+        /**
+         * Service update user
+         * Update user by id
+         * @user: organization object
+         * @callback: function to be executed when done
+         **/
+        this.update = function(user, callback) {
+            var token = localStorage.getItem("token");
+            var userid = localStorage.getItem("userid");
             $http({
                 method: 'PUT',
-                url: endpoint + '/user/'+userid,
+                url: endpoint + '/user/' + userid,
                 data: user,
                 headers: {
                     'Authorization': "Bearer " + token
                 }
             }).then(function successCallback(response) {
-                // this callback will be called asynchronously
-                // when the response is available
-
-                $location.path('/');
+                toastr.success("Profile updated");
+                callback();
             }, function errorCallback(response) {
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
-                alert('Wrong')
+                toastr.error("There was an error");
             });
-    }
-    
+        }
     })

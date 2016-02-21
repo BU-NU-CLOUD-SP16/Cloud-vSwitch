@@ -1,9 +1,12 @@
 angular.module('vSwitchUiApp')
-    .service('InstanceService', function($http, $location) {
-        var endpoint = 'http://129.10.3.72:8080';
+    .service('InstanceService', function($http, $location, toastr, endpoint) {
     
-         this.add = function(instance, callback) {
-
+        /*
+         ** Service Add instance
+         ** @org: instance object
+         ** @callback: function to be executed
+         **/
+        this.add = function(instance, callback) {
             var token = localStorage.getItem("token")
             instance.organization = localStorage.getItem("current")
             $http({
@@ -14,16 +17,19 @@ angular.module('vSwitchUiApp')
                     'Authorization': "Bearer " + token
                 }
             }).then(function successCallback(response) {
-
                 add_helper(response.data, callback);
             }, function errorCallback(response) {
-
-                alert('Wrong')
+                toastr.error("There was an error");
             });
         }
         
+        /*
+         ** This function add the instance to the organization
+         ** @instance: instance object
+         ** @callback: function to be executed
+        **/
         function add_helper(instance, callback) {
-            var token = localStorage.getItem("token")
+            var token = localStorage.getItem("token");
             var orgid = localStorage.getItem('current');
             $http({
                 method: 'POST',
@@ -32,12 +38,18 @@ angular.module('vSwitchUiApp')
                     'Authorization': "Bearer " + token
                 }
             }).then(function successCallback(response) {
+                toastr.success("Instanced added successfully");
                 callback();
             }, function errorCallback(response) {
-                alert('Wrong')
+                toastr.error("There was an error");
             });
         }
         
+        /**
+         * Service list instances
+         * Get organization's instances
+         * @callback: function to be executed when done
+         */
         this.list = function(callback) {
             var token = localStorage.getItem("token")
             var orgid = localStorage.getItem("current")
@@ -48,20 +60,21 @@ angular.module('vSwitchUiApp')
                     'Authorization': "Bearer " + token
                 }
             }).then(function successCallback(response) {
-                // this callback will be called asynchronously
-                // when the response is available
-                console.log(response.data)
-                callback(response.data)
+                callback(response.data);
             }, function errorCallback(response) {
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
-                alert('Wrong')
+                toastr.error("There was an error");
             });
         }
         
+        /**
+         * Service update instance
+         * Update instance by id
+         * @instance: instance object
+         * @callback: function to be executed when done
+         **/
         this.update = function(instance) {
             var id = instance.id;
-            var token = localStorage.getItem("token")
+            var token = localStorage.getItem("token");
             var data = {};
             data.name = instance.name;
             $http({
@@ -72,14 +85,18 @@ angular.module('vSwitchUiApp')
                     'Authorization': "Bearer " + token
                 }
             }).then(function successCallback(response) {
-                console.log(response.data)
+                toastr.success("Instance updated successfully");
             }, function errorCallback(response) {
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
-                alert('Wrong')
+                toastr.error("There was an error");
             });
         }
         
+        /**
+         * Service delete instance
+         * Delete instance by id
+         * @org: instance object
+         * @callback: function to be executed when done
+         **/
         this.delete = function(instance,callback) {
             var id = instance.id;
             var token = localStorage.getItem("token")
@@ -90,12 +107,10 @@ angular.module('vSwitchUiApp')
                     'Authorization': "Bearer " + token
                 }
             }).then(function successCallback(response) {
-                console.log(response.data)
-                callback()
+                toastr.success("Instance deleted successfully");
+                callback();
             }, function errorCallback(response) {
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
-                alert('Wrong')
+                toastr.error("There was an error");
             });
         }
     })

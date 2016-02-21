@@ -1,14 +1,16 @@
 angular.module('vSwitchUiApp')
-    .service('OrgService', function($http, $location) {
-        var endpoint = 'http://129.10.3.72:8080';
+    .service('OrgService', function($http, $location, toastr, endpoint) {
 
+        /*
+         ** Service Add organization
+         ** @org: organization object
+         **/
         this.add = function(org, callback) {
             var userid = localStorage.getItem("userid");
             var token = localStorage.getItem("token")
             org.code = org.name + "-" + userid.substr(userid.length - 5) + Math.floor((Math.random() * 100) + 1);
             org.ready = true
             org.owner = userid
-            console.log(org)
             $http({
                 method: 'POST',
                 url: endpoint + '/organization',
@@ -17,14 +19,18 @@ angular.module('vSwitchUiApp')
                     'Authorization': "Bearer " + token
                 }
             }).then(function successCallback(response) {
-                add_helper(response.data, callback)
+                add_helper(response.data, callback, toastr)
             }, function errorCallback(response) {
-                console.log(response)
-                alert('Wrong')
+                toastr.error("There was an error");
             });
         }
 
-        function add_helper(org, callback) {
+        /*
+         ** This functions adds the owner to the organization members
+         ** @org: organization object
+         ** @callback: function to be executed when done
+         **/
+        function add_helper(org, callback, toastr) {
             var token = localStorage.getItem("token")
             var userid = localStorage.getItem('userid');
             $http({
@@ -34,14 +40,19 @@ angular.module('vSwitchUiApp')
                     'Authorization': "Bearer " + token
                 }
             }).then(function successCallback(response) {
+                toastr.success('Organization added successfully');
                 callback();
             }, function errorCallback(response) {
-                alert('Wrong')
+                toastr.error("There was an error");
             });
         }
 
 
-
+        /**
+         * Service list organization
+         * Get user's organizations
+         * @callback: function to be executed when done
+         */
         this.list = function(callback) {
             var userid = localStorage.getItem('userid');
             var token = localStorage.getItem("token")
@@ -54,10 +65,16 @@ angular.module('vSwitchUiApp')
             }).then(function successCallback(response) {
                 callback(response.data)
             }, function errorCallback(response) {
-                alert('Wrong')
+                toastr.error("There was an error");
             });
         }
 
+        /**
+         * Service get orgaization
+         * Get organization by id
+         * @id: id of the organization
+         * @callback: function to be executed when done
+         **/
         this.get = function(id, callback) {
             var token = localStorage.getItem("token")
             $http({
@@ -69,16 +86,21 @@ angular.module('vSwitchUiApp')
             }).then(function successCallback(response) {
                 callback(response.data)
             }, function errorCallback(response) {
-                alert('Wrong')
+                toastr.error("There was an error");
             });
         }
 
-
+        /**
+         * Service update orgaization
+         * Update organization by id
+         * @org: organization object
+         * @callback: function to be executed when done
+         **/
         this.update = function(org, callback) {
             var token = localStorage.getItem("token");
             var id = org.id;
-            var data = {}
-            data.name = org.name
+            var data = {};
+            data.name = org.name;
 
             $http({
                 method: 'PUT',
@@ -88,42 +110,55 @@ angular.module('vSwitchUiApp')
                     'Authorization': "Bearer " + token
                 }
             }).then(function successCallback(response) {
-                alert("done")
+                toastr.success("Organization updated");
             }, function errorCallback(response) {
-                alert('Wrong')
+                toastr.error("There was an error");
             });
         }
 
+        /**
+         * Service delete orgaization
+         * Delete organization by id
+         * @org: organization object
+         * @callback: function to be executed when done
+         **/
         this.delete = function(org, callback) {
-            
+
             var userid = localStorage.getItem("userid");
             var id = org.id;
-
-            if (userid != org.owner.id) {
-                alert("You are not the owner");
+            if (userid != org.owner) {
+                toastr.error("Permision denied", "You are not the owner");
                 callback();
                 return;
-            } else {
+            }
+            else {
                 delete_helper(id, callback);
             }
         }
-        
+
+
         function delete_helper(id, callback) {
             var token = localStorage.getItem("token");
             $http({
-                    method: 'DELETE',
-                    url: endpoint + '/organization/' + id,
-                    headers: {
-                        'Authorization': "Bearer " + token
-                    }
-                }).then(function successCallback(response) {
-                    alert("done")
-                    callback()
-                }, function errorCallback(response) {
-                    alert('Wrong')
-                });
+                method: 'DELETE',
+                url: endpoint + '/organization/' + id,
+                headers: {
+                    'Authorization': "Bearer " + token
+                }
+            }).then(function successCallback(response) {
+                toastr.success("Organization deleted successfully");
+                callback();
+            }, function errorCallback(response) {
+                toastr.error("There was an error");
+            });
         }
 
+        /**
+         * Service join orgaization
+         * Join organization by id
+         * @code: organization code
+         * @callback: function to be executed when done
+         **/
         this.join = function(code, callback) {
             var token = localStorage.getItem("token")
             $http({
@@ -133,17 +168,21 @@ angular.module('vSwitchUiApp')
                     'Authorization': "Bearer " + token
                 }
             }).then(function successCallback(response) {
-
                 if (response.data.length > 0) {
                     join_helper(response.data[0], callback);
                 }
             }, function errorCallback(response) {
-                alert('Wrong')
+                toastr.error("There was an error");
             });
         }
 
+        /*
+         ** This functions adds the user to the organization members
+         ** @org: organization object
+         ** @callback: function to be executed when done
+         **/
         function join_helper(org, callback) {
-            var token = localStorage.getItem("token")
+            var token = localStorage.getItem("token");
             var userid = localStorage.getItem('userid');
             $http({
                 method: 'POST',
@@ -154,9 +193,7 @@ angular.module('vSwitchUiApp')
             }).then(function successCallback(response) {
                 callback();
             }, function errorCallback(response) {
-                alert('Wrong')
+                toastr.error("There was an error");
             });
-
         }
-
     })

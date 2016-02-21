@@ -15,13 +15,7 @@ angular.module('vSwitchUiApp')
       'Karma'
     ];
 
-    // Local storage
-    //$scope.organizations = JSON.parse(localStorage.getItem('organizations'));
-    //var current = localStorage.getItem("current");
-
-    // Scope variables
-    //$scope.organization = $scope.organizations[current]
-    //$scope.instances = $scope.organization.instances;
+    // $scope variables
     $scope.code = "";
 
     // Scope functions
@@ -37,8 +31,7 @@ angular.module('vSwitchUiApp')
     function get_organization() {
       var id = localStorage.getItem("current");
       OrgService.get(id, function(org) {
-        $scope.organization = org
-        console.log(org)
+        $scope.organization = org;
       })
      
      list_instances(); 
@@ -47,18 +40,17 @@ angular.module('vSwitchUiApp')
     function list_instances() {
       InstanceService.list(function(instances) {
         $scope.instances = instances
-      })
+      });
     }
     
     function add_instance() {
-      var instance = $scope.instance
-      InstanceService.add(instance, list_instances)
+      var instance = $scope.instance;
+      InstanceService.add(instance, list_instances);
       
     }
     
 
     function rem_instance(index) {
-      //if (!$scope.instances[index].ready) return;
       var instance = $scope.instances[index];
       if (confirm("Are yoy sure you want to delete instance " + $scope.instances[index]))
          InstanceService.delete(instance, list_instances);
@@ -66,10 +58,9 @@ angular.module('vSwitchUiApp')
 
     function edit_instance(index) {
       var instance = $scope.instances[index];
-      instance.edit = instance.edit ? false : true
+      instance.edit = instance.edit ? false : true;
       if (!instance.edit) 
         InstanceService.update(instance);
-      //TODO: call service edit_organization  
     }
 
     function show_code() {
