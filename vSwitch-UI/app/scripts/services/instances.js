@@ -90,6 +90,38 @@ angular.module('vSwitchUiApp')
                 toastr.error("There was an error");
             });
         }
+
+        this.stop = function(instance) {
+            var token = localStorage.getItem("token");
+            $http({
+                method: 'POST',
+                url: endpoint + '/instance/stop',
+                data: instance,
+                headers: {
+                    'Authorization': "Bearer " + token
+                }
+            }).then(function successCallback(response) {
+                toastr.success("Instance stopped");
+            }, function errorCallback(response) {
+                toastr.success("Instance could not be stopped");
+            })
+        }
+        
+        this.start = function(instance) {
+            var token = localStorage.getItem("token");
+            $http({
+                method: 'POST',
+                url: endpoint + '/instance/start',
+                data: instance,
+                headers: {
+                    'Authorization': "Bearer " + token
+                }
+            }).then(function successCallback(response) {
+                toastr.success("Instance started");
+            }, function errorCallback(response) {
+                toastr.success("Instance could not be started");
+            })
+        }
         
         /**
          * Service delete instance
