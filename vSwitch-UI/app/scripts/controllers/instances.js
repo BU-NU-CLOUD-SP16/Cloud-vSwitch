@@ -23,6 +23,8 @@ angular.module('vSwitchUiApp')
     $scope.rem_instance = rem_instance;
     $scope.edit_instance = edit_instance;
     $scope.show_code = show_code;
+    $scope.start = start;
+    $scope.stop = stop;
     
     get_organization();
 
@@ -52,7 +54,7 @@ angular.module('vSwitchUiApp')
 
     function rem_instance(index) {
       var instance = $scope.instances[index];
-      if (confirm("Are yoy sure you want to delete instance " + $scope.instances[index]))
+      if (confirm("Are yoy sure you want to delete instance " + $scope.instances[index].name))
          InstanceService.delete(instance, list_instances);
     }
 
@@ -61,6 +63,16 @@ angular.module('vSwitchUiApp')
       instance.edit = instance.edit ? false : true;
       if (!instance.edit) 
         InstanceService.update(instance);
+    }
+
+    function stop(index) {
+        var instance = $scope.instances[index];
+        InstanceService.stop(instance);
+    }
+    
+    function start(index) {
+        var instance = $scope.instances[index];
+        InstanceService.start(instance);
     }
 
     function show_code() {

@@ -19,7 +19,7 @@ angular
     'ngMessages',
     'toastr'
   ])
-  .constant('endpoint', 'http://129.10.3.72:8080')
+  .constant('endpoint', 'http://localhost:1337')
   .config(function ($routeProvider) {
     $routeProvider
       .when('/',{

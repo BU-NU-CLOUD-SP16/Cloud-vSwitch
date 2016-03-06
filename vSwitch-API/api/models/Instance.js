@@ -18,6 +18,10 @@ module.exports = {
     status: {
       type: 'string',
       defaultsTo: 'active'
+    },
+    instance_id: {
+      type: 'string',
+      required: true
     }
   }
 };

@@ -36,7 +36,14 @@ module.exports.routes = {
   'post /signup' : 'AuthController.signup',
   'get /activate/:token' : 'AuthController.activate',
   
-  'post /invite' : 'InvitationController.invite'
+  'post /invite' : 'InvitationController.invite',
+
+  // Instances
+  'post /instance/start' : 'InstanceController.start',
+  'post /instance/stop'  : 'InstanceController.stop',
+
+
+
 
   /***************************************************************************
   *                                                                          *

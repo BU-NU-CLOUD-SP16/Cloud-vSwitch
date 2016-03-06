@@ -8,7 +8,6 @@ angular.module('vSwitchUiApp')
         this.add = function(org, callback) {
             var userid = localStorage.getItem("userid");
             var token = localStorage.getItem("token")
-            org.code = org.name + "-" + userid.substr(userid.length - 5) + Math.floor((Math.random() * 100) + 1);
             org.ready = true
             org.owner = userid
             $http({
