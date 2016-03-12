@@ -9,8 +9,8 @@ module.exports = {
                     auth: {
                       tenantId: "58f77860f8a246528fa0392896947a29",
                       passwordCredentials: {
-                        username: "jas91@bu.edu",
-                        password: "C4Ll4w4y!"
+                        username: "",
+                        password: ""
                         }
                       }
                     }
@@ -42,7 +42,6 @@ module.exports = {
                         'networks': [{
                             'uuid': '95c65624-b11a-4fb0-a46c-fa7b957fdbaa'
                         }],
-                        'user_data': 'IyEvYmluL2Jhc2gKCnRvdWNoIC9vcHQvcG9zdGNyZWF0aW9uCmFwdC1nZXQgaW5zdGFsbCAteSBvcGVudnBuIGVhc3ktcnNhCg==',
                         'key_name': 'cloud'
                     }
                 }
