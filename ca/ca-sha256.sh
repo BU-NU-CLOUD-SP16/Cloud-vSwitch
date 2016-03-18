@@ -6,22 +6,21 @@
 #
 ########################
 
-
-
 # get the __openssl-ca.cnf__
-touch openssl-ca.cnf
+#touch openssl-ca.cnf
 
 # this will generate 2 files 
-## __cacert.pem__ and __cakey.pem__
+## __cacert.pem__(self-signed certificate of CA)
+## and __cakey.pem__(private key of CA)
 openssl req -x509 -config openssl-ca.cnf -newkey rsa:4096 -sha256 -nodes -out cacert.pem -outform PEM
 
 # dump the cert to test
-#openssl x509 -in cacert.pem -text -noout
+openssl x509 -in cacert.pem -text -noout
 # test it with purpose
-#openssl x509 -purpose -in cacert.pem -inform PEM
+openssl x509 -purpose -in cacert.pem -inform PEM
 
 # now create the __openssl-server.cnf__
-touch openssl-server.cnf
+#touch openssl-server.cnf
 
 # create server cert 
 # A request in __servercert.csr__ and a private key in __serverkey.pem__.
