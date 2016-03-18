@@ -25,7 +25,6 @@ angular.module('vSwitchUiApp')
     $scope.show_code = show_code;
     $scope.start = start;
     $scope.stop = stop;
-    
     get_organization();
 
     // Functions
@@ -43,12 +42,13 @@ angular.module('vSwitchUiApp')
       InstanceService.list(function(instances) {
         $scope.instances = instances
       });
+      $scope.instance = {};
     }
     
     function add_instance() {
       var instance = $scope.instance;
       InstanceService.add(instance, list_instances);
-      
+      $scope.new_instance = false;
     }
     
 

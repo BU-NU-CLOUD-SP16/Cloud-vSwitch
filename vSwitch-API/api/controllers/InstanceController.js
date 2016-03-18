@@ -11,11 +11,12 @@ var request = require('request');
 module.exports = {
     create: 
         function(req, res) {
-            instance = req.body
-            // MOC create instance
-            moc.create(instance, function(err, instance) {
+            instance = req.body;
+            callback = function(err, instance) {
+                console.log(instance);
                 if (err) {
-                    return res.status(400).json()
+                    console.log(err)
+                    return res.status(400).json();
                 }
                 Instance.create(instance).exec(function(err,instance) {
                     if (err) {
@@ -23,33 +24,44 @@ module.exports = {
                             err: err
                         });
                     }
-                    return res.status(200).json(instance)
+                    return res.status(200).json(instance);
                 })
-            })
+            }
 
+            // If no provider
+            callback(null, instance);
+            // MOC create instance
+            //moc.create(instance, callback)
         },
 
     start: 
         function(req, res) {    
             instance = req.body
-            console.log(instance)
-            moc.start(instance, function(err,instance) {
-                console.log(err)
+            callback = function(err,instance) {
                 if (err) {
-                    return res.status(400).json()
+                    return res.status(400).json();
                 }
                 return res.status(200).json(instance)
-            })
+            }
+
+            // if no provider
+            callback(null,instance)
+            // MOC start instance
+            //moc.start(instance, callback);
         },
     stop: 
         function(req, res) {
             instance = req.body
-            moc.stop(instance, function(err, instance) {
+            callback = function(err, instance) {
                 if (err) {
                     return res.status(400).json()
                 }
                 return res.status(200).json(instance)
-            })
+            }
+            // if no provider
+            callback(null, instance)
+            // MOC stop instance
+            //moc.stop(instance, callback);
         },
 
     destroy:
@@ -65,7 +77,7 @@ module.exports = {
                     return res.status(404).json()
                 }
             
-                moc.terminate(instance, function(err,instance) {
+                callback = function(err,instance) {
                     if (err) {
                         return res.status(400).json()
                     }
@@ -78,7 +90,12 @@ module.exports = {
                             return res.status(200).json(instance)
                         }
                     })
-                })
+                }
+
+                // If no provider
+                callback(null, instance);
+                // MOC terminate instance
+                // moc.terminate(instance, callback);
             })
         }
 };

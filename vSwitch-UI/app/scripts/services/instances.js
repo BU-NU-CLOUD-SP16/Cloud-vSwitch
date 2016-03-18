@@ -60,6 +60,7 @@ angular.module('vSwitchUiApp')
                     'Authorization': "Bearer " + token
                 }
             }).then(function successCallback(response) {
+                console.log(response);
                 callback(response.data);
             }, function errorCallback(response) {
                 toastr.error("There was an error");

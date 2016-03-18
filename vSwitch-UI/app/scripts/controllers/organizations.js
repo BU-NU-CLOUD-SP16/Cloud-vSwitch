@@ -23,7 +23,7 @@ angular.module('vSwitchUiApp')
     $scope.join_organization = join_organization;
     $scope.rem_organization = rem_organization;
     $scope.edit_organization = edit_organization;
-    $scope.view_instances = view_instances;
+    $scope.view_organization = view_organization;
 
     list_organizations();
     
@@ -62,8 +62,8 @@ angular.module('vSwitchUiApp')
       }
     }
 
-    function view_instances(index) {
+    function view_organization(index) {
       localStorage.setItem('current', $scope.organizations[index].id);
-      $location.path('/instances');
+      $location.path('/organization');
     }
   });
