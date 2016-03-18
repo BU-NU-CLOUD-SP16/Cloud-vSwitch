@@ -13,62 +13,55 @@ angular
     'ngAnimate',
     'ngCookies',
     'ngResource',
-    'ngRoute',
+    'ui.router',
     'ngSanitize',
     'ngTouch',
     'ngMessages',
     'toastr'
   ])
   .constant('endpoint', 'http://localhost:1337')
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/',{
-        templateUrl:'views/organizations.html',
-        controller: 'OrgCtrl'
+  .config(function($stateProvider, $urlRouterProvider) {
+      $stateProvider
+      .state('login', {
+          name: 'login',
+          url: '/login',
+          templateUrl: '../views/login.html',
+          controller: 'SessionCtrl',
+          resolve: {authenticated: authenticated}
       })
-      .when('/organizations', {
-        templateUrl: 'views/organizations.html',
-        controller: 'OrgCtrl',
-        resolve: {
-                authenticated: authenticated
-            }
+      .state('signup', {
+          name: 'signup',
+          url: '/signup',
+          templateUrl: '../views/signup.html',
+          controller: 'SessionCtrl'
       })
-      .when('/instances', {
-        templateUrl: 'views/instances.html',
-        controller: 'InstanceCtrl',
-        resolve: {
-                authenticated: authenticated
-        }
+      .state('profile', {
+          name: 'profile',
+          url: '/profile',
+          templateUrl: '../views/profile.html',
+          resolve: {authenticated: authenticated}
       })
-      .when('/invite', {
-        templateUrl: 'views/invite.html',
-        controller: 'InvitationCtrl',
-        resolve: {
-                authenticated: authenticated
-        }
+      .state('dashboard', {
+          name: 'dashboard',
+          url: '/',
+          templateUrl: '../views/dashboard.html',
+          resolve: {authenticated: authenticated}
       })
-      .when('/login',{
-        templateUrl:'views/login.html',
-        controller: 'SessionCtrl'
+      .state('organization', {
+          name: 'organization',
+          url: '/organization',
+          views: {
+            '' : {templateUrl: '../views/organization.html',resolve: {authenticated: authenticated}},
+            'instances@organization' : {templateUrl: '../views/instances.html', controller: "InstanceCtrl", resolve: {authenticated: authenticated}},
+            'settings@organization' : {templateUrl: '../views/settings.html',resolve: {authenticated: authenticated}},
+            'uinstaller@organization' : {templateUrl: '../views/uinstaller.html',resolve: {authenticated: authenticated}},
+            'sinstaller@organization' : {templateUrl: '../views/sinstaller.html',resolve: {authenticated: authenticated}},
+            'invite@organization': {templateUrl: '../views/invite.html', controller: "InvitationCtrl",resolve: {authenticated: authenticated}}
+          },
+          resolve: {authenticated: authenticated}
       })
-      .when('/signup',{
-        templateUrl:'views/signup.html',
-        controller: 'SessionCtrl'
-      })
-      .when('/profile',{
-        templateUrl:'views/profile.html',
-        controller: 'SessionCtrl',
-        resolve: {
-                authenticated: authenticated
-        }
-      })
-      .otherwise({
-        redirectTo: '/',
-        resolve: {
-                authenticated: authenticated
-        }
-      });
-  });
+    
+  })
   
 function authenticated ($q, $location, $rootScope) {
     var def = $q.defer();
