@@ -6,7 +6,6 @@
  */
 
 var moc = require('../services/MOC.js');
-var request = require('request');
 
 module.exports = {
     create: 
@@ -36,6 +35,7 @@ module.exports = {
 
     start: 
         function(req, res) {    
+            console.log(req.headers)
             instance = req.body
             callback = function(err,instance) {
                 if (err) {

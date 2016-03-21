@@ -20,10 +20,12 @@ body {
   background-color: white;
 }
 
-.fa-plus {
+.add-join-icon {
+    color: #ddd;
     cursor: pointer;
+    margin-right: 15px;
 }
-.fa-plus:hover {
+.add-join-icon:hover {
     color: #9A9898;
 }
 
