@@ -1,30 +1,31 @@
-<div>
+<div ng-controller="OrgCtrl">
   <div class="row" style="margin-top: 40px">
     <div class="col-lg-8 col-lg-offset-2 col-sm-10 col-sm-offset-1">
-      <div style="margin-bottom:20px;">
-        <h3>Cloud Providers</h3>
-      </div>
-      <div class="form-group">
-        <input type="checkbox" autofocus> No Cloud Provider
-      </div>
-      <form ng-submit="moc()">
+
+        <div style="margin-bottom:20px;">
+            <h3>Organization details</h3>
+        </div>
+      <form ng-submit="edit_organization()">
         <fieldset>
           <div class="form-group">
-            <input type="checkbox" autofocus required ng-click="moc=!moc"> MOC
+            <input class="form-control" placeholder="Organization" ng-model="organization.name" type="text" value="">
           </div>
           <div class="form-group">
-            <input class="form-control" placeholder="E-mail"  type="email" autofocus required >
-          </div>
-          <div ng-messages="moc.email.$error">
-            <div ng-message="required">This field is required</div>
+            <input class="form-control" placeholder="OU" ng-model="organization.ou" type="type" value="">
           </div>
           <div class="form-group">
-            <input class="form-control" placeholder="Password" type="password" value="" required>
+            <input class="form-control" placeholder="Email" ng-model="organization.email" type="email" value="">
           </div>
-          <div ng-messages="moc.password.$error">
-            <div ng-message="required">This field is required</div>
+          <div class="form-group">
+            <input class="form-control" placeholder="Country" ng-model="organization.country" type="text" autofocus>
           </div>
-          <button type=submit class="btn btn-success" ng-disabled="!moc">Save</button>
+          <div class="form-group">
+            <input class="form-control" placeholder="Providence (note abbreviated)" ng-model="organization.providence" type="text" autofocus>
+          </div>
+          <div class="form-group">
+            <input class="form-control" placeholder="City" ng-model="organization.city" autofocus>
+          </div>
+          <button type=submit class="btn btn-success">Update</button>
         </fieldset>
       </form>
     </div>

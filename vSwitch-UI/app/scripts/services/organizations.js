@@ -1,6 +1,5 @@
 angular.module('vSwitchUiApp')
     .service('OrgService', function($http, $location, toastr, endpoint) {
-
         /*
          ** Service Add organization
          ** @org: organization object
@@ -98,19 +97,18 @@ angular.module('vSwitchUiApp')
         this.update = function(org, callback) {
             var token = localStorage.getItem("token");
             var id = org.id;
-            var data = {};
-            data.name = org.name;
-
+            org.owner = org.owner.id;
             $http({
                 method: 'PUT',
                 url: endpoint + '/organization/' + id,
-                data: data,
+                data: org,
                 headers: {
                     'Authorization': "Bearer " + token
                 }
             }).then(function successCallback(response) {
                 toastr.success("Organization updated");
             }, function errorCallback(response) {
+                console.log(response)
                 toastr.error("There was an error");
             });
         }

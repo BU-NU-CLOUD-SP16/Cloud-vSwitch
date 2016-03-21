@@ -1,4 +1,4 @@
-<div>
+<div ng-controller="OrgCtrl">
   <div class="row" style="margin-top: 40px">
     <div class="col-lg-8 col-lg-offset-2 col-sm-10 col-sm-offset-1">
       <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -13,6 +13,15 @@
           </div>
           <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
             <div class="panel-body">
+              <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 col-sm-10 col-sm-offset-1">
+                  <div class="form-group">
+                    <a style="float: right;">Copy to Clipboard <i class="fa fa-clipboard"/> </a>
+                    <input class="form-control" value="apt-get install openvpn">
+                    <div style="clear: both;"></div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -27,20 +36,37 @@
           </div>
           <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
             <div class="panel-body">
-              <form ng-submit="invite()">
-                <fieldset>
-                  <div>
-                  </div>
-                  <div class="form-group">
-                    <a style="float: right;">Copy to Clipboard <i class="fa fa-clipboard"/> </a>
-                      <textarea class="form-control" ng-model="form.msg" rows="3" style="height:370px;" value=serverConf></textarea>
-                      <div style="clear: both;"></div>
-                    </div>
-                  </div>
+              <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 col-sm-10 col-sm-offset-1">
+                  <form>
+                    <fieldset>
+                      <div class="form-group">
+                        <input class="form-control" type="text" placeholder="VPN Server Port" ng-model="port" ng-init="port=80">
+                      </div>
+                      <div class="form-group">
+                        <a style="float: right;">Copy to Clipboard <i class="fa fa-clipboard"/> </a>
+                            <textarea class="form-control" rows="3" style="height:300px;" value="">
+client
+dev tun
+proto tcp
+remote {{ip}} {{port}}
+resolv-retry infinite
+nobind
+comp-lzo
+ns-cert-type server
+persist-tun
+persist-key
+verb 4
+                            </textarea>
+                        <div style="clear: both;"></div>
+                      </div>
+                </div>
                 </fieldset>
-              </form>
+                </form>
+              </div>
             </div>
           </div>
+        </div>
 
         <div class="panel panel-default accordion">
           <div class="panel-heading" role="tab" id="headingThree">
@@ -52,29 +78,41 @@
           </div>
           <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
             <div class="panel-body">
-              <form>
-                <fieldset>
+              <div class="row">
+                <div class="col-lg-6 col-lg-offset-3 col-sm-6 col-sm-offset-3">
+                  <form ng-submit="generateCsr()">
+                    <fieldset>
+                      <div class="form-group">
+                        <input class="form-control" placeholder="Organization" ng-model="organization.name"  type="text" value="" required>
+                      </div>
+                      <div class="form-group">
+                        <input class="form-control" placeholder="OU" ng-model="organization.ou"    type="text" value="" required>
+                      </div>
+                      <div class="form-group">
+                        <input class="form-control" placeholder="Email" ng-model="organization.email"   type="text" value="" required>
+                      </div>
+                      <div class="form-group">
+                        <input class="form-control" placeholder="Country" ng-model="organization.country"     type="text" value="" required>
+                      </div>
+                      <div class="form-group">
+                        <input class="form-control" placeholder="Providence (note abbreviated)" ng-model="organization.providence"   type="text" value="" required>
+                      </div>
+                      <div class="form-group">
+                        <input class="form-control" placeholder="City"  ng-model="organization.city"  type="text" value="" required>
+                      </div>
+                      <button type=submit class="btn btn-success btn-block">Generate CSR</button>
+                    </fieldset>
+                  </form>
+                </div>
+                <div class="col-lg-6 col-lg-offset-3 col-sm-6 col-sm-offset-3" style="margin-top:20px;">
+                  <form ng-submit="upload()">
                     <div class="form-group">
-                        <input class="form-control" placeholder="Country"  type="text" autofocus required>
+                      <input class="form-control"  type="file" value=""  required file-model="file">
                     </div>
-                    <div class="form-group">
-                        <input class="form-control" placeholder="Providence" type="text" autofocus required>
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control" placeholder="City" autofocus required>
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control" placeholder="Organization" type="text" value="" required>
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control" placeholder="Email" type="email" value="" required>
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control" placeholder="OU" type="type" value="" required>
-                    </div>
-                    <button type=submit class="btn btn-success btn-block">Generate</button>
-                </fieldset>
-              </form>
+                    <button type=submit class="btn btn-success btn-block">Request Sign</button>
+                  </form>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -88,6 +126,10 @@
           </div>
           <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
             <div class="panel-body">
+              <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 col-sm-10 col-sm-offset-1">
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -102,12 +144,16 @@
           </div>
           <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
             <div class="panel-body">
+              <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 col-sm-10 col-sm-offset-1">
               <div class="form-group">
                 <a style="float: right;">Copy to Clipboard <i class="fa fa-clipboard"/> </a>
                   <input class="form-control" value="openvpn --config server.conf --ca ca.crt --crt server.crt --key server.key --dh server.pem --daemon">
                   <div style="clear: both;"></div>
                 </div>
               </div>
+              </div>
+            </div>
             </div>
           </div>
         </div>

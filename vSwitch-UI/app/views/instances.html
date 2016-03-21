@@ -40,8 +40,8 @@
           <div class="clearfix"></div>
         </div>
         <div class="panel-body" style="height:51px;">
-          <div style="color:#ddd; margin:auto; text-align:center;" ng-show="!new_instance" ng-click="new_instance=true" > 
-            <i class="fa fa-plus fa-2x"/>
+          <div style="color:#ddd; margin:auto; text-align:center;" ng-show="!new_instance" >
+            <span class="add-join-icon" ng-click="new_instance=true"> ADD INSTANCE  </span>
             </div>
             <div ng-show="new_instance">
               <input type="text" class="no-border" placeholder="Instance name" ng-model="instance.name"></input> 
