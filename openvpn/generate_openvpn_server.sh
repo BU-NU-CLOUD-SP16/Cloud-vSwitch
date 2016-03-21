@@ -1,5 +1,5 @@
 ## To run
-# bash generate_openvpn_server.sh
+# bash generate_openvpn_server.sh cacert.pem servercert.pem serverkey.pem
 
 echo "
 
