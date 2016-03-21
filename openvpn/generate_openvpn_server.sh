@@ -11,6 +11,13 @@ apt-get update
 #Install OpenVPN and Easy-RSA.
 apt-get -y install openvpn easy-rsa
 
+# ip forward
+echo 1 > /proc/sys/net/ipv4/ip_forward
+echo net.ipv4.ip_forward=1 >> /etc/sysctl.conf
+
+## TODO
+
+
 #OpenVPN configuration file
 cat > /etc/openvpn/server.conf << EOL
 #OpenVPN configuration file
