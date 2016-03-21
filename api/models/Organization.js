@@ -34,6 +34,21 @@ module.exports = {
     },
     connected: {
       collection: 'user'
+    },
+    country: {
+        type: 'string'
+    },
+    providence: {
+        type: 'string'
+    },
+    city: {
+        type: 'string'
+    },
+    ou: {
+        type: 'string'
+    },
+    email: {
+        type: 'string'
     }
   }
 };
