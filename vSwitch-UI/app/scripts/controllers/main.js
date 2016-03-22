@@ -21,7 +21,8 @@ angular.module('vSwitchUiApp')
       return $rootScope.logged;
     }, function() {
       $scope.logged = $rootScope.logged;
-      $scope.username = localStorage.getItem('username');
+      var user = JSON.parse(localStorage.getItem('user'));
+      $scope.username = user.name;
     }, true);
 
     function logout() {
@@ -34,7 +35,8 @@ angular.module('vSwitchUiApp')
       if (!current) {
         // handle session start event
         if (localStorage.getItem('token') != null) {
-          $scope.username = localStorage.getItem('username');
+          var user = JSON.parse(localStorage.getItem('user'));
+          $scope.username = user.name;
           $scope.logged = true;
         } else {
           $scope.logged = false;

@@ -1,0 +1,43 @@
+<!-- Page Heading -->
+<div ng-controller="OrgCtrl">
+    <div class="row">
+        <div class="col-lg-12">
+            <div style="margin-bottom: 20px;">
+                <h1 >{{organization.name}}</h1>
+              </div>
+
+                <div>
+                  <ul class="nav nav-tabs">
+                    <li role="presentation" ng-class="active==1 || !active ? 'active': ''"><a ng-click="active=1"><i class="fa fa-reorder"/> Instances</a></li>
+                    <li role="presentation" ng-class="active==2 ? 'active': ''"><a ng-click="active=2"><i class="fa fa-cog"/> Settings</a></li>
+                    <li role="presentation" ng-class="active==3 ? 'active': ''"><a ng-click="active=3"><i class="fa fa-user"/> Client Installer</a></li>
+                    <li role="presentation" ng-class="active==4 ? 'active': ''"><a ng-click="active=4"><i class="fa fa-server"/>  Server Installer</a></li>
+                    <li role="presentation" ng-class="active==5 ? 'active': ''"><a ng-click="active=5"><i class="fa fa-server"/>  Invite</a></li>
+                  </ul>
+            </div>
+        </div>
+    </div>
+
+     
+    <div ng-if="active==1">
+      <div  ui-view="instances"></div>
+  </div>
+    
+    <div ng-if="active==2">
+      <div ui-view="settings"></div>
+    </div>
+    
+    <div ng-if="active==3">
+      <div ui-view="uinstaller"></div>
+    </div>
+    
+    <div ng-if="active==4">
+      <div ui-view="sinstaller"></div>
+    </div>
+
+    <div ng-if="active==5">
+      <div ui-view="invite"></div>
+    </div>
+
+    
+</div>

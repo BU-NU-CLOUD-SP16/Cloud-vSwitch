@@ -26,7 +26,7 @@ angular.module('vSwitchUiApp')
     function login() {
       var user = $scope.user;
       SessionService.login(user, function() {
-        $location.path("/");
+        $location.path("/dashboard");
         $rootScope.logged = true;
       })
     }

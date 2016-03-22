@@ -1,69 +1,124 @@
-'use strict';
+    'use strict';
 
-/**
- * @ngdoc function
- * @name vSwitchUiApp.controller:AboutCtrl
- * @description
- * # AboutCtrl
- * Controller of the vSwitchUiApp
- */
-angular.module('vSwitchUiApp')
-  .controller('OrgCtrl', function($scope, $rootScope, $location, $timeout, OrgService, toastr) {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-    
-    // Scope variables
-    $scope.organization = {};
+    angular.module('vSwitchUiApp')
+    .directive('fileModel', ['$parse', function ($parse) {
+        return {
+            restrict: 'A',
+        link: function(scope, element, attrs) {
+            var model = $parse(attrs.fileModel);
+            var modelSetter = model.assign;
 
-    // Scope functions
-    $scope.add_organization = add_organization;
-    $scope.join_organization = join_organization;
-    $scope.rem_organization = rem_organization;
-    $scope.edit_organization = edit_organization;
-    $scope.view_instances = view_instances;
+            element.bind('change', function(){
+                scope.$apply(function(){
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+        };
+    }]);
 
-    list_organizations();
-    
- 
-    // Functions
+    /**
+     * @ngdoc function
+     * @name vSwitchUiApp.controller:AboutCtrl
+     * @description
+     * # AboutCtrl
+     * Controller of the vSwitchUiApp
+     */
+    angular.module('vSwitchUiApp')
+    .controller('OrgCtrl', function($scope, $timeout, $location, OrgService, InstanceService, CertificateService) {
+        this.awesomeThings = [
+        'HTML5 Boilerplate',
+        'AngularJS',
+            'Karma'
+            ];
 
-    function list_organizations() {
-      OrgService.list(function(orgs) {
-        $scope.organizations = orgs;
-      })
-    }    
+        // $scope variables
+        $scope.code = "";
 
-    function add_organization() {
-      OrgService.add($scope.organization, list_organizations);
-    }
-    
+        // Scope functions
+        $scope.add_instance = add_instance;
+        $scope.rem_instance = rem_instance;
+        $scope.edit_instance = edit_instance;
+        $scope.start = start;
+        $scope.stop = stop;
 
-    function join_organization() {
-      var code = $scope.code;
-      OrgService.join(code, list_organizations);
-      $scope.code = "";
-    }
+        $scope.generateCsr = generateCsr;
+        $scope.upload = upload;
+        $scope.edit_organization = edit_organization;
 
-    function edit_organization(index) {
-      var organization = $scope.organizations[index];
-      organization.edit = organization.edit ? false : true;
-      if (!organization.edit)
-        OrgService.update(organization);
-    }
+        $scope.user = JSON.parse(localStorage.getItem('user'));
 
-    function rem_organization(index) {
+        $scope.apple_client = apple_client;
 
-      if (confirm("Are you sure you want to remove " + $scope.organizations[index])) {
-        var organization = $scope.organizations[index];
-        OrgService.delete(organization, list_organizations);
-      }
-    }
+        $scope.active = $scope.active == null ? 1 : $scope.active;
+        get_organization();
 
-    function view_instances(index) {
-      localStorage.setItem('current', $scope.organizations[index].id);
-      $location.path('/instances');
-    }
-  });
+        // Functions
+
+        function get_organization() {
+            var id = localStorage.getItem("current");
+            OrgService.get(id, function(org) {
+                $scope.organization = org;
+            })
+
+            list_instances();
+        }
+
+        function list_instances() {
+            InstanceService.list(function(instances) {
+                $scope.instances = instances
+            });
+            $scope.instance = {};
+        }
+
+        function add_instance() {
+            var instance = $scope.instance;
+            InstanceService.add(instance, list_instances);
+            $scope.new_instance = false;
+        }
+
+
+        function rem_instance(index) {
+            var instance = $scope.instances[index];
+            if (confirm("Are yoy sure you want to delete instance " + $scope.instances[index].name))
+                InstanceService.delete(instance, list_instances);
+        }
+
+        function edit_instance(index) {
+            var instance = $scope.instances[index];
+            instance.edit = instance.edit ? false : true;
+            if (!instance.edit)
+                InstanceService.update(instance);
+        }
+
+        function stop(index) {
+            var instance = $scope.instances[index];
+            InstanceService.stop(instance);
+        }
+
+        function start(index) {
+            var instance = $scope.instances[index];
+            InstanceService.start(instance);
+        }
+
+        function generateCsr() {
+            CertificateService.csr($scope.organization);
+        }
+
+                function upload() {
+                var file = $scope.file;
+                console.log('file is ' );
+                console.dir(file);
+                CertificateService.sign(file);
+            }
+
+                    function edit_organization() {
+                            var organization = $scope.organization;
+                            console.log(organization)
+                                OrgService.update(organization);
+                        }
+
+        function apple_client() {
+            window.open('https://tunnelblick.net/downloads.html');
+        }
+        });

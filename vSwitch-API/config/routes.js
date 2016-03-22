@@ -42,6 +42,10 @@ module.exports.routes = {
   'post /instance/start' : 'InstanceController.start',
   'post /instance/stop'  : 'InstanceController.stop',
 
+  // Certificates
+  'post /certificate/csr/:id' : 'CertificateController.createCsr',
+  'post /certificate/sign' : 'CertificateController.sign'
+
 
 
 
