@@ -16,6 +16,28 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 echo net.ipv4.ip_forward=1 >> /etc/sysctl.conf
 
 ## TODO
+ufw allow ssh
+
+ufw allow 80/tcp
+
+sed \'s/DEFAULT_FORWARD_POLICY=\"DROP\"/DEFAULT_FORWARD_POLICY=\"ACCEPT\"\' /etc/default/ufw
+
+## Not sure this will work!!!
+
+cat > /etc/ufw/before.rules <<
+
+*nat
+:POSTROUTING ACCEPT [0:0]
+-A POSTROUTING -s 10.8.0.0/8 -o eth0 -j MASQUERADE
+COMMIT
+
+EOL
+
+
+ufw enable 
+
+
+
 
 
 #OpenVPN configuration file
