@@ -1,5 +1,6 @@
 ## To run
 # bash generate_openvpn_server.sh cacert.pem servercert.pem serverkey.pem
+# 
 
 echo "
 
@@ -20,11 +21,13 @@ ufw allow ssh
 
 ufw allow 80/tcp
 
-sed \'s/DEFAULT_FORWARD_POLICY=\"DROP\"/DEFAULT_FORWARD_POLICY=\"ACCEPT\"\' /etc/default/ufw
+
+sed 's/DEFAULT_FORWARD_POLICY=\"DROP\"/DEFAULT_FORWARD_POLICY=\"ACCEPT\"/' /etc/default/ufw
+
 
 ## Not sure this will work!!!
 
-cat > /etc/ufw/before.rules <<
+cat >> /etc/ufw/before.rules << EOL
 
 *nat
 :POSTROUTING ACCEPT [0:0]
@@ -33,11 +36,7 @@ COMMIT
 
 EOL
 
-
-ufw enable 
-
-
-
+ufw --force enable
 
 
 #OpenVPN configuration file
@@ -47,7 +46,7 @@ port 80
 proto tcp
 dev tun
 server 10.8.0.0 255.255.255.0
-ifconfig-poolem-persist ipp.txt
+ifconfig-pool-persist ipp.txt
 push \"redirect-gateway def1 bypass-dhcp\"
 push \"dhcp-option DNS 208.67.222.222\"
 push \"dhcp-option DNS 208.67.220.220\"
@@ -73,13 +72,15 @@ cat > /etc/openvpn/ca.crt << EOL
 EOL
 
 cat > /etc/openvpn/server.crt << EOL
-`cat $2`
+cs`cat $2`
 EOL
 
 cat > /etc/openvpn/server.key << EOL
 `cat $3`
 EOL
 
+openssl dhparam -out /etc/openvpn/dh2048.pem 2048
 
+service openvpn start
 
 " >> openvpn_server.sh
