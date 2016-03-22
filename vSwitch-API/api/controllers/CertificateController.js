@@ -1,9 +1,9 @@
 require('shelljs/global');
 const exec = require('child_process').exec;
 module.exports = {
-    sign: 
+    sign:
         function(req, res) {
-            id = req.params.id;
+            var id = req.params.id;
             req.file('csr').upload(function (err, files){
                   if (err) return res.serverError(err);
                     csr = files[0].fd;
@@ -21,9 +21,9 @@ module.exports = {
 
             })
         },
-    createCsr: 
+    createCsr:
         function(req, res) {
-            id = req.params.id;
+            var id = req.params.id;
             console.log(req.body);
             country = req.body.country;
             state = req.body.providence;
