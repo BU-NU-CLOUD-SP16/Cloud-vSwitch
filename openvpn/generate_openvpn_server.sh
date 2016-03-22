@@ -1,10 +1,8 @@
 ## To run
 # bash generate_openvpn_server.sh cacert.pem servercert.pem serverkey.pem
-# 
+#
 
-echo "
-
-#!/bin/bash
+echo "#!/bin/bash
 
 #Update Ubuntus repository lists.
 apt-get update
@@ -79,7 +77,12 @@ cat > /etc/openvpn/server.key << EOL
 `cat $3`
 EOL
 
-openssl dhparam -out /etc/openvpn/dh2048.pem 2048
+cat > /etc/openvpn/dh2048.pem << EOL
+'cat $4'
+EOL
+
+
+# openssl dhparam -out /etc/openvpn/dh2048.pem 2048
 
 service openvpn start
 
