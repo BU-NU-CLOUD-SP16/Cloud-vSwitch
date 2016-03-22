@@ -1,0 +1,37 @@
+<!-- Page Heading --><div ng-controller="DashboardCtrl">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1>
+        Dashboard
+    </h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+
+
+      <div>
+        <ul class="nav nav-tabs" ng-init="active=1">
+          <li role="presentation" ng-class="active==1 || !active ? 'active': ''"><a ng-click="active=1"><i class="fa fa-reorder"/> Organizations</a></li>
+          <li role="presentation" ng-class="active==2 ? 'active': ''"><a ng-click="active=2"><i class="fa fa-cog"/> Settings</a></li>
+          <li role="presentation" ng-class="active==3 ? 'active': ''"><a ng-click="active=3"><i class="fa fa-user"/> Profile</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div ng-if="active==1">
+    <div  ui-view="organizations"></div>
+  </div>
+
+  <div ng-if="active==2">
+    <div  ui-view="settings"></div>
+  </div>
+
+  <div ng-if="active==3">
+    <div  ui-view="profile"></div>
+  </div>
+
+  <!-- /.row -->
+</div>
