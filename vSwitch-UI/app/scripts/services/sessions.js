@@ -12,6 +12,9 @@ angular.module('vSwitchUiApp')
                 url: endpoint + '/signup/',
                 data: user
             }).then(function successCallback(response) {
+                localStorage.setItem("token", response.data.token);
+                localStorage.setItem("userid", response.data.user.id);
+                localStorage.setItem("user", JSON.stringify(response.data.user));
                 callback();
             }, function errorCallback(response) {
                 toastr.error("There was an error");
@@ -45,7 +48,6 @@ angular.module('vSwitchUiApp')
         this.authenticated = function () {
             //var def = $q.defer();
             if (localStorage.getItem('token') == null || localStorage.getItem('userid') == null){
-                console.log("Unauthorized")
                 $location.path('/login');
               //  def.reject();
             } else {

@@ -108,7 +108,6 @@ angular.module('vSwitchUiApp')
             }).then(function successCallback(response) {
                 toastr.success("Organization updated");
             }, function errorCallback(response) {
-                console.log(response)
                 toastr.error("There was an error");
             });
         }
@@ -193,4 +192,9 @@ angular.module('vSwitchUiApp')
                 toastr.error("There was an error");
             });
         }
+
+
+
+
+
     })

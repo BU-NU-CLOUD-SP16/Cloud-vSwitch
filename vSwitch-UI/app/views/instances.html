@@ -1,6 +1,6 @@
 <!-- Page Heading -->
-<div> 
-  <div class="row" style="margin-top:40px;">
+<div>
+  <div class="row" ng-show="!new_instance">
     <div class="col-lg-3 col-md-3 col-sm-4" ng-repeat="i in instances track by $index">
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -42,16 +42,37 @@
         <div class="panel-body" style="height:51px;">
           <div style="color:#ddd; margin:auto; text-align:center;" ng-show="!new_instance" >
             <span class="add-join-icon" ng-click="new_instance=true"> ADD INSTANCE  </span>
-            </div>
-            <div ng-show="new_instance">
-              <input type="text" class="no-border" placeholder="Instance name" ng-model="instance.name"></input> 
-              <i class="fa fa-times form-icon" ng-click="new_instance=false; instance.name=''"/>
-                <i class="fa fa-check form-icon" ng-click="add_instance()"/>
-                </div>
-              </div>
-            </div>
+          </div>
+          <div ng-show="new_instance">
+            <input type="text" class="no-border" placeholder="Instance name" ng-model="instance.name"></input>
+            <i class="fa fa-times form-icon" ng-click="new_instance=false; instance.name=''"/>
+            <i class="fa fa-check form-icon" ng-click="add_instance()"/>
           </div>
         </div>
-
-        <!-- /.row -->
       </div>
+    </div>
+  </div>
+
+  <!-- /.row -->
+</div>
+
+<div class="row" ng-show="new_instance">
+  <div class="col-lg-6 col-lg-offset-3 col-sm-10 col-sm-offset-1">
+
+    <div style="margin-bottom:20px;">
+      <h3>Create Organization</h3>
+    </div>
+    <form ng-submit="add_instance()">
+      <fieldset>
+        <div class="form-group">
+          <input class="form-control" placeholder="Instance name" ng-model="instance.name" type="text" value="" required>
+        </div>
+        <div ng-messages="instance.name.$error">
+          <div ng-message="required">This field is required</div>
+        </div>
+        <button type=submit class="btn btn-success">Create</button>
+        <button ng-click="new_instance=false" class="btn btn-danger">Cancel</button>
+      </fieldset>
+    </form>
+  </div>
+</div>

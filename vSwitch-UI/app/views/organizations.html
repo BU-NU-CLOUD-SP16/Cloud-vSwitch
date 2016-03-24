@@ -1,71 +1,65 @@
-<div ng-controller="DashboardCtrl" style="margin-top:40px;">
-<div class="row">
-   <div ng-show="!new_organization">
-    <form name="form">
-        <div class="col-lg-3 col-md-3 col-sm-4" ng-repeat="i in organizations track by $index">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <div style="float: right">
-                        <a class="pointer"><i class="fa fa-search action-icon" ng-click="view_organization($index)"></i></a>
-                        <a class="pointer"><i class="fa fa-pencil action-icon" ng-click="edit_organization($index)" ></i></a>
-                        <a class="pointer"><i class="fa fa-trash action-icon" ng-click="rem_organization($index)"></i></a>
+<div ng-controller="DashboardCtrl">
+    <div class="row">
+        <div ng-show="!new_organization">
+            <form name="form">
+                <div class="col-lg-3 col-md-3 col-sm-4" ng-repeat="i in organizations track by $index">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div style="float: right">
+                                <a class="pointer"><i class="fa fa-search action-icon" ng-click="view_organization($index)"></i></a>
+                                <a class="pointer"><i class="fa fa-pencil action-icon" ng-click="edit_organization($index)" ></i></a>
+                                <a class="pointer"><i class="fa fa-trash action-icon" ng-click="rem_organization($index)"></i></a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="panel-body">
+                            <div ng-if="organizations[$index].ready">
+                                <i class="fa fa-spinner fa-pulse" style="width:100%; text-align:center; color:#777"></i>
+                            </div>
+                            <input type="text" class="no-border" ng-model="organizations[$index].name" ng-show="organizations[$index].edit" ng-if="!organizations[$index].ready" ></input>
+                            <span ng-show="!organizations[$index].edit" ng-if="!organizations[$index].ready">{{i.name}}</span>
+                        </div>
                     </div>
-                    <div class="clearfix"></div>
                 </div>
-                <div class="panel-body">
-                    <div ng-if="organizations[$index].ready">
-                        <i class="fa fa-spinner fa-pulse" style="width:100%; text-align:center; color:#777"></i>
-                    </div>
-                    <input type="text" class="no-border" ng-model="organizations[$index].name" ng-show="organizations[$index].edit" ng-if="!organizations[$index].ready" ></input>
-                    <span ng-show="!organizations[$index].edit" ng-if="!organizations[$index].ready">{{i.name}}</span>
-                </div>
-            </div>
-        </div>
-    </form>
+            </form>
 
 
-<div class="col-lg-3 col-md-3 col-sm-4">
-    <div class="panel panel-default">
-        <div class="panel-heading" style="height:40px;">
-            <div style="float: right">
-                <i class="fa fa-search action-icon"></i>
-                <i class="fa fa-pencil action-icon"></i>
-                <i class="fa fa-trash action-icon"></i>
+            <div class="col-lg-3 col-md-3 col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="height:40px;">
+                        <div style="float: right">
+                            <i class="fa fa-search action-icon"></i>
+                            <i class="fa fa-pencil action-icon"></i>
+                            <i class="fa fa-trash action-icon"></i>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="panel-body" style="height:51px;">
+                        <div style="color:#ddd; margin:auto; text-align:center;" ng-show="!new_organization && !join_org">
+                            <span class="add-join-icon" ng-click="new_organization=true"> ADD   </span> <span class="add-join-icon"  ng-click="join_org=true">   JOIN </span>
+                        </div>
+                        <div ng-show="new_organization" ng-init="organization.name=null">
+                            <input type="text" class="no-border" placeholder="Organization name" ng-model="organization.name"></input>
+                            <i class="fa fa-times form-icon" ng-click="new_organization=false; organization.name=''; join_org=false; code=''"/>
+                            <i class="fa fa-check form-icon" ng-click="organization.name != null && organization.name != '' && add_organization()"/>
+                        </div>
+                        <div ng-show="join_org">
+                            <input type="text" class="no-border" placeholder="Organization code" ng-model="code"></input>
+                            <i class="fa fa-times form-icon" ng-click="new_organization=false; organization.name=''; join_org=false; code=''"/>
+                            <i class="fa fa-check form-icon" ng-click="code != null && code != '' && join_organization()"/>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="clearfix"></div>
         </div>
-        <div class="panel-body" style="height:51px;">
-            <div style="color:#ddd; margin:auto; text-align:center;" ng-show="!new_organization && !join_org">
-                <span class="add-join-icon" ng-click="new_organization=true"> ADD   </span> <span class="add-join-icon"  ng-click="join_org=true">   JOIN </span>
-            </div>
-            <div ng-show="new_organization" ng-init="organization.name=null">
-                <input type="text" class="no-border" placeholder="Organization name" ng-model="organization.name"></input>
-                <i class="fa fa-times form-icon" ng-click="new_organization=false; organization.name=''; join_org=false; code=''"/>
-                <i class="fa fa-check form-icon" ng-click="organization.name != null && organization.name != '' && add_organization()"/>
-            </div>
-            <div ng-show="join_org">
-                <input type="text" class="no-border" placeholder="Organization code" ng-model="code"></input>
-                <i class="fa fa-times form-icon" ng-click="new_organization=false; organization.name=''; join_org=false; code=''"/>
-                <i class="fa fa-check form-icon" ng-click="code != null && code != '' && join_organization()"/>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
         <div class="row" ng-show="new_organization">
-            <div class="col-lg-8 col-lg-offset-2 col-sm-10 col-sm-offset-1">
+            <div class="col-lg-6 col-lg-offset-3 col-sm-10 col-sm-offset-1">
 
                 <div style="margin-bottom:20px;">
                     <h3>Create Organization</h3>
                 </div>
                 <form ng-submit="add_organization()">
                     <fieldset>
-                        <div class="form-group">
-                            <select class="form-control">
-                                <option>No Cloud Provided</option>
-                                <option>MOC</option>
-                            </select>
-                        </div>
                         <div class="form-group">
                             <input class="form-control" placeholder="Organization" ng-model="organization.name" type="text" value="" required>
                         </div>
@@ -109,4 +103,4 @@
                 </form>
             </div>
         </div>
-</div>
+    </div>
