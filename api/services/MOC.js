@@ -21,8 +21,7 @@ module.exports = {
             action(error, token, tenant)
         });
     },
-    create: function(instance, callback) {
-        console.log(instance.name)
+    create: function(instance, user_data, callback) {
         create_fn = function(err, token, tenant) {
             request({
                 url: "https://nova.kaizen.massopencloud.org:8774/v2/"+tenant+"/servers",
@@ -43,6 +42,7 @@ module.exports = {
                         'networks': [{
                             'uuid': '95c65624-b11a-4fb0-a46c-fa7b957fdbaa'
                         }],
+                        'user_data': user_data,
                         'key_name': 'cloud'
                     }
                 }
