@@ -16,7 +16,6 @@ angular.module('vSwitchUiApp')
                 data: org,
                 responseType:'arraybuffer'
             }).then(function successCallback(response) {
-                console.log(response.data);
                 var blob = new Blob([response.data], {type: 'application/zip'});
                 var url = URL.createObjectURL(blob);
                 var a = document.createElement("a");
@@ -41,18 +40,18 @@ angular.module('vSwitchUiApp')
                 transformRequest: angular.identity,
                 headers: {'Content-Type': undefined}
             })
-            .success(function(response){
-                var blob = new Blob([response], {type: 'application/x-x509-ca-cert'});
-                var url = URL.createObjectURL(blob);
-                var a = document.createElement("a");
-                a.href = url;
-                a.download = id + ".crt";
-                a.click();
-                window.URL.revokeObjectURL(url);
-            })
-            .error(function(){
-                toastr.error("There was an error");
-            });
+                .success(function(response){
+                    var blob = new Blob([response], {type: 'application/x-x509-ca-cert'});
+                    var url = URL.createObjectURL(blob);
+                    var a = document.createElement("a");
+                    a.href = url;
+                    a.download = id + ".crt";
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                })
+                .error(function(){
+                    toastr.error("There was an error");
+                });
         }
     }
 )

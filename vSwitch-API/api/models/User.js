@@ -33,6 +33,7 @@ module.exports = {
       required: true,
   	},
 
+
     active: {
       type: 'boolean',
       defaultsTo: true

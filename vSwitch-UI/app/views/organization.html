@@ -1,43 +1,65 @@
-<!-- Page Heading -->
 <div ng-controller="OrgCtrl">
-    <div class="row">
-        <div class="col-lg-12">
-            <div style="margin-bottom: 20px;">
-                <h1 >{{organization.name}}</h1>
-              </div>
-
-                <div>
-                  <ul class="nav nav-tabs">
-                    <li role="presentation" ng-class="active==1 || !active ? 'active': ''"><a ng-click="active=1"><i class="fa fa-reorder"/> Instances</a></li>
-                    <li role="presentation" ng-class="active==2 ? 'active': ''"><a ng-click="active=2"><i class="fa fa-cog"/> Settings</a></li>
-                    <li role="presentation" ng-class="active==3 ? 'active': ''"><a ng-click="active=3"><i class="fa fa-user"/> Client Installer</a></li>
-                    <li role="presentation" ng-class="active==4 ? 'active': ''"><a ng-click="active=4"><i class="fa fa-server"/>  Server Installer</a></li>
-                    <li role="presentation" ng-class="active==5 ? 'active': ''"><a ng-click="active=5"><i class="fa fa-server"/>  Invite</a></li>
-                  </ul>
+    <nav class="navbar navbar-default ">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/#/dashboard">Cloud vSwitch</a>
             </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li role="presentation" ng-class="active==3 ? 'active': ''"><a ng-click="active=3"><i class="fa fa-user"/> Client Installer</a></li>
+                    <li role="presentation" ng-class="active==1 || !active ? 'active': ''"><a ng-click="active=1"><i class="fa fa-reorder"/> Instances</a></li>
+                    <!--<li role="presentation" ng-class="active==2 ? 'active': ''"><a ng-click="active=2"><i class="fa fa-cog"/> Settings</a></li>-->
+                    <!--<li role="presentation" ng-class="active==4 ? 'active': ''"><a ng-click="active=4"><i class="fa fa-server"/>  Server Installer</a></li>-->
+                    <li role="presentation" ng-class="active==5 ? 'active': ''"><a ng-click="active=5"><i class="fa fa-server"/>  Invite</a></li>
+                </ul>
+                <ul class="nav navbar-top-links navbar-right" >
+                    <li>
+                        <a ng-click="logout()"><i class="fa fa-fw fa-power-off" ></i> Log Out</a>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+
+        </div><!-- /.container-fluid -->
+    </nav>
+    <div id="page-wrapper">
+
+
+        <div class="container-fluid">
+            <!-- Page Heading -->
+
+
+            <div ng-if="active==1">
+                <div  ui-view="instances"></div>
+            </div>
+
+            <div ng-if="active==2">
+                <div ui-view="settings"></div>
+            </div>
+
+            <div ng-if="active==3">
+                <div ui-view="uinstaller"></div>
+            </div>
+
+            <div ng-if="active==4">
+                <div ui-view="sinstaller"></div>
+            </div>
+
+            <div ng-if="active==5">
+                <div ui-view="invite"></div>
+            </div>
+
+
         </div>
     </div>
+    <!-- /.container-fluid -->
 
-     
-    <div ng-if="active==1">
-      <div  ui-view="instances"></div>
-  </div>
-    
-    <div ng-if="active==2">
-      <div ui-view="settings"></div>
-    </div>
-    
-    <div ng-if="active==3">
-      <div ui-view="uinstaller"></div>
-    </div>
-    
-    <div ng-if="active==4">
-      <div ui-view="sinstaller"></div>
-    </div>
-
-    <div ng-if="active==5">
-      <div ui-view="invite"></div>
-    </div>
-
-    
 </div>

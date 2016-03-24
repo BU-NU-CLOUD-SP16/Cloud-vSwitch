@@ -1,6 +1,6 @@
 angular.module('vSwitchUiApp')
     .service('InstanceService', function($http, $location, toastr, endpoint) {
-    
+
         /*
          ** Service Add instance
          ** @org: instance object
@@ -22,12 +22,12 @@ angular.module('vSwitchUiApp')
                 toastr.error("There was an error");
             });
         }
-        
+
         /*
          ** This function add the instance to the organization
          ** @instance: instance object
          ** @callback: function to be executed
-        **/
+         **/
         function add_helper(instance, callback) {
             var token = localStorage.getItem("token");
             var orgid = localStorage.getItem('current');
@@ -44,7 +44,7 @@ angular.module('vSwitchUiApp')
                 toastr.error("There was an error");
             });
         }
-        
+
         /**
          * Service list instances
          * Get organization's instances
@@ -60,13 +60,12 @@ angular.module('vSwitchUiApp')
                     'Authorization': "Bearer " + token
                 }
             }).then(function successCallback(response) {
-                console.log(response);
                 callback(response.data);
             }, function errorCallback(response) {
                 toastr.error("There was an error");
             });
         }
-        
+
         /**
          * Service update instance
          * Update instance by id
@@ -107,7 +106,7 @@ angular.module('vSwitchUiApp')
                 toastr.success("Instance could not be stopped");
             })
         }
-        
+
         this.start = function(instance) {
             var token = localStorage.getItem("token");
             $http({
@@ -123,7 +122,7 @@ angular.module('vSwitchUiApp')
                 toastr.success("Instance could not be started");
             })
         }
-        
+
         /**
          * Service delete instance
          * Delete instance by id

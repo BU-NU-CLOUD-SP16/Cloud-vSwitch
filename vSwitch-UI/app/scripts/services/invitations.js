@@ -1,6 +1,6 @@
 angular.module('vSwitchUiApp')
     .service('InvitationService', function($http, $location, toastr, endpoint) {
-    
+
         /*
          ** Service invite
          ** @org: instance object
