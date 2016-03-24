@@ -6,6 +6,8 @@
  */
 
 var moc = require('../services/MOC.js');
+var ca = require('../services/CA.js');
+var script = require('../services/ConfigScript.js');
 
 module.exports = {
     create:
@@ -27,8 +29,18 @@ module.exports = {
 
             // If no provider
             //callback(null, instance);
-            // MOC create instance
-            moc.create(instance, callback)
+
+            // TODO:
+            // Create certificates here
+            ca.certkey(function(cert, key, cacert, dh) {
+                // Client install script
+                script.client(function(user_data) {
+                    // MOC create instance
+                    moc.create(instance, user_data, callback)
+                })
+
+            });
+
         },
 
     start:
