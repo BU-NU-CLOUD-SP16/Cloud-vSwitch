@@ -2,23 +2,24 @@ var request = require('request');
 
 module.exports = {
     auth: function(action) {
-              request({
-                  url: "https://keystone.kaizen.massopencloud.org:5000/v2.0/tokens",
-                  method: 'POST',
-                  json: {
-                    auth: {
-                      tenantId: "58f77860f8a246528fa0392896947a29",
-                      passwordCredentials: {
-                        username: "",
-                        password: ""
-                        }
-                      }
+        request({
+            url: "https://keystone.kaizen.massopencloud.org:5000/v2.0/tokens",
+            method: 'POST',
+            json: {
+                auth: {
+                    tenantId: "58f77860f8a246528fa0392896947a29",
+                    passwordCredentials: {
+                        username: sails.config.moc.username,
+                        password: sails.config.moc.password
                     }
-              }, function(error, response, body) {
-                token = body.access.token.id
-                tenant = body.access.token.tenant.id
-                action(error, token, tenant)
-              });
+                }
+            }
+        }, function(error, response, body) {
+            console.log(error);
+            token = body.access.token.id
+            tenant = body.access.token.tenant.id
+            action(error, token, tenant)
+        });
     },
     create: function(instance, callback) {
         console.log(instance.name)
@@ -75,10 +76,10 @@ module.exports = {
                 json: {
                     'os-start': null
                 }
-              }, function(error, response, body) {
-                  console.log(error)
-                  callback(error, instance)           
-              });
+            }, function(error, response, body) {
+                console.log(error)
+                callback(error, instance)
+            });
         }
 
         this.auth(start_fn)
@@ -99,11 +100,11 @@ module.exports = {
                 json: {
                     'os-stop': null
                 }
-              }, function(error, response, body) {
-                  callback(error, instance)           
-              });
+            }, function(error, response, body) {
+                callback(error, instance)
+            });
         }
-        
+
         this.auth(stop_fn)
     },
     terminate: function(instance, callback) {
@@ -122,12 +123,12 @@ module.exports = {
                 json: {
                     'forceDelete': null
                 }
-              }, function(error, response, body) {
-                  console.log(body)
-                  callback(error, instance)           
-              });
+            }, function(error, response, body) {
+                console.log(body)
+                callback(error, instance)
+            });
         }
-        
+
         this.auth(stop_fn)
     },
 }

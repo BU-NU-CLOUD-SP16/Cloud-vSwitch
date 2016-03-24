@@ -5,19 +5,19 @@ module.exports = {
         function(req, res) {
             var id = req.params.id;
             req.file('csr').upload(function (err, files){
-                  if (err) return res.serverError(err);
-                    csr = files[0].fd;
-                    console.log(csr);
-                    sig = exec('api/ca/signcert.sh ' + id + ' ' + csr + ' server');
-                    sig.stderr.on('data', function (data) {
-                        console.log('stdout: ' + data);
-                    });
-                    sig.on('close', function (code)  {
-                        return res.download('certs/'+id+'/server.crt', 'server.crt');
-                    });
-                    sig.on('error', function (err)  {
-                        return res.status(500).json(err);
-                    });
+                if (err) return res.serverError(err);
+                csr = files[0].fd;
+                console.log(csr);
+                sig = exec('api/ca/signcert.sh ' + id + ' ' + csr + ' server');
+                sig.stderr.on('data', function (data) {
+                    console.log('stdout: ' + data);
+                });
+                sig.on('close', function (code)  {
+                    return res.download('certs/'+id+'/server.crt', 'server.crt');
+                });
+                sig.on('error', function (err)  {
+                    return res.status(500).json(err);
+                });
 
             })
         },
@@ -33,15 +33,15 @@ module.exports = {
 
             csr = exec('api/ca/csr.sh ' + id + ' server ' + ' ' + country + ' ' + state + ' ' + city + ' ' + name + ' ' + ou);
             csr.stderr.on('data', function (data) {
-                  console.log('stdout: ' + data);
-                  console.log(req.body);
+                console.log('stdout: ' + data);
+                console.log(req.body);
             });
             csr.on('close', function (code)  {
                 return res.download('certs/'+id+'/server.zip', 'server.zip');
             });
             csr.on('error', function (err)  {
-                    return res.status(500).json(err);
+                return res.status(500).json(err);
             });
-    }
+        }
 }
 
