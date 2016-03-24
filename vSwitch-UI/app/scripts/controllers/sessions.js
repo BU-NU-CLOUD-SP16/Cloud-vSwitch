@@ -21,6 +21,7 @@ angular.module('vSwitchUiApp')
       // Scope functions
       $scope.login = login;
       $scope.signup = signup;
+      $scope.logout = logout;
 
       // Functions
       function login() {
@@ -36,5 +37,10 @@ angular.module('vSwitchUiApp')
         SessionService.signup(user, function() {
           $location.path('/dashboard');
         })
+      }
+
+      function logout() {
+        $location.path('/login');
+        localStorage.clear();
       }
     });

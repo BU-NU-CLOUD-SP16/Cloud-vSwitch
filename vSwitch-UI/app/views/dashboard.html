@@ -21,7 +21,7 @@
           <li role="presentation" ng-class="active==3 ? 'active': ''"><a ng-click="active=3"><i class="fa fa-user"/> Profile</a></li>
         </ul>
         <ul class="nav navbar-top-links navbar-right" >
-          <li>
+          <li ng-controller="SessionCtrl">
             <a ng-click="logout()"><i class="fa fa-fw fa-power-off" ></i> Log Out</a>
           </li>
         </ul>
