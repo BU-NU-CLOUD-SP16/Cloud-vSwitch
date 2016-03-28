@@ -16,10 +16,6 @@ module.exports = {
       type: 'string',
        required: true
     },
-    status: {
-      type: 'string',
-      defaultsTo: 'active'
-    },
     members: {
       collection: 'user',
       via: 'organizations'
@@ -49,6 +45,9 @@ module.exports = {
     },
     email: {
         type: 'string'
+    },
+    instance_id: {
+      type: 'string'
     }
   }
 };

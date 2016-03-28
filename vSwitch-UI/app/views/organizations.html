@@ -5,14 +5,17 @@
                 <div class="col-lg-3 col-md-3 col-sm-4" ng-repeat="i in organizations track by $index">
                     <div class="panel panel-default">
                         <div class="panel-heading">
+                            <div style="float: left">
+                                <a class="pointer" ng-click="details(i)"><i class="fa fa-circle {{i.status}}" ng-class="!i.status ? 'unkown' : ''"></i></a>
+                                <span>{{i.ip}}</span>
+                            </div>
                             <div style="float: right">
-                                <a class="pointer"><i class="fa fa-search action-icon" ng-click="view_organization($index)"></i></a>
                                 <a class="pointer"><i class="fa fa-pencil action-icon" ng-click="edit_organization($index)" ></i></a>
                                 <a class="pointer"><i class="fa fa-trash action-icon" ng-click="rem_organization($index)"></i></a>
                             </div>
                             <div class="clearfix"></div>
                         </div>
-                        <div class="panel-body">
+                        <div class="panel-body pointer {{i.hover}}" ng-click="view_organization($index)" ng-mouseover="i.hover='panelHover'" ng-mouseleave="i.hover=''">
                             <div ng-if="organizations[$index].ready">
                                 <i class="fa fa-spinner fa-pulse" style="width:100%; text-align:center; color:#777"></i>
                             </div>
@@ -28,9 +31,6 @@
                 <div class="panel panel-default">
                     <div class="panel-heading" style="height:40px;">
                         <div style="float: right">
-                            <i class="fa fa-search action-icon"></i>
-                            <i class="fa fa-pencil action-icon"></i>
-                            <i class="fa fa-trash action-icon"></i>
                         </div>
                         <div class="clearfix"></div>
                     </div>

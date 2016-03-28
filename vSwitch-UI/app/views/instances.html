@@ -5,11 +5,12 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <div style="float: left">
-            <a class="pointer" ng-click="start($index)"><i class="fa fa-play action-icon"></i></a>
-            <a class="pointer" ng-click="stop($index)"><i class="fa fa-stop action-icon"></i></a>
+            <a class="pointer" ng-click="details(i)"><i class="fa fa-circle {{i.status}}" ng-class="!i.status ? 'unkown' : ''"></i></a>
+            <span>{{i.ip}}</span>
           </div>
           <div style="float: right">
-            <a class="pointer"><i class="fa fa-search action-icon"></i></a>
+            <a class="pointer" ng-click="start($index)"><i class="fa fa-play action-icon"></i></a>
+            <a class="pointer" ng-click="stop($index)"><i class="fa fa-stop action-icon"></i></a>
             <a class="pointer"><i class="fa fa-pencil action-icon" ng-click="edit_instance($index)"></i></a>
             <a class="pointer"><i class="fa fa-trash action-icon" ng-click=rem_instance($index)></i></a>
           </div>
@@ -60,7 +61,7 @@
   <div class="col-lg-6 col-lg-offset-3 col-sm-10 col-sm-offset-1">
 
     <div style="margin-bottom:20px;">
-      <h3>Create Organization</h3>
+      <h3>Create Instance</h3>
     </div>
     <form ng-submit="add_instance()">
       <fieldset>
