@@ -24,6 +24,7 @@ angular.module('vSwitchUiApp')
         $scope.rem_organization = rem_organization;
         $scope.edit_organization = edit_organization;
         $scope.view_organization = view_organization;
+        $scope.details = details;
 
         $scope.active = 1;
 
@@ -36,6 +37,10 @@ angular.module('vSwitchUiApp')
                 $scope.organizations = orgs;
                 if ($scope.organizations.length > 0 ) {
                     $scope.new_organization = false;
+
+                    for (var i in orgs) {
+                        details(orgs[i]);
+                    }
                 } else {
                     $scope.new_organization = true;
 
@@ -76,6 +81,10 @@ angular.module('vSwitchUiApp')
         function view_organization(index) {
             localStorage.setItem('current', $scope.organizations[index].id);
             $location.path('/organization');
+        }
+
+        function details(organization) {
+            OrgService.details(organization);
         }
 
     });

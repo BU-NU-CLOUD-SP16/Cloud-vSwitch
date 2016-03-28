@@ -38,13 +38,14 @@ module.exports.routes = {
   
   'post /invite' : 'InvitationController.invite',
 
+  // Organizations
+  'get /organization/:id/details': 'OrganizationController.details',
+  'get /instance/:id/details': 'InstanceController.details',
+
   // Instances
   'post /instance/start' : 'InstanceController.start',
   'post /instance/stop'  : 'InstanceController.stop',
 
-  // Certificates
-  'post /certificate/csr/:id' : 'CertificateController.createCsr',
-  'post /certificate/sign' : 'CertificateController.sign'
 
 
 

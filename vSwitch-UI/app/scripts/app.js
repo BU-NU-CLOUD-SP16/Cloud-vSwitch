@@ -68,7 +68,8 @@ angular
                     '' : {templateUrl: '../views/organization.html'},
                     'instances@auth.organization' : {templateUrl: '../views/instances.html', controller: "OrgCtrl"},
                     'uinstaller@auth.organization' : {templateUrl: '../views/uinstaller.html',controller: "OrgCtrl"},
-                    'invite@auth.organization': {templateUrl: '../views/invite.html', controller: "InvitationCtrl"}
+                    'invite@auth.organization': {templateUrl: '../views/invite.html', controller: "InvitationCtrl"},
+                    'profile@auth.organization' : {templateUrl: '../views/profile.html'}
                 },
                 onEnter: ['$location', authenticated]
             })

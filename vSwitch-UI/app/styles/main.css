@@ -42,3 +42,27 @@ body {
     margin-left: 15px !important;
     margin-right: 15px !important;
 }
+
+.SHUTOFF {
+    color: #d9534f !important;;
+}
+
+.ACTIVE {
+    color: #449d44 !important;;
+}
+
+.BUILD {
+    color: #ec971f !important;
+}
+
+.fa-circle {
+    color: #e6e6e6;
+}
+
+.panelHover {
+    -webkit-box-shadow: 0 5px 5px rgba(0,0,0,.05) !important;
+}
+
+.panel {
+   text-align: center;
+}

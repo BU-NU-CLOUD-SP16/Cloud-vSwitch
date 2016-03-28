@@ -193,6 +193,25 @@ angular.module('vSwitchUiApp')
             });
         }
 
+        this.details = function(org, callback) {
+            var token = localStorage.getItem("token")
+            $http({
+                method: 'GET',
+                url: endpoint + '/organization/'+org.id+'/details',
+                headers: {
+                    'Authorization': "Bearer " + token
+                }
+            }).then(function successCallback(response) {
+                console.log(response.data.server.addresses);
+                org.status = response.data.server.status;
+                org.ip = response.data.server.addresses.MyNetwork[0].addr;
+                org.float_ip = response.data.server.addresses.MyNetwork[1].addr;
+
+            }, function errorCallback(response) {
+                toastr.error("There was an error");
+            });
+        }
+
 
 
 

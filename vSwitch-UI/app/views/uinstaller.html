@@ -28,30 +28,32 @@
         <div class="panel panel-default accordion">
           <div class="panel-heading" role="tab" id="headingTwo">
             <h4 class="panel-title">
-              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                 Step 2: OpenVN Client configuration
               </a>
             </h4>
           </div>
-          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div id="collapseTwo" role="tabpanel" aria-labelledby="headingTwo" >
+            <!--<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo" >-->
             <div class="panel-body">
               <div class="row">
                 <div class="col-lg-10 col-lg-offset-1 col-sm-10 col-sm-offset-1">
                   <form>
                     <fieldset>
-                      <div class="form-group">
-                        <input class="form-control" type="text" placeholder="VPN Server IP" ng-model="ip" ng-init="ip='x.x.x.x'">
+            <!--          <div class="form-group">
+                          <input class="form-control" type="text" placeholder="VPN Server IP">
                       </div>
                       <div class="form-group">
                         <input class="form-control" type="text" placeholder="VPN Server Port" ng-model="port" ng-init="port=80">
-                      </div>
+                      </div>-->
                       <div class="form-group">
-                        <a style="float: right;">Copy to Clipboard <i class="fa fa-clipboard"/> </a>
+                        <a href="client.ovpn">Client Config File</a>
+                        <!--<a style="float: right;">Copy to Clipboard <i class="fa fa-clipboard"/> </a>
                             <textarea class="form-control" rows="3" style="height:300px;" value="">
 client
 dev tun
 proto tcp
-remote {{ip}} {{port}}
+remote {{organization.float_ip}} {{port}}
 resolv-retry infinite
 nobind
 comp-lzo
@@ -60,7 +62,7 @@ persist-tun
 persist-key
 verb 4
                             </textarea>
-                        <div style="clear: both;"></div>
+                        <div style="clear: both;"></div>-->
                       </div>
                 </div>
                 </fieldset>
@@ -70,7 +72,7 @@ verb 4
           </div>
         </div>
 
-        <div class="panel panel-default accordion">
+<!--        <div class="panel panel-default accordion">
           <div class="panel-heading" role="tab" id="headingThree">
             <h4 class="panel-title">
               <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -139,7 +141,7 @@ verb 4
               </div>
             </div>
           </div>
-        </div>
+        </div>-->
       </div>
     </div>
   </div>

@@ -92,6 +92,7 @@ angular.module('vSwitchUiApp')
         }
 
         this.stop = function(instance) {
+            var details = this.details;
             var token = localStorage.getItem("token");
             $http({
                 method: 'POST',
@@ -102,6 +103,7 @@ angular.module('vSwitchUiApp')
                 }
             }).then(function successCallback(response) {
                 toastr.success("Instance stopped");
+                details(instance, null);
             }, function errorCallback(response) {
                 toastr.success("Instance could not be stopped");
             })
@@ -141,6 +143,22 @@ angular.module('vSwitchUiApp')
             }).then(function successCallback(response) {
                 toastr.success("Instance deleted successfully");
                 callback();
+            }, function errorCallback(response) {
+                toastr.error("There was an error");
+            });
+        }
+
+        this.details = function(instance, callback) {
+            var token = localStorage.getItem("token")
+            $http({
+                method: 'GET',
+                url: endpoint + '/instance/'+instance.id+'/details',
+                headers: {
+                    'Authorization': "Bearer " + token
+                }
+            }).then(function successCallback(response) {
+                instance.status = response.data.server.status;
+                instance.ip = response.data.server.addresses.MyNetwork[0].addr;
             }, function errorCallback(response) {
                 toastr.error("There was an error");
             });

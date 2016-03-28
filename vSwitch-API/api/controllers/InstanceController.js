@@ -30,16 +30,8 @@ module.exports = {
             // If no provider
             //callback(null, instance);
 
-            // TODO:
-            // Create certificates here
-            ca.certkey(function(cert, key, cacert, dh) {
-                // Client install script
-                script.client(function(user_data) {
-                    // MOC create instance
-                    moc.create(instance, user_data, callback)
-                })
+            moc.create(instance, null, callback)
 
-            });
 
         },
 
@@ -106,7 +98,27 @@ module.exports = {
                 // MOC terminate instance
                 moc.terminate(instance, callback);
             })
-        }
+        },
+    details: function(req, res) {
+        console.log(req.params.id);
+        Instance.findOne({
+            id: req.params.id
+        }).exec(function(err, instance) {
+            if (err) {
+                return res.status(400).json()
+            }
+            if (!instance) {
+                return res.status(404).json()
+            }
+            moc.details(instance, function (error, response) {
+                if (error) {
+                    res.status(500).json();
+                } else {
+                    res.status(200).json(response);
+                }
+            })
+        });
+    }
 };
 
 

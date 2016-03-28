@@ -51,6 +51,9 @@ angular.module('vSwitchUiApp')
         $scope.apple_client = apple_client;
 
         $scope.active = $scope.active == null ? 3 : $scope.active;
+        $scope.details = details;
+        $scope.ovpn = ovpn;
+
         get_organization();
 
         // Functions
@@ -59,7 +62,8 @@ angular.module('vSwitchUiApp')
             var id = localStorage.getItem("current");
             OrgService.get(id, function(org) {
                 $scope.organization = org;
-            })
+                OrgService.details(org)
+            });
 
             list_instances();
         }
@@ -69,6 +73,9 @@ angular.module('vSwitchUiApp')
                 $scope.instances = instances
                 if ($scope.instances.length > 0 ) {
                     $scope.new_instance = false;
+                    for (var i in instances) {
+                        details(instances[i]);
+                    }
                 } else {
                     $scope.new_instance = true;
 
@@ -126,5 +133,31 @@ angular.module('vSwitchUiApp')
 
         function apple_client() {
             window.open('https://tunnelblick.net/downloads.html');
+        }
+
+        function details(instance) {
+            console.log(instance);
+            InstanceService.details(instance);
+        }
+
+        function ovpn(organization) {
+            var content = "client\n" +
+            "dev tun\n"+
+            "proto tcp\n"+
+            "remote " + organization.float_ip + " 80\n"+
+            "resolv-retry infinite\n"+
+            "nobind\n"+
+            "comp-lzo\n"+
+            "persist-tun\n"+
+            "persist-key\n"+
+            "verb 4\n";
+
+            var blob = new Blob([ content ], { type : 'text/plain' });
+            var url = URL.createObjectURL(blob);
+            var a = document.createElement("a");
+            a.href = url;
+            a.download = "client.txt";
+            a.click();
+            window.URL.revokeObjectURL(url);
         }
     });
