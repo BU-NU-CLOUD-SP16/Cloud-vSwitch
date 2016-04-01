@@ -100,7 +100,6 @@ module.exports = {
             })
         },
     details: function(req, res) {
-        console.log(req.params.id);
         Instance.findOne({
             id: req.params.id
         }).exec(function(err, instance) {

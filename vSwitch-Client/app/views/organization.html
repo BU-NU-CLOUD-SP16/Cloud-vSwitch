@@ -1,0 +1,22 @@
+<div ng-controller="OrgCtrl">
+    <div class="page-header">
+        <h2> <small><a ui-sref="dashboard">My Organizations</a> / {{organization.name}}</small></h2>
+    </div>
+    <div class="row" style="margin-top: 40px;">
+
+        <div class="col-sm-8 col-sm-offset-2  col-xs-8 col-xs-offset-2 list-group" ng-repeat="i in instances track by $index">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div style="float: left">
+                        <a class="pointer" ng-click="details(i)"><i class="fa fa-circle {{i.status}}" ng-class="!i.status ? 'unkown' : ''"></i></a>
+                        <span>{{i.ip}}</span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel-body">
+                    <span>{{i.name}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

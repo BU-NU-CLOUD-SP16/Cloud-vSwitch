@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <meta charset="UTF-8">
+    <title>Cloud vSwitch</title>
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="app/styles/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.min.css" type="text/css" />
+    <link href="bower_components/components-font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+  </head>
+  <body>
+
+    <div id="wrapper">
+      <div id="page-wrapper">
+        <div class="container-fluid">
+          <div ui-view=""></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
+
+
+    <script src="./app/app.js"></script>
+    <script src="./app/scripts/controllers/sessions.js"></script>
+    <script src="./app/scripts/controllers/dashboard.js"></script>
+    <script src="./app/scripts/controllers/organization.js"></script>
+    <script src="./app/scripts/controllers/os.js"></script>
+
+    <script src="./app/scripts/services/sessions.js"></script>
+    <script src="./app/scripts/services/organizations.js"></script>
+    <script src="./app/scripts/services/instances.js"></script>
+    <script src="./app/scripts/services/vpn.js"></script>
+
+  </body>
+</html>
