@@ -28,10 +28,9 @@ module.exports = {
                     }
                     return res.status(200).json(organization);
                 })
-            }
+            };
 
-            // TODO:
-            // Create certificates here
+
             var options = {
                 country: organization.country,
                 state: organization.providence,
