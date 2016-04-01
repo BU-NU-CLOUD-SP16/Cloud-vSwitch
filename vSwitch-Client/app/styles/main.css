@@ -1,0 +1,79 @@
+.no-border:focus{
+    outline: none;
+}
+
+.no-border {
+  border: none;
+  border-bottom: solid 1px #ccc;
+}
+
+.action-icon {
+  padding: 0 3px;
+  color: #337ab7;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+body {
+  background-color: white;
+}
+
+.add-join-icon {
+    color: #ddd;
+    cursor: pointer;
+    margin-right: 15px;
+}
+.add-join-icon:hover {
+    color: #9A9898;
+}
+
+.form-icon {
+    padding-left: 5px;
+    cursor: pointer;
+}
+
+.accordion {
+    margin-bottom: 15px !important;
+}
+
+.client-vpn {
+    margin-left: 15px !important;
+    margin-right: 15px !important;
+}
+
+.SHUTOFF {
+    color: #d9534f !important;
+}
+
+.ACTIVE {
+    color: #449d44 !important;
+}
+
+.BUILD {
+    color: #ec971f !important;
+}
+
+.INACTIVE {
+    color: #777 !important;
+}
+.fa-circle {
+    color: #e6e6e6;
+}
+
+.panelHover {
+    -webkit-box-shadow: 0 5px 5px rgba(0,0,0,.05) !important;
+}
+
+.panel {
+   text-align: center;
+}
+
+.error {
+    color: #d9534f
+}
+
+.page-header {
+    margin-top: 0px;
+}

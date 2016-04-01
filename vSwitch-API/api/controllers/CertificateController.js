@@ -1,47 +1,43 @@
-require('shelljs/global');
-const exec = require('child_process').exec;
+var ca = require('../services/CA.js');
+
 module.exports = {
-    sign:
-        function(req, res) {
-            var id = req.params.id;
-            req.file('csr').upload(function (err, files){
-                if (err) return res.serverError(err);
-                csr = files[0].fd;
-                console.log(csr);
-                sig = exec('api/ca/signcert.sh ' + id + ' ' + csr + ' server');
-                sig.stderr.on('data', function (data) {
-                    console.log('stdout: ' + data);
-                });
-                sig.on('close', function (code)  {
-                    return res.download('certs/'+id+'/server.crt', 'server.crt');
-                });
-                sig.on('error', function (err)  {
-                    return res.status(500).json(err);
-                });
+    certificate: function (req, res) {
+        var organization = req.body.organization;
+        User.findOne({
+            id: req.body.user
+        }).exec(function (err, user) {
 
+            if (err) {
+                return res.status(400).json()
+            }
+            if (!user) {
+                return res.status(404).json()
+            }
+
+            // Create certificates here
+            var options = {
+                country: organization.country,
+                state: organization.providence,
+                locality: organization.city,
+                organization: organization.name,
+                organizationUnit: organization.ou,
+                commonName: user.email,
+                emailAddress: user.email
+            };
+
+            ca.certkey(options, function (cert, key, cacert) {
+                console.log(cert);
+                console.log(key);
+                console.log(cacert);
+                return res.status(200).json({
+                    cert: cert,
+                    key: key,
+                    cacert: cacert
+                });
             })
-        },
-    createCsr:
-        function(req, res) {
-            var id = req.params.id;
-            console.log(req.body);
-            country = req.body.country;
-            state = req.body.providence;
-            city = req.body.city;
-            name = req.body.name;
-            ou = req.body.ou;
 
-            csr = exec('api/ca/csr.sh ' + id + ' server ' + ' ' + country + ' ' + state + ' ' + city + ' ' + name + ' ' + ou);
-            csr.stderr.on('data', function (data) {
-                console.log('stdout: ' + data);
-                console.log(req.body);
-            });
-            csr.on('close', function (code)  {
-                return res.download('certs/'+id+'/server.zip', 'server.zip');
-            });
-            csr.on('error', function (err)  {
-                return res.status(500).json(err);
-            });
-        }
+        })
+
+    }
 }
 

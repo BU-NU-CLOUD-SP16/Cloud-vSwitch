@@ -2,23 +2,43 @@ var request = require('request');
 
 module.exports = {
     auth: function(action) {
-        request({
-            url: "https://keystone.kaizen.massopencloud.org:5000/v2.0/tokens",
-            method: 'POST',
-            json: {
-                auth: {
-                    tenantId: "58f77860f8a246528fa0392896947a29",
-                    passwordCredentials: {
-                        username: sails.config.moc.username,
-                        password: sails.config.moc.password
+        var exists = false
+        if (typeof (sails.config.moc.token) != 'undefined') {
+
+            expires = new Date(sails.config.moc.token.expires);
+            now = new Date();
+
+            if (now < expires) {
+                exists = true;
+                token = sails.config.moc.token.id;
+                tenant = sails.config.moc.token.tenant.id;
+
+                action(null, token, tenant)
+
+            }
+        }
+
+        if (!exists) {
+            request({
+                url: "https://keystone.kaizen.massopencloud.org:5000/v2.0/tokens",
+                method: 'POST',
+                json: {
+                    auth: {
+                        tenantId: "58f77860f8a246528fa0392896947a29",
+                        passwordCredentials: {
+                            username: sails.config.moc.username,
+                            password: sails.config.moc.password
+                        }
                     }
                 }
-            }
-        }, function(error, response, body) {
-            token = body.access.token.id
-            tenant = body.access.token.tenant.id
-            action(error, token, tenant)
-        });
+            }, function (error, response, body) {
+                sails.config.moc.token = body.access.token;
+                token = sails.config.moc.token.id;
+                tenant = sails.config.moc.token.tenant.id;
+
+                action(error, token, tenant)
+            });
+        }
     },
     create: function(instance, user_data, callback) {
         var floating_ips = this.floating_ips;
@@ -146,7 +166,13 @@ module.exports = {
                     'X-Auth-Token': token
                 }
             }, function(error, response, body) {
-                callback(error, JSON.parse(body))
+                if (error) {
+                    callback(error, body)
+
+                } else {
+                    callback(error, JSON.parse(body))
+
+                }
             });
         }
 

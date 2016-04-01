@@ -46,7 +46,8 @@ module.exports.routes = {
   'post /instance/start' : 'InstanceController.start',
   'post /instance/stop'  : 'InstanceController.stop',
 
-
+  // Certificate
+  'post /certificate' : 'CertificateController.certificate'
 
 
 
