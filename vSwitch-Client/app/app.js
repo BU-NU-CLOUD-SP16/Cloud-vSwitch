@@ -11,7 +11,7 @@
         'ngMessages',
         'toastr'
     ])
-        .constant('endpoint', 'http://localhost:1337')
+        .constant('endpoint', 'http://10.0.0.5:1337')
 
         .config(function($stateProvider, $urlRouterProvider) {
             $urlRouterProvider.otherwise("/login");

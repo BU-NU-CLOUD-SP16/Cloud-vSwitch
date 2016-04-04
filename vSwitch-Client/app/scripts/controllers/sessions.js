@@ -9,13 +9,11 @@ angular.module('app')
 
         $scope.login = login;
 
-        $scope.user = {}
+        $scope.user = {};
 
         function login() {
             var user = $scope.user;
-            console.log(user);
             SessionService.login(user, function() {
-                console.log("login");
                 $location.path("/dashboard")
             })
         }
