@@ -26,8 +26,8 @@ module.exports = {
                     auth: {
                         tenantId: "58f77860f8a246528fa0392896947a29",
                         passwordCredentials: {
-                            username: sails.config.moc.username,
-                            password: sails.config.moc.password
+                            username: process.env.MOC_USER,
+                            password: process.env.MOC_PASSWORD
                         }
                     }
                 }

@@ -20,9 +20,6 @@ module.exports = {
         });
     },
     sign: function(cakey, cacert, dh, csr, key, callback) {
-        console.log("hello")
-        console.log(cacert);
-        console.log(cakey);
         var options = {
             serviceKey: cakey,
             serviceCertificate: cacert,
@@ -33,19 +30,12 @@ module.exports = {
 
         pem.createCertificate(options, function(error, res) {
             callback(res.certificate, key, cacert, dh);
-            //dh(res.certificate, key, callback)
         });
     },
     ca: function(callback) {
-        fs.readFile(sails.config.ca.cert, function read(err, data) {
-            var cacert = data.toString();
-            fs.readFile(sails.config.ca.key, function read(err, data) {
-                var cakey = data.toString();
-                fs.readFile(sails.config.ca.dh, function read(err, data) {
-                   var dh = data.toString();
-                    callback(cakey, cacert, dh);
-                })
-            })
-        })
+        var cacert = process.env.CACERT;
+        var dh = process.env.DH;
+        var cakey = process.env.CAKEY;
+        callback(cakey, cacert, dh);
     }
 };
