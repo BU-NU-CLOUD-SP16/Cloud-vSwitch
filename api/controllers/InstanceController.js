@@ -37,7 +37,7 @@ module.exports = {
 
     start:
         function(req, res) {
-            instance = req.body
+            instance = req.body;
             callback = function(err,instance) {
                 if (err) {
                     return res.status(400).json();
