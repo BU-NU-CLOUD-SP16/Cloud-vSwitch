@@ -19,7 +19,7 @@ angular
         'ngMessages',
         'toastr'
     ])
-    .constant('endpoint', 'http://localhost:1337')
+    .constant('endpoint', 'http://cloud-vswitch-api.herokuapp.com:1337')
     .config(function(toastrConfig) {
         angular.extend(toastrConfig, {
             preventDuplicates: true,
