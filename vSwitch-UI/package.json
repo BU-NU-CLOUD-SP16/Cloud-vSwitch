@@ -39,6 +39,7 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "angular-toastr": "^1.7.0"
+    "angular-toastr": "^1.7.0",
+    "express": "^4.13.4"
   }
 }
