@@ -32,6 +32,10 @@ module.exports = {
                     }
                 }
             }, function (error, response, body) {
+                if (error) {
+                    console.log(error);
+                }
+
                 sails.config.moc.token = body.access.token;
                 token = sails.config.moc.token.id;
                 tenant = sails.config.moc.token.tenant.id;
