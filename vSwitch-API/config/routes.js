@@ -35,51 +35,51 @@ module.exports.routes = {
   'post /login' : {
     controller: "AuthController",
     action: "login",
-    cors: true
+    cors: {origin: "*"}
   },
 
   'post /signup' : {
     controller: "AuthController",
     action: "signup",
-    cors: true
+    cors: {origin: "*"}
   },
   'get /activate/:token' : 'AuthController.activate',
 
   'post /invite' : {
     controller: "InvitationController",
     action: "invite",
-    cors: true
+    cors: {origin: "*"}
   },
 
   // Organizations
   'get /organization/:id/details': {
     controller: "OrganizationController",
     action: "details",
-    cors: true
+    cors: {origin: "*"}
   },
   'get /instance/:id/details': {
     controller: "InstanceController",
     action: "details",
-    cors: true
+    cors: {origin: "*"}
   },
 
   // Instances
   'post /instance/start' : {
     controller: "InstanceController",
     action: "start",
-    cors: true
+    cors: {origin: "*"}
   },
   'post /instance/stop'  : {
     controller: "InstanceController",
     action: "stop",
-    cors: true
+    cors: {origin: "*"}
   },
 
   // Certificate
   'post /certificate' : {
     controller: "CertificateController",
     action: "certificate",
-    cors: true
+    cors: {origin: "*"}
   },
 
 
