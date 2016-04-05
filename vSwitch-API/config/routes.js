@@ -23,42 +23,75 @@
 module.exports.routes = {
 
   /***************************************************************************
-  *                                                                          *
-  * Make the view located at `views/homepage.ejs` (or `views/homepage.jade`, *
-  * etc. depending on your default view engine) your home page.              *
-  *                                                                          *
-  * (Alternatively, remove this and add an `index.html` file in your         *
-  * `assets` directory)                                                      *
-  *                                                                          *
-  ***************************************************************************/
+   *                                                                          *
+   * Make the view located at `views/homepage.ejs` (or `views/homepage.jade`, *
+   * etc. depending on your default view engine) your home page.              *
+   *                                                                          *
+   * (Alternatively, remove this and add an `index.html` file in your         *
+   * `assets` directory)                                                      *
+   *                                                                          *
+   ***************************************************************************/
 
-  'post /login' : 'AuthController.login',
-  'post /signup' : 'AuthController.signup',
+  'post /login' : {
+    controller: "AuthController",
+    action: "login",
+    cors: true
+  },
+
+  'post /signup' : {
+    controller: "AuthController",
+    action: "signup",
+    cors: true
+  },
   'get /activate/:token' : 'AuthController.activate',
-  
-  'post /invite' : 'InvitationController.invite',
+
+  'post /invite' : {
+    controller: "InvitationController",
+    action: "invite",
+    cors: true
+  },
 
   // Organizations
-  'get /organization/:id/details': 'OrganizationController.details',
-  'get /instance/:id/details': 'InstanceController.details',
+  'get /organization/:id/details': {
+    controller: "OrganizationController",
+    action: "details",
+    cors: true
+  },
+  'get /instance/:id/details': {
+    controller: "InstanceController",
+    action: "details",
+    cors: true
+  },
 
   // Instances
-  'post /instance/start' : 'InstanceController.start',
-  'post /instance/stop'  : 'InstanceController.stop',
+  'post /instance/start' : {
+    controller: "InstanceController",
+    action: "start",
+    cors: true
+  },
+  'post /instance/stop'  : {
+    controller: "InstanceController",
+    action: "stop",
+    cors: true
+  },
 
   // Certificate
-  'post /certificate' : 'CertificateController.certificate'
+  'post /certificate' : {
+    controller: "CertificateController",
+    action: "certificate",
+    cors: true
+  },
 
 
 
   /***************************************************************************
-  *                                                                          *
-  * Custom routes here...                                                    *
-  *                                                                          *
-  * If a request to a URL doesn't match any of the custom routes above, it   *
-  * is matched against Sails route blueprints. See `config/blueprints.js`    *
-  * for configuration options and examples.                                  *
-  *                                                                          *
-  ***************************************************************************/
+   *                                                                          *
+   * Custom routes here...                                                    *
+   *                                                                          *
+   * If a request to a URL doesn't match any of the custom routes above, it   *
+   * is matched against Sails route blueprints. See `config/blueprints.js`    *
+   * for configuration options and examples.                                  *
+   *                                                                          *
+   ***************************************************************************/
 
 };
