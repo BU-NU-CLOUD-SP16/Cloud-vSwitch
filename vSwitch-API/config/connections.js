@@ -61,7 +61,7 @@ module.exports.connections = {
     //host: 'localhost',
     //port: 27017,
     schema:true,
-    url: process.evn.MONGO_UI
+    url: process.env.MONGO_URI
   },
 
   /***************************************************************************
