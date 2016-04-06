@@ -1,5 +1,5 @@
 angular.module('vSwitchUiApp')
-    .service('SessionService', function($http, $location, toastr, endpoint, $q) {
+    .service('SessionService', function($http, $location, toastr, endpoint) {
 
         /**
          * Service signup user
@@ -43,16 +43,11 @@ angular.module('vSwitchUiApp')
             }, function errorCallback(response) {
                 toastr.error('Wrong email or password');
             });
-        }
+        };
 
         this.authenticated = function () {
-            //var def = $q.defer();
             if (localStorage.getItem('token') == null || localStorage.getItem('userid') == null){
                 $location.path('/login');
-              //  def.reject();
-            } else {
-                //def.resolve('authenticated');
             }
         }
-
     });

@@ -7,8 +7,8 @@ angular.module('vSwitchUiApp')
          ** @callback: function to be executed
          **/
         this.add = function(instance, callback) {
-            var token = localStorage.getItem("token")
-            instance.organization = localStorage.getItem("current")
+            var token = localStorage.getItem("token");
+            instance.organization = localStorage.getItem("current");
             $http({
                 method: 'POST',
                 url: endpoint + '/instance',
@@ -21,7 +21,7 @@ angular.module('vSwitchUiApp')
             }, function errorCallback(response) {
                 toastr.error("There was an error");
             });
-        }
+        };
 
         /*
          ** This function add the instance to the organization
@@ -43,7 +43,7 @@ angular.module('vSwitchUiApp')
             }, function errorCallback(response) {
                 toastr.error("There was an error");
             });
-        }
+        };
 
         /**
          * Service list instances
@@ -51,8 +51,8 @@ angular.module('vSwitchUiApp')
          * @callback: function to be executed when done
          */
         this.list = function(callback) {
-            var token = localStorage.getItem("token")
-            var orgid = localStorage.getItem("current")
+            var token = localStorage.getItem("token");
+            var orgid = localStorage.getItem("current");
             $http({
                 method: 'GET',
                 url: endpoint + '/organization/'+orgid+'/instances',
@@ -64,7 +64,7 @@ angular.module('vSwitchUiApp')
             }, function errorCallback(response) {
                 toastr.error("There was an error");
             });
-        }
+        };
 
         /**
          * Service update instance
@@ -89,7 +89,7 @@ angular.module('vSwitchUiApp')
             }, function errorCallback(response) {
                 toastr.error("There was an error");
             });
-        }
+        };
 
         this.stop = function(instance) {
             var details = this.details;
@@ -107,7 +107,7 @@ angular.module('vSwitchUiApp')
             }, function errorCallback(response) {
                 toastr.success("Instance could not be stopped");
             })
-        }
+        };
 
         this.start = function(instance) {
             var token = localStorage.getItem("token");
@@ -123,7 +123,7 @@ angular.module('vSwitchUiApp')
             }, function errorCallback(response) {
                 toastr.success("Instance could not be started");
             })
-        }
+        };
 
         /**
          * Service delete instance
@@ -146,10 +146,16 @@ angular.module('vSwitchUiApp')
             }, function errorCallback(response) {
                 toastr.error("There was an error");
             });
-        }
+        };
 
-        this.details = function(instance, callback) {
-            var token = localStorage.getItem("token")
+        /**
+         * Service instance details
+         * Get instance details
+         * @org: instance object
+         * @callback: function to be executed when done
+         **/
+        this.details = function(instance) {
+            var token = localStorage.getItem("token");
             $http({
                 method: 'GET',
                 url: endpoint + '/instance/'+instance.id+'/details',
@@ -163,4 +169,4 @@ angular.module('vSwitchUiApp')
                 toastr.error("There was an error");
             });
         }
-    })
+    });

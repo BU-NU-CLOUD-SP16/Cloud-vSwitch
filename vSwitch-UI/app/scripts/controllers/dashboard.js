@@ -1,22 +1,11 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name vSwitchUiApp.controller:AboutCtrl
- * @description
- * # AboutCtrl
- * Controller of the vSwitchUiApp
- */
 angular.module('vSwitchUiApp')
-    .controller('DashboardCtrl', function($scope, $rootScope, $location, $timeout, OrgService, toastr) {
-        this.awesomeThings = [
-            'HTML5 Boilerplate',
-            'AngularJS',
-            'Karma'
-        ];
+    .controller('DashboardCtrl', function($scope, $rootScope, $location, $timeout, OrgService) {
 
         // Scope variables
         $scope.organization = {};
+        $scope.active = 1;
 
         // Scope functions
         $scope.new_org = new_org;
@@ -28,8 +17,6 @@ angular.module('vSwitchUiApp')
         $scope.details = details;
 
 
-        $scope.active = 1;
-
         list_organizations();
 
         // Functions
@@ -37,18 +24,9 @@ angular.module('vSwitchUiApp')
         function list_organizations() {
             OrgService.list(function(orgs) {
                 $scope.organizations = orgs;
-                if ($scope.organizations.length > 0 ) {
-                    $scope.new_organization = false;
-
-                    for (var i in orgs) {
-                        details(orgs[i]);
-                    }
-                } else {
-                    $scope.new_organization = true;
-
-                }
+                $scope.new_organization = !(orgs.length > 0)
+                orgs.map(details);
             })
-
         }
 
         function new_org() {
@@ -62,9 +40,6 @@ angular.module('vSwitchUiApp')
         }
 
         function add_organization() {
-            if ($scope.provider == "moc") {
-                $scope.organization.moc = $scope.moc.id;
-            }
             OrgService.add($scope.organization, list_organizations);
         }
 
@@ -83,7 +58,6 @@ angular.module('vSwitchUiApp')
         }
 
         function rem_organization(index) {
-
             if (confirm("Are you sure you want to remove " + $scope.organizations[index].name)) {
                 var organization = $scope.organizations[index];
                 OrgService.delete(organization, list_organizations);
@@ -98,5 +72,4 @@ angular.module('vSwitchUiApp')
         function details(organization) {
             OrgService.details(organization);
         }
-
     });

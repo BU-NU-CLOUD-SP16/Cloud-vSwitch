@@ -20,7 +20,7 @@ angular.module('vSwitchUiApp')
             }, function errorCallback(response) {
                 toastr.error("There was an error");
             });
-        }
+        };
 
         /**
          * Service update user

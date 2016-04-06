@@ -1,39 +1,10 @@
 'use strict';
-
 angular.module('vSwitchUiApp')
-    .directive('fileModel', ['$parse', function ($parse) {
-        return {
-            restrict: 'A',
-            link: function(scope, element, attrs) {
-                var model = $parse(attrs.fileModel);
-                var modelSetter = model.assign;
-
-                element.bind('change', function(){
-                    scope.$apply(function(){
-                        modelSetter(scope, element[0].files[0]);
-                    });
-                });
-            }
-        };
-    }]);
-
-/**
- * @ngdoc function
- * @name vSwitchUiApp.controller:AboutCtrl
- * @description
- * # AboutCtrl
- * Controller of the vSwitchUiApp
- */
-angular.module('vSwitchUiApp')
-    .controller('OrgCtrl', function($scope, $timeout, $location, OrgService, InstanceService, CertificateService) {
-        this.awesomeThings = [
-            'HTML5 Boilerplate',
-            'AngularJS',
-            'Karma'
-        ];
+    .controller('OrgCtrl', function($scope, $timeout, $location, OrgService, InstanceService) {
 
         // $scope variables
         $scope.code = "";
+        $scope.active = $scope.active == null ? 3 : $scope.active;
 
         // Scope functions
         $scope.add_instance = add_instance;
@@ -42,15 +13,10 @@ angular.module('vSwitchUiApp')
         $scope.start = start;
         $scope.stop = stop;
 
-        $scope.generateCsr = generateCsr;
-        $scope.upload = upload;
         $scope.edit_organization = edit_organization;
 
         $scope.user = JSON.parse(localStorage.getItem('user'));
 
-        $scope.apple_client = apple_client;
-
-        $scope.active = $scope.active == null ? 3 : $scope.active;
         $scope.details = details;
         $scope.ovpn = ovpn;
 
@@ -70,7 +36,7 @@ angular.module('vSwitchUiApp')
 
         function list_instances() {
             InstanceService.list(function(instances) {
-                $scope.instances = instances
+                $scope.instances = instances;
                 if ($scope.instances.length > 0 ) {
                     $scope.new_instance = false;
                     for (var i in instances) {
@@ -89,7 +55,6 @@ angular.module('vSwitchUiApp')
             InstanceService.add(instance, list_instances);
             $scope.new_instance = false;
         }
-
 
         function rem_instance(index) {
             var instance = $scope.instances[index];
@@ -114,29 +79,12 @@ angular.module('vSwitchUiApp')
             InstanceService.start(instance);
         }
 
-        function generateCsr() {
-            CertificateService.csr($scope.organization);
-        }
-
-        function upload() {
-            var file = $scope.file;
-            console.log('file is ' );
-            console.dir(file);
-            CertificateService.sign(file);
-        }
-
         function edit_organization() {
             var organization = $scope.organization;
-            console.log(organization)
             OrgService.update(organization);
         }
 
-        function apple_client() {
-            window.open('https://tunnelblick.net/downloads.html');
-        }
-
         function details(instance) {
-            console.log(instance);
             InstanceService.details(instance);
         }
 

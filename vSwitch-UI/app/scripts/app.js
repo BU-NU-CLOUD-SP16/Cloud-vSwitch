@@ -27,6 +27,7 @@ angular
         })
     })
     .config(function($stateProvider, $urlRouterProvider) {
+        $urlRouterProvider.otherwise('/login');
         $stateProvider
             .state('noauth', {
                 templateUrl: "../views/noauth.html",
@@ -73,7 +74,7 @@ angular
                 },
                 onEnter: ['$location', authenticated]
             })
-    })
+    });
 
 function authenticated ($location) {
     if (localStorage.getItem('token') == null || localStorage.getItem('userid') == null) {
