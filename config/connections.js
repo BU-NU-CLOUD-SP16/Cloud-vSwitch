@@ -61,10 +61,7 @@ module.exports.connections = {
     //host: 'localhost',
     //port: 27017,
     schema:true,
-    // user: 'username',
-    // password: 'password',
-    // database: 'your_mongo_db_name_here'
-    url: 'mongodb://'+process.env.MONGO_USER+':'+process.env.MONGO_PASSWORD+'@ds015710.mlab.com:15710/heroku_zkbtffm6'
+    url: process.MONGO_UI
   },
 
   /***************************************************************************
