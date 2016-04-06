@@ -19,12 +19,14 @@ angular.module('vSwitchUiApp')
         $scope.organization = {};
 
         // Scope functions
+        $scope.new_org = new_org;
         $scope.add_organization = add_organization;
         $scope.join_organization = join_organization;
         $scope.rem_organization = rem_organization;
         $scope.edit_organization = edit_organization;
         $scope.view_organization = view_organization;
         $scope.details = details;
+
 
         $scope.active = 1;
 
@@ -47,6 +49,16 @@ angular.module('vSwitchUiApp')
                 }
             })
 
+        }
+
+        function new_org() {
+            $scope.new_organization = true;
+            $scope.organization = {};
+            OrgService.geo(function(geo) {
+                $scope.organization.providence = geo.region;
+                $scope.organization.city = geo.city;
+                $scope.organization.country = geo.country;
+            })
         }
 
         function add_organization() {

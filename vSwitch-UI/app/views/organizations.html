@@ -16,11 +16,8 @@
                             <div class="clearfix"></div>
                         </div>
                         <div class="panel-body pointer {{i.hover}}" ng-click="view_organization($index)" ng-mouseover="i.hover='panelHover'" ng-mouseleave="i.hover=''">
-                            <div ng-if="organizations[$index].ready">
-                                <i class="fa fa-spinner fa-pulse" style="width:100%; text-align:center; color:#777"></i>
-                            </div>
-                            <input type="text" class="no-border" ng-model="organizations[$index].name" ng-show="organizations[$index].edit" ng-if="!organizations[$index].ready" ></input>
-                            <span ng-show="!organizations[$index].edit" ng-if="!organizations[$index].ready">{{i.name}}</span>
+                            <input type="text" class="no-border" ng-model="organizations[$index].name" ng-show="organizations[$index].edit" ></input>
+                            <span ng-show="!organizations[$index].edit">{{i.name}}</span>
                         </div>
                     </div>
                 </div>
@@ -36,7 +33,7 @@
                     </div>
                     <div class="panel-body" style="height:51px;">
                         <div style="color:#ddd; margin:auto; text-align:center;" ng-show="!new_organization && !join_org">
-                            <span class="add-join-icon" ng-click="new_organization=true"> ADD   </span> <span class="add-join-icon"  ng-click="join_org=true">   JOIN </span>
+                            <span class="add-join-icon" ng-click="new_org()"> ADD   </span> <span class="add-join-icon"  ng-click="join_org=true">   JOIN </span>
                         </div>
                         <div ng-show="new_organization" ng-init="organization.name=null">
                             <input type="text" class="no-border" placeholder="Organization name" ng-model="organization.name"></input>
