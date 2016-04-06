@@ -24,7 +24,7 @@ angular.module('vSwitchUiApp')
         function list_organizations() {
             OrgService.list(function(orgs) {
                 $scope.organizations = orgs;
-                $scope.new_organization = !(orgs.length > 0)
+                $scope.new_organization = !(orgs.length > 0);
                 orgs.map(details);
             })
         }

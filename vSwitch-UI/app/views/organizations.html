@@ -51,7 +51,22 @@
         </div>
         <div class="row" ng-show="new_organization">
             <div class="col-lg-6 col-lg-offset-3 col-sm-10 col-sm-offset-1">
-
+                <div>
+                    <div style="margin-bottom:20px;">
+                        <h3>Join Organization</h3>
+                    </div>
+                    <form ng-submit="join_organization()">
+                        <fieldset>
+                            <div class="form-group">
+                                If you were invited to join an Organization please enter your invitation code
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Invitation Code" ng-model="code" type="text" value="" required>
+                            </div>
+                            <button type=submit class="btn btn-success">Join</button>
+                        </fieldset>
+                    </form>
+                </div>
                 <div style="margin-bottom:20px;">
                     <h3>Create Organization</h3>
                 </div>
