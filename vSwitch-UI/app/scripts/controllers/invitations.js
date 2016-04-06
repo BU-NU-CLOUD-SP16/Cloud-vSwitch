@@ -1,19 +1,7 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name vSwitchUiApp.controller:AboutCtrl
- * @description
- * # AboutCtrl
- * Controller of the vSwitchUiApp
- */
 angular.module('vSwitchUiApp')
     .controller('InvitationCtrl', function ($scope, OrgService, InvitationService) {
-      this.awesomeThings = [
-        'HTML5 Boilerplate',
-        'AngularJS',
-        'Karma'
-      ];
 
 
       get_organization();
@@ -50,7 +38,6 @@ angular.module('vSwitchUiApp')
       function invite() {
         var org = $scope.organization;
         var emails = $scope.form.emails;
-        var msg = $scope.form.msg;
         InvitationService.invite(org, emails);
       }
 
@@ -64,6 +51,5 @@ angular.module('vSwitchUiApp')
         if ($scope.form.emails.length == 0)
           $scope.form.emails.push("");
       }
-
 
     });

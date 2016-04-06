@@ -1,14 +1,13 @@
 angular.module('vSwitchUiApp')
     .service('OrgService', function($http, $location, toastr, endpoint) {
-        /*
+        /**
          ** Service Add organization
          ** @org: organization object
          **/
         this.add = function(org, callback) {
             var userid = localStorage.getItem("userid");
-            var token = localStorage.getItem("token")
-            org.ready = true
-            org.owner = userid
+            var token = localStorage.getItem("token");
+            org.owner = userid;
             $http({
                 method: 'POST',
                 url: endpoint + '/organization',
@@ -21,15 +20,15 @@ angular.module('vSwitchUiApp')
             }, function errorCallback(response) {
                 toastr.error("There was an error");
             });
-        }
+        };
 
-        /*
+        /**
          ** This functions adds the owner to the organization members
          ** @org: organization object
          ** @callback: function to be executed when done
          **/
         function add_helper(org, callback, toastr) {
-            var token = localStorage.getItem("token")
+            var token = localStorage.getItem("token");
             var userid = localStorage.getItem('userid');
             $http({
                 method: 'POST',
@@ -43,7 +42,7 @@ angular.module('vSwitchUiApp')
             }, function errorCallback(response) {
                 toastr.error("There was an error");
             });
-        }
+        };
 
 
         /**
@@ -53,7 +52,7 @@ angular.module('vSwitchUiApp')
          */
         this.list = function(callback) {
             var userid = localStorage.getItem('userid');
-            var token = localStorage.getItem("token")
+            var token = localStorage.getItem("token");
             $http({
                 method: 'GET',
                 url: endpoint + '/user/' + userid + '/organizations',
@@ -65,7 +64,7 @@ angular.module('vSwitchUiApp')
             }, function errorCallback(response) {
                 toastr.error("There was an error");
             });
-        }
+        };
 
         /**
          * Service get orgaization
@@ -74,7 +73,7 @@ angular.module('vSwitchUiApp')
          * @callback: function to be executed when done
          **/
         this.get = function(id, callback) {
-            var token = localStorage.getItem("token")
+            var token = localStorage.getItem("token");
             $http({
                 method: 'GET',
                 url: endpoint + '/organization/' + id,
@@ -86,7 +85,7 @@ angular.module('vSwitchUiApp')
             }, function errorCallback(response) {
                 toastr.error("There was an error");
             });
-        }
+        };
 
         /**
          * Service update orgaization
@@ -110,7 +109,7 @@ angular.module('vSwitchUiApp')
             }, function errorCallback(response) {
                 toastr.error("There was an error");
             });
-        }
+        };
 
         /**
          * Service delete orgaization
@@ -130,7 +129,7 @@ angular.module('vSwitchUiApp')
             else {
                 delete_helper(id, callback);
             }
-        }
+        };
 
 
         function delete_helper(id, callback) {
@@ -147,7 +146,7 @@ angular.module('vSwitchUiApp')
             }, function errorCallback(response) {
                 toastr.error("There was an error");
             });
-        }
+        };
 
         /**
          * Service join orgaization
@@ -156,7 +155,7 @@ angular.module('vSwitchUiApp')
          * @callback: function to be executed when done
          **/
         this.join = function(code, callback) {
-            var token = localStorage.getItem("token")
+            var token = localStorage.getItem("token");
             $http({
                 method: 'GET',
                 url: endpoint + '/organization?code=' + code,
@@ -170,9 +169,9 @@ angular.module('vSwitchUiApp')
             }, function errorCallback(response) {
                 toastr.error("There was an error");
             });
-        }
+        };
 
-        /*
+        /**
          ** This functions adds the user to the organization members
          ** @org: organization object
          ** @callback: function to be executed when done
@@ -191,10 +190,15 @@ angular.module('vSwitchUiApp')
             }, function errorCallback(response) {
                 toastr.error("There was an error");
             });
-        }
+        };
 
+        /**
+         ** This functions get the details of the vSwich instance
+         ** @org: organization object
+         ** @callback: function to be executed when done
+         **/
         this.details = function(org, callback) {
-            var token = localStorage.getItem("token")
+            var token = localStorage.getItem("token");
             $http({
                 method: 'GET',
                 url: endpoint + '/organization/'+org.id+'/details',
@@ -202,7 +206,6 @@ angular.module('vSwitchUiApp')
                     'Authorization': "Bearer " + token
                 }
             }).then(function successCallback(response) {
-                console.log(response.data.server.addresses);
                 org.status = response.data.server.status;
                 org.ip = response.data.server.addresses.MyNetwork[0].addr;
                 org.float_ip = response.data.server.addresses.MyNetwork[1].addr;
@@ -212,6 +215,10 @@ angular.module('vSwitchUiApp')
             });
         };
 
+        /**
+         ** This functions get the geo information of an ip
+         ** @callback: function to be executed when done
+         **/
         this.geo = function(callback) {
             $http({
                 method: 'GET',
@@ -224,7 +231,4 @@ angular.module('vSwitchUiApp')
             });
 
         }
-
-
-
-    })
+    });

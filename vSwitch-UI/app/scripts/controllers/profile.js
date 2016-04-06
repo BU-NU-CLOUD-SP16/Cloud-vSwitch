@@ -9,11 +9,6 @@
  */
 angular.module('vSwitchUiApp')
     .controller('ProfileCtrl', function ($scope, $location, ProfileService) {
-      this.awesomeThings = [
-        'HTML5 Boilerplate',
-        'AngularJS',
-        'Karma'
-      ];
 
       // Scope variables
       getUser();

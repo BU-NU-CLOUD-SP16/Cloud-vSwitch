@@ -17,11 +17,8 @@
           <div class="clearfix"></div>
         </div>
         <div class="panel-body">
-          <div ng-if="instances[$index].ready">
-            <i class="fa fa-spinner fa-pulse" style="width:100%; text-align:center; color:#777"></i>
-          </div>
-          <input type="text" class="no-border" ng-model="instances[$index].name" ng-show="instances[$index].edit" ng-if="!instances[$index].ready"></input>
-          <span ng-show="!instances[$index].edit" ng-if="!instances[$index].ready">{{i.name}}</span>
+          <input type="text" class="no-border" ng-model="instances[$index].name" ng-show="instances[$index].edit"></input>
+          <span ng-show="!instances[$index].edit">{{i.name}}</span>
         </div>
       </div>
     </div>
