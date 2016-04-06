@@ -210,9 +210,20 @@ angular.module('vSwitchUiApp')
             }, function errorCallback(response) {
                 toastr.error("There was an error");
             });
+        };
+
+        this.geo = function(callback) {
+            $http({
+                method: 'GET',
+                url: 'http://ipinfo.io',
+            }).then(function successCallback(response) {
+                console.log(response);
+                callback(response.data)
+            }, function errorCallback(response) {
+                toastr.error("There was an error");
+            });
+
         }
-
-
 
 
 
