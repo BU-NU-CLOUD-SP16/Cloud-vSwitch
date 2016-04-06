@@ -37,15 +37,8 @@ angular.module('vSwitchUiApp')
         function list_instances() {
             InstanceService.list(function(instances) {
                 $scope.instances = instances;
-                if ($scope.instances.length > 0 ) {
-                    $scope.new_instance = false;
-                    for (var i in instances) {
-                        details(instances[i]);
-                    }
-                } else {
-                    $scope.new_instance = true;
-
-                }
+                refresh_status();
+                $scope.new_instance = ! (instances.length > 0);
             });
             $scope.instance = {};
         }
@@ -107,5 +100,10 @@ angular.module('vSwitchUiApp')
             a.download = "client.txt";
             a.click();
             window.URL.revokeObjectURL(url);
+        }
+
+        function refresh_status() {
+            $scope.instances.map(details);
+            $timeout(refresh_status, 5000)
         }
     });
