@@ -278,7 +278,7 @@ module.exports = {
                 //TODO: terminate instance
                 //TODO: call callback with the error
                 error = {
-                    code: 2009,
+                    code: 2004,
                     msg: "Failed to assign floating ip to instance"
                 };
                 console.log("Assigned ip");
