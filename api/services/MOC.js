@@ -34,12 +34,15 @@ module.exports = {
             }, function (error, response, body) {
                 if (error) {
                     console.log(error);
+                    error = {
+                        code: 2001,
+                        msg: "MOC: Authentication error"
+                    }
+                } else {
+                    sails.config.moc.token = body.access.token;
+                    token = sails.config.moc.token.id;
+                    tenant = sails.config.moc.token.tenant.id;
                 }
-
-                sails.config.moc.token = body.access.token;
-                token = sails.config.moc.token.id;
-                tenant = sails.config.moc.token.tenant.id;
-
                 action(error, token, tenant)
             });
         }
@@ -73,13 +76,19 @@ module.exports = {
                 }
             }, function(error, response, body) {
                 if (error) {
-                    callback(error, instance)
+                    // Failed to create instance Error code
+                    error = {
+                        code: 2002,
+                        msg: "MOC: Failed to create instance"
+                    };
+                    callback(error, instance);
                     return
                 }
 
-                instance.instance_id = body.server.id
+                instance.instance_id = body.server.id;
 
                 if (user_data) {
+                    //TODO: pass the callback to the floating_ips fn
                     floating_ips(instance);
                 }
                 callback(error, instance);
@@ -105,17 +114,21 @@ module.exports = {
                     'os-start': null
                 }
             }, function(error, response, body) {
+                error = {
+                    code: 2005,
+                    msg: "MOC: Failed to start instance " + id
+                };
                 callback(error, instance)
             });
-        }
+        };
 
         this.auth(start_fn)
     },
     stop: function(instance, callback) {
-        id = instance.instance_id
+        id = instance.instance_id;
         stop_fn = function(err, token, tenant) {
             if (err) {
-                callback(err, instance)
+                callback(err, instance);
                 return
             }
             request({
@@ -128,9 +141,13 @@ module.exports = {
                     'os-stop': null
                 }
             }, function(error, response, body) {
+                error = {
+                    code: 2006,
+                    msg: "MOC: Failed to stop instance " + id
+                };
                 callback(error, instance)
             });
-        }
+        };
 
         this.auth(stop_fn)
     },
@@ -150,9 +167,13 @@ module.exports = {
                     'forceDelete': null
                 }
             }, function(error, response, body) {
+                error = {
+                    code: 2007,
+                    msg: "MOC: Failed to terminate instance " + id
+                };
                 callback(error, instance)
             });
-        }
+        };
 
         this.auth(stop_fn)
     },
@@ -174,11 +195,15 @@ module.exports = {
                     callback(error, body)
 
                 } else {
+                    error = {
+                        code: 2008,
+                        msg: "MOC: Failed to get instance " + id + " status"
+                    };
                     callback(error, JSON.parse(body))
 
                 }
             });
-        }
+        };
 
         this.auth(details_fn)
     },
@@ -188,7 +213,7 @@ module.exports = {
 
         floating_ips_fn = function(err,token,tenant) {
             if (err) {
-                callback(err, instance)
+                callback(err, instance);
                 return
             }
             request({
@@ -205,8 +230,9 @@ module.exports = {
                         var k0 = function(err, response) {
                             var status = response.server.status;
                             if (status == "ACTIVE") {
-                                assign_ip(instance, ip.ip);
+                                return assign_ip(instance, ip.ip);
                             } else {
+                                //TODO: Improve  this fn
                                 function sleep(time, callback) {
                                     var stop = new Date().getTime();
                                     while(new Date().getTime() < stop + time) {
@@ -224,15 +250,17 @@ module.exports = {
 
                     }
                 }
+
+                //TODO: Create Floating ip
             });
-        }
+        };
         this.auth(floating_ips_fn);
     },
     assign_ip: function(instance, ip) {
         id = instance.instance_id;
         assign_fn = function(err, token, tenant) {
             if (err) {
-                callback(err, instance)
+                callback(err, instance);
                 return
             }
             request({
@@ -247,9 +275,15 @@ module.exports = {
                     }
                 }
             }, function(error, response, body) {
+                //TODO: terminate instance
+                //TODO: call callback with the error
+                error = {
+                    code: 2009,
+                    msg: "Failed to assign floating ip to instance"
+                };
                 console.log("Assigned ip");
             });
-        }
+        };
         this.auth(assign_fn)
     },
 }

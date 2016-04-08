@@ -18,10 +18,11 @@ module.exports = {
 
             var callback = function(err, organization) {
                 if (err) {
-                    return res.status(400).json();
+                    return res.status(400).json(err);
                 }
                 Organization.create(organization).exec(function(err,organization) {
                     if (err) {
+                        //TODO: terminate instance
                         return res.json(err.status, {
                             err: err
                         });
@@ -42,8 +43,6 @@ module.exports = {
             };
 
             ca.certkey(options, function(cert, key, cacert, dh) {
-                // Client install script
-
                 script.server(cert, key, cacert, dh, function(user_data) {
                     // MOC create instance
                     moc.create(organization, user_data, callback)

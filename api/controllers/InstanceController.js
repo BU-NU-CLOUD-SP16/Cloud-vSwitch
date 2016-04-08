@@ -15,24 +15,19 @@ module.exports = {
             instance = req.body;
             callback = function(err, instance) {
                 if (err) {
-                    return res.status(400).json();
+                    return res.status(400).json(err);
                 }
                 Instance.create(instance).exec(function(err,instance) {
                     if (err) {
+                        //TODO: terminate instance
                         return res.json(err.status, {
                             err: err
                         });
                     }
                     return res.status(200).json(instance);
                 })
-            }
-
-            // If no provider
-            //callback(null, instance);
-
+            };
             moc.create(instance, null, callback)
-
-
         },
 
     start:
@@ -43,31 +38,26 @@ module.exports = {
                     return res.status(400).json();
                 }
                 return res.status(200).json(instance)
-            }
+            };
 
-            // if no provider
-            //callback(null,instance)
-            // MOC start instance
             moc.start(instance, callback);
         },
     stop:
         function(req, res) {
-            instance = req.body
+            instance = req.body;
             callback = function(err, instance) {
                 if (err) {
                     return res.status(400).json()
                 }
                 return res.status(200).json(instance)
-            }
-            // if no provider
-            //callback(null, instance)
-            // MOC stop instance
+            };
+
             moc.stop(instance, callback);
         },
 
     destroy:
         function(req, res) {
-            instance = req.params.id
+            instance = req.params.id;
             Instance.findOne({
                 id: req.params.id
             }).exec(function(err, instance) {
@@ -91,11 +81,8 @@ module.exports = {
                             return res.status(200).json(instance)
                         }
                     })
-                }
+                };
 
-                // If no provider
-                //callback(null, instance);
-                // MOC terminate instance
                 moc.terminate(instance, callback);
             })
         },
