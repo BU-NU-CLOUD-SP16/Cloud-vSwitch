@@ -222,7 +222,7 @@ angular.module('vSwitchUiApp')
         this.geo = function(callback) {
             $http({
                 method: 'GET',
-                url: 'https://ipinfo.io',
+                url: 'http://ipinfo.io',
             }).then(function successCallback(response) {
                 console.log(response);
                 callback(response.data)

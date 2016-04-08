@@ -1,57 +1,34 @@
 <div ng-controller="OrgCtrl">
-  <div class="row" >
-    <div class="col-lg-8 col-lg-offset-2 col-sm-10 col-sm-offset-1">
-      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-
-        <div class="panel panel-default accordion">
-          <div class="panel-heading" role="tab" id="headingOne">
-            <h4 class="panel-title">
-              <a role="button" data-toggle="collapse" data-parent="#accordion" data-target="#clientInstall" aria-expanded="true" aria-controls="clientInstall">
-                Step 1: OpenVPN Client installation
-              </a>
-            </h4>
-          </div>
-          <div id="clientInstall" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-            <div class="panel-body">
-              <div class="row">
-                <div class="col-lg-10 col-lg-offset-1 col-sm-10 col-sm-offset-1">
-                  Download a client for your OS
-                  <i class="pointer client-vpn fa fa-linux fa-2x"  />
-                  <i class="pointer client-vpn fa fa-windows fa-2x"/>
-                  <i class="pointer client-vpn fa fa-apple fa-2x" ng-click="apple_client()" />
-                </div>
-              </div>
-            </div>
-          </div>
+  <div class="row">
+    <div class="col-lg-10 col-lg-offset-1 col-sm-10 col-sm-offset-1">
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <img src="../images/apple.png" alt="100%x200" style="height: 200px; display: block;">
+        <div class="caption">
+          <h4>vSwitch for Mac</h4>
+          <a>Click here to download</a>
         </div>
-
-        <div class="panel panel-default accordion">
-          <div class="panel-heading" role="tab" id="headingTwo">
-            <h4 class="panel-title">
-              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                Step 2: OpenVN Client configuration
-              </a>
-            </h4>
-          </div>
-          <div id="collapseTwo" role="tabpanel" aria-labelledby="headingTwo" >
-            <!--<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo" >-->
-            <div class="panel-body">
-              <div class="row">
-                <div class="col-lg-10 col-lg-offset-1 col-sm-10 col-sm-offset-1">
-                  <form>
-                    <fieldset>
-                      <div class="form-group">
-                        <a href="client.ovpn">Client Config File</a>
-                      </div>
-                </div>
-                </fieldset>
-                </form>
-              </div>
-            </div>
-          </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <img src="../images/windows.png" alt="100%x200" style="height: 200px; display: block;">
+        <div class="caption">
+          <h4>vSwitch for Windows</h4>
+          <a>Click here to download</a>
         </div>
-
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <img src="../images/linux.png" alt="100%x200" style="height: 200px; display: block;">
+        <div class="caption">
+          <h4>vSwitch for Linux</h4>
+          <a>Click here to download</a>
+          
+        </div>
       </div>
     </div>
   </div>
+    </div>
 </div>
