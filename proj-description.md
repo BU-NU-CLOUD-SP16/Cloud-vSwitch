@@ -135,7 +135,7 @@ You can see the status of your instance according to the “light” indicator o
 
 If you want to invite your colleague into your organization, click on the invite on the dashboard:
 
-<img src="doc/img/Invitaion.png" alt="Invitation" width="350">
+<img src="doc/img/Invitation.png" alt="Invitation" width="350">
 
 You should enter the email address of your colleague and he/she will receive an email along with the invitation code to join the organization.
 
