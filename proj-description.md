@@ -29,7 +29,7 @@ TODO: Write a project description
 
 # Installation
 
-## Prerequisies
+**Prerequisies**
 
 The deployment of Cloud vSwitch requires a cloud environment and a portal to place your own vSwitch portal. After the deployment, you can earily and directly get access to the virtual LAN in the cloud! 
 
