@@ -67,6 +67,11 @@ TODO: Write usage instructions
 
 **Cloud vSwitch Team**:
 
+Javier Arguello jas91@bu.edu   
+Shuwen Sun shwsun@bu.edu   
+Xuanyi Chen troychen@bu.edu   
+Varshith Hakkithimmanahalli Anilkumar varshith@bu.edu   
+
 
 **Mentors**:
 
