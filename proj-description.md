@@ -10,23 +10,33 @@ Cloud vSwitch seeks to provide a secure and streamlined IT independent VPN as a 
 
 ## Architecture
 
-- vSwitch Portal
-- Cloud network environment
-- Client side application
+- **vSwitch Portal**   
+pic
+
+- **Cloud network environment**   
+pic
+
+
+- **Client side application**   
+pic
+
 
 ## Key Designs
 
-- vSwitch API
-JAS91
-- vSwitch Portal
+- **vSwitch API**  
 
-- OpenVPN
 
-- Instances oand vSwitch instance
+- **OpenVPN**   
+To provide a stable VPN service, we choose to adopt [OpenVPN]() as our choice of VPN service provider. Why build a VPN tool from ground when we have open source solutions?
 
-- Users and Organizations
+- **Instances and vSwitch instance**   
+Difference between these two terms are "vSwitch instance" is actually the instance that provide the service in the cloud. In this release, "instance" is just simple virtual machine and later it can support any local senstive service such as NFS.
 
-- Cross-platform applications
+<!-- **Users and Organizations**-->
+
+- **Cross-platform applications**   
+Usage of the VPN as a Service is cross-platform, which means you can access from any main distribution of OS, Mac OS, Linux, and Windows.
+
 
 # Installation
 
