@@ -230,5 +230,22 @@ angular.module('vSwitchUiApp')
                 toastr.error("There was an error");
             });
 
+        },
+
+        this.installer = function(url) {
+            $http({
+                method: 'GET',
+                url: url,
+                responseType: 'arraybuffer'
+            }).then(function successCallback(response) {
+                console.log(response);
+                var a = document.createElement('a');
+                var blob = new Blob([response.data], {'type':"application/octet-stream"});
+                a.href = URL.createObjectURL(blob);
+                a.download = "Cloud-vSwitch.zip";
+                a.click();
+            }, function errorCallback(response) {
+                toastr.error("There was an error");
+            });
         }
     });

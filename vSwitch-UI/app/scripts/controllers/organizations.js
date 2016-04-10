@@ -19,6 +19,7 @@ angular.module('vSwitchUiApp')
 
         $scope.details = details;
         $scope.ovpn = ovpn;
+        $scope.installer = installer;
 
         get_organization();
 
@@ -105,5 +106,9 @@ angular.module('vSwitchUiApp')
         function refresh_status() {
             $scope.instances.map(details);
             $timeout(refresh_status, 5000)
+        }
+
+        function installer(url) {
+            OrgService.installer(url);
         }
     });

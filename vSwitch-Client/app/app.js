@@ -11,7 +11,7 @@
         'ngMessages',
         'toastr'
     ])
-        .constant('endpoint', 'http://10.0.0.5:1337')
+        .constant('endpoint', 'https://cloud-vswitch-api.herokuapp.com')
 
         .config(function($stateProvider, $urlRouterProvider) {
             $urlRouterProvider.otherwise("/login");
