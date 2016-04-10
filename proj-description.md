@@ -1,6 +1,6 @@
 # Cloud vSwitch
 
-![vswitch-instance](doc/img/vswitch-instance.png)
+![vswitch-instance](doc/img/vswitch-instance.png =250x)
 
 TODO: logo and pic
 
@@ -15,10 +15,10 @@ Cloud vSwitch seeks to provide a secure and streamlined IT independent VPN as a 
 - **vSwitch Portal**   
 Cloud vSwitch portal is a key point in architecture. It allows users to easily create an organization and setup a VPN environment with a few clicks.
 
-![vswitch-portal](doc/img/vswitch-portal.png)
+![vswitch-portal](doc/img/vswitch-portal.png =200x)
 
 - **Cloud environment and Clients**   
-![cv-arch](doc/img/cv-arch.png)
+![cv-arch](doc/img/cv-arch.png =200x)
 
 
 ## Key Designs
@@ -33,13 +33,13 @@ To provide a stable VPN service, we choose to adopt [OpenVPN]() as our choice of
 Difference between these two terms are "vSwitch instance" is actually the instance that provide the service in the cloud. In this release, "instance" is just simple virtual machine and later it can support any local senstive service such as NFS.
 
 **Users and Organizations**   
-![organization](doc/img/organization.png)
+![organization](doc/img/organization.png =250x)
 
 
 - **Cross-platform applications**   
 Usage of the VPN as a Service is cross-platform, which means you can access from any main distribution of OS, Mac OS, Linux, and Windows.
 
-![different-distro](doc/img/different-distro.png)
+![different-distro](doc/img/different-distro.png =250x)
 
 
 
