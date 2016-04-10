@@ -17,7 +17,7 @@ Cloud vSwitch seeks to provide a secure and streamlined IT independent VPN as a 
 - **vSwitch Portal**   
 Cloud vSwitch portal is a key point in architecture. It allows users to easily create an organization and setup a VPN environment with a few clicks.
 
-<img src="doc/img/vswitch-portal.png" alt="portal" width="650">
+<img src="doc/img/vswitch-portal.png" alt="portal" width="350">
 
 
 - **Cloud environment and Clients**   
