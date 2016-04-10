@@ -112,7 +112,33 @@ TODO: Describe the installation process
 
 # Usage
 
-TODO: Write usage instructions
+First of all, you should visit the Cloud vSwitch website https://cloud-vswitch.herokuapp.com/#/login
+and create an account if you do not have one in advance. Once the registration is done, you can create your organization following the instruction page that comes up. You should input the name, owner of the organization and the default email address. 
+
+<img src="doc/img/organization.png" alt="OrganizationInitialization" width="350">
+
+Once the organization is created successfully, you will be redirected to a list all the organizations that you are in as shown below:
+
+<img src="doc/img/Organizations.png" alt="OrganizationList" width="350">
+
+Now you are ready to download the client installer by clicking the “Client Installer” on the dashboard for your system:
+
+<img src="doc/img/Installation.png" alt="ClientAppInstall" width="350">
+
+When the download is finished, click the “vSwitch.exe” in the folder and you will be asked to input your credential. After that, you will be directed to your organization.
+
+When you click on the name of the organization in the list, you will be guided to the list of instances of the very organization. If there is no instance, you will be prompted to provide name of the instance to set up the first one. Once succeed, the instance list will look like this: 
+
+<img src="doc/img/Instances.png" alt="InstanceList" width="350">
+
+You can see the status of your instance according to the “light” indicator on the instance tab. When the “light” is green, the instance is already deployed on the MOC. You can stop, resume, modify, delete your instance at any time.
+
+If you want to invite your colleague into your organization, click on the invite on the dashboard:
+
+<img src="doc/img/Invitaion.png" alt="Invitation" width="350">
+
+You should enter the email address of your colleague and he/she will receive an email along with the invitation code to join the organization.
+
 
 # Contributors
 
