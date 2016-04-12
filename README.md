@@ -4,8 +4,6 @@
 <!--img src="doc/img/cv-arch.png" alt="arch" width="650"-->
 
 
-TODO: logo and pic
-
 # Introduction
 
 Cloud vSwitch seeks to provide a secure and streamlined IT independent VPN as a service in the cloud.
@@ -17,12 +15,12 @@ Cloud vSwitch seeks to provide a secure and streamlined IT independent VPN as a 
 - **vSwitch Portal**   
 Cloud vSwitch portal is a key point in architecture. It allows users to easily create an organization and setup a VPN environment with a few clicks.
 
-<img src="doc/img/vswitch-portal.png" alt="portal" width="350">
+<p align="center"><img src="doc/img/vswitch-portal.png" alt="portal" width="300"></p>
 
 
 - **Cloud environment and Clients**   
 
-<img src="doc/img/cv-arch.png" alt="arch" width="650">
+<p align="center"><img src="doc/img/cv-arch.png" alt="arch" width="520"></p>
 
 
 ## Key Designs
@@ -37,13 +35,13 @@ To provide a stable VPN service, we choose to adopt [OpenVPN]() as our choice of
 Difference between these two terms are "vSwitch instance" is actually the instance that provide the service in the cloud. In this release, "instance" is just simple virtual machine and later it can support any local senstive service such as NFS.
 
 **Users and Organizations**   
-<img src="doc/img/organization.png" alt="Organization" width="650">
+<p align="center"><img src="doc/img/organization.png" alt="Organization" width="650"></p>
 
 
 - **Cross-platform applications**   
 Usage of the VPN as a Service is cross-platform, which means you can access from any main distribution of OS, Mac OS, Linux, and Windows.
 
-<img src="doc/img/different-distro.png" alt="dif-distro" width="800">
+<p align="center"><img src="doc/img/different-distro.png" alt="dif-distro" width="800"></p>
 
 
 
@@ -107,21 +105,26 @@ $ grunt serve or node index.js
 ```
 
 
-TODO: Describe the installation process
-
-
 # Usage
 
-TODO: Write usage instructions
+After successfully setting up the vSwitch API launching the vSwitch Portal, now you are able to visit the web portal and start to manage your Cloud!   
+
+1. Register and create your organization.    
+2. Choose the platform you are working on and follow the client side application process.   
+3. Now you should be able to both access and modify. The dashboard should be working, too.   
+
+# FAQ
+
+TODO: add FAQ
 
 # Contributors
 
 **Cloud vSwitch Team**:
 
-Javier Arguello jas91@bu.edu   
-Shuwen Sun shwsun@bu.edu   
-Xuanyi Chen troychen@bu.edu   
-Varshith Hakkithimmanahalli Anilkumar varshith@bu.edu   
+Javier Arguello jas91[at]bu.edu   
+Shuwen Sun shwsun[at]bu.edu   
+Xuanyi Chen troychen[at]bu.edu   
+Varshith Hakkithimmanahalli Anilkumar varshith[at]bu.edu   
 
 
 **Mentors**:
