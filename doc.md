@@ -1,8 +1,6 @@
 # Cloud vSwitch
 
-<!--![vswitch-instance](doc/img/vswitch-instance.png)-->
-<!--img src="doc/img/cv-arch.png" alt="arch" width="650"-->
-
+TODO: logo and pic
 
 # Introduction
 
@@ -13,20 +11,20 @@ Cloud vSwitch seeks to provide a secure and streamlined IT independent VPN as a 
 ## Architecture
 
 - **vSwitch Portal**   
-Cloud vSwitch portal is a key point in architecture. It allows users to easily create an organization and setup a VPN environment with a few clicks.
+pic
 
-<p align="center"><img src="doc/img/vswitch-portal.png" alt="portal" width="300"></p>
+- **Cloud network environment**   
+pic
 
 
-- **Cloud environment and Clients**   
-
-<p align="center"><img src="doc/img/cv-arch.png" alt="arch" width="520"></p>
+- **Client side application**   
+pic
 
 
 ## Key Designs
 
 - **vSwitch API**  
-vSwitch API is a **RESTful API** to support all Cloud vSwitch operations. We took advantage of [Sails.js](https://github.com/balderdashy/sails), a framework that makes it easy to build custom Node.js apps.
+
 
 - **OpenVPN**   
 To provide a stable VPN service, we choose to adopt [OpenVPN]() as our choice of VPN service provider. Why build a VPN tool from ground when we have open source solutions?
@@ -34,15 +32,10 @@ To provide a stable VPN service, we choose to adopt [OpenVPN]() as our choice of
 - **Instances and vSwitch instance**   
 Difference between these two terms are "vSwitch instance" is actually the instance that provide the service in the cloud. In this release, "instance" is just simple virtual machine and later it can support any local senstive service such as NFS.
 
-**Users and Organizations**   
-<p align="center"><img src="doc/img/organization.png" alt="Organization" width="650"></p>
-
+<!-- **Users and Organizations**-->
 
 - **Cross-platform applications**   
 Usage of the VPN as a Service is cross-platform, which means you can access from any main distribution of OS, Mac OS, Linux, and Windows.
-
-<p align="center"><img src="doc/img/different-distro.png" alt="dif-distro" width="800"></p>
-
 
 
 # Installation
@@ -68,20 +61,20 @@ $ bower install
 
 # setup environment variables
 ##  CA
-$ export CACERT='...'
-$ export CAKEY='...'
-$ export DH='...'
+$ export CACERT=’...’
+$ export CAKEY=’...’
+$ export DH=’...’’
 ## Mongo
-$ export MONGO_URI='...'
+$ export MONGO_URI=’...’
 ## MOC
-$ export MOC_USER='...'
-$ export MOC_PASSWORD='...'
+$ export MOC_USER=’...’
+$ export MOC_PASSWORD=’...’
 ## Email
-$ export SENDGRID_API='...'
-$ export SENGRID_FROM='...'
+$ export SENDGRID_API=’...’
+$ export SENGRID_FROM=’...’
 ## App
-$ export TOKEN_SECRET='...'
-$ export UI_ENDPOINT='...'
+$ export TOKEN_SECRET=’...’
+$ export UI_ENDPOINT=’...’
 ```
 
 TODO: a easier way to config, i.e. user can create a config file to do it.   
@@ -105,26 +98,31 @@ $ grunt serve or node index.js
 ```
 
 
+3. 
+```sh 
+
+```
+
+
+
+
+
+
+TODO: Describe the installation process
+
+
 # Usage
 
-After successfully setting up the vSwitch API launching the vSwitch Portal, now you are able to visit the web portal and start to manage your Cloud!   
-
-1. Register and create your organization.    
-2. Choose the platform you are working on and follow the client side application process.   
-3. Now you should be able to both access and modify. The dashboard should be working, too.   
-
-# FAQ
-
-TODO: add FAQ
+TODO: Write usage instructions
 
 # Contributors
 
 **Cloud vSwitch Team**:
 
-Javier Arguello jas91[at]bu.edu   
-Shuwen Sun shwsun[at]bu.edu   
-Xuanyi Chen troychen[at]bu.edu   
-Varshith Hakkithimmanahalli Anilkumar varshith[at]bu.edu   
+Javier Arguello jas91@bu.edu   
+Shuwen Sun shwsun@bu.edu   
+Xuanyi Chen troychen@bu.edu   
+Varshith Hakkithimmanahalli Anilkumar varshith@bu.edu   
 
 
 **Mentors**:
