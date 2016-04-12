@@ -21,6 +21,8 @@ angular.module('vSwitchUiApp')
         $scope.ovpn = ovpn;
         $scope.installer = installer;
 
+
+
         get_organization();
 
         // Functions
@@ -38,7 +40,7 @@ angular.module('vSwitchUiApp')
         function list_instances() {
             InstanceService.list(function(instances) {
                 $scope.instances = instances;
-                refresh_status(instances);
+                refresh_status();
                 $scope.new_instance = ! (instances.length > 0);
             });
             $scope.instance = {};

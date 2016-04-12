@@ -113,10 +113,12 @@ module.exports = {
         this.auth(start_fn)
     },
     stop: function(instance, callback) {
+
         var id = instance.instance_id;
         stop_fn = function(err, token, tenant) {
             if (err) {
                 callback(err, instance);
+
                 return
             }
             request({
@@ -139,6 +141,7 @@ module.exports = {
         stop_fn = function(err, token, tenant) {
             if (err) {
                 callback(err, instance);
+
                 return
             }
             request({
@@ -161,6 +164,7 @@ module.exports = {
         id = instance.instance_id;
         details_fn = function(err, token, tenant) {
             if (err) {
+
                 callback(err, instance);
                 return
             }
@@ -189,7 +193,9 @@ module.exports = {
 
         floating_ips_fn = function(err,token,tenant) {
             if (err) {
+
                 callback(err, instance);
+
                 return
             }
             request({

@@ -1,4 +1,5 @@
 angular.module('vSwitchUiApp')
+
     .service('InstanceService', function($http, $location, toastr, endpoint, $timeout) {
 
         /*
@@ -156,11 +157,9 @@ angular.module('vSwitchUiApp')
          **/
         this.details = function(instance) {
             var token = localStorage.getItem("token");
-
             if (!token) {
                 return
             }
-
             $http({
                 method: 'GET',
                 url: endpoint + '/instance/'+instance.id+'/details',
