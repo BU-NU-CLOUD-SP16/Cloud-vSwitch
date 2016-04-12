@@ -2,7 +2,7 @@ var request = require('request');
 
 module.exports = {
     auth: function(action) {
-        var exists = false
+        var exists = false;
         if (typeof (sails.config.moc.token) != 'undefined') {
 
             expires = new Date(sails.config.moc.token.expires);
@@ -24,7 +24,7 @@ module.exports = {
                 method: 'POST',
                 json: {
                     auth: {
-                        tenantId: "58f77860f8a246528fa0392896947a29",
+                        tenantId: process.env.MOC_TENANT,
                         passwordCredentials: {
                             username: process.env.MOC_USER,
                             password: process.env.MOC_PASSWORD
@@ -63,6 +63,7 @@ module.exports = {
                                 'name': 'default'
                             }
                         ],
+                        //TODO: get networks
                         'user_data': user_data,
                         'networks': [{
                             'uuid': '95c65624-b11a-4fb0-a46c-fa7b957fdbaa'
@@ -73,11 +74,11 @@ module.exports = {
                 }
             }, function(error, response, body) {
                 if (error) {
-                    callback(error, instance)
+                    callback(error, instance);
                     return
                 }
 
-                instance.instance_id = body.server.id
+                instance.instance_id = body.server.id;
 
                 if (user_data) {
                     floating_ips(instance);
@@ -89,10 +90,10 @@ module.exports = {
     },
 
     start: function(instance, callback) {
-        id = instance.instance_id
+        var id = instance.instance_id;
         start_fn = function(err, token, tenant) {
             if (err) {
-                callback(err, instance)
+                callback(err, instance);
                 return
             }
             request({
@@ -112,10 +113,10 @@ module.exports = {
         this.auth(start_fn)
     },
     stop: function(instance, callback) {
-        id = instance.instance_id
+        var id = instance.instance_id;
         stop_fn = function(err, token, tenant) {
             if (err) {
-                callback(err, instance)
+                callback(err, instance);
                 return
             }
             request({
@@ -137,7 +138,7 @@ module.exports = {
     terminate: function(instance, callback) {
         stop_fn = function(err, token, tenant) {
             if (err) {
-                callback(err, instance)
+                callback(err, instance);
                 return
             }
             request({
@@ -160,7 +161,7 @@ module.exports = {
         id = instance.instance_id;
         details_fn = function(err, token, tenant) {
             if (err) {
-                callback(err, instance)
+                callback(err, instance);
                 return
             }
             request({
@@ -188,7 +189,7 @@ module.exports = {
 
         floating_ips_fn = function(err,token,tenant) {
             if (err) {
-                callback(err, instance)
+                callback(err, instance);
                 return
             }
             request({
@@ -225,14 +226,14 @@ module.exports = {
                     }
                 }
             });
-        }
+        };
         this.auth(floating_ips_fn);
     },
     assign_ip: function(instance, ip) {
         id = instance.instance_id;
         assign_fn = function(err, token, tenant) {
             if (err) {
-                callback(err, instance)
+                callback(err, instance);
                 return
             }
             request({
@@ -249,7 +250,7 @@ module.exports = {
             }, function(error, response, body) {
                 console.log("Assigned ip");
             });
-        }
+        };
         this.auth(assign_fn)
     },
 }
