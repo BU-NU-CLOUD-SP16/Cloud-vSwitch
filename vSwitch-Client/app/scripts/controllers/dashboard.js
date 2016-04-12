@@ -18,6 +18,7 @@ angular.module('app')
 
         function refresh_status() {
             $scope.organizations.map(details);
+            $scope.organizations.map(vpn_status);
             $timeout(refresh_status, 5000)
         }
 

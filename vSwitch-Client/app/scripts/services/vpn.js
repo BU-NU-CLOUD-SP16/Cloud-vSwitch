@@ -9,7 +9,7 @@ var slash = require('slash');
 
 
 angular.module('app')
-    .service('VpnService', function($http, toastr, endpoint) {
+    .service('VpnService', function($http, toastr, endpoint, $timeout) {
 
         this.checkOpenvpn = function(callback) {
             var install = this.install;
@@ -34,6 +34,8 @@ angular.module('app')
         };
 
         this.install = function(callback) {
+            var homedir = (process.platform === 'win32') ? process.env.HOMEPATH : process.env.HOME;
+
             var appdir = process.resourcesPath;
             var options = {
                 name: 'Cloud vSwitch',
@@ -43,16 +45,26 @@ angular.module('app')
 
                 case 'linux':
                     cmd = 'sh -c \'if VERB="$( which yum )" 2> /dev/null; then  yum install -y openvpn; else apt-get install openvpn; fi\'';
+                    sudo.exec(cmd,
+                        options,function(error) {
+                            console.log(error);
+                            callback();
+                        });
                     break;
                 case 'win32':
-                    cmd = path.join(appdir,'app','bin','openvpn-install.exe');
+                    batfile = path.join(appdir,'app','bin','openvpn-install.exe') + " /S";
+                    fs.writeFile(path.join(homedir, 'openvpn-install.bat'), batfile, function (err) {
+                        if (err) return console.log(err);
+                        cmd = path.join(homedir,'openvpn-install.bat');
+                        sudo.exec(cmd,
+                            options,function(error) {
+                                console.log(error);
+                                callback();
+                            });
+                    });
             };
 
-            sudo.exec(cmd,
-                options,function(error) {
-                    console.log(error);
-                    callback();
-                });
+
         };
 
         this.connect = function(organization) {
@@ -137,7 +149,10 @@ angular.module('app')
                 case 'win32':
                     cmd = path.join(appdir, 'app','bin','taskkill.bat');
                     break;
-                case 'default':
+                case 'linux':
+                    cmd = 'pkill openvpn';
+                    break;
+                case 'darwin':
                     cmd = 'pkill openvpn';
                     break;
             };
@@ -169,22 +184,22 @@ angular.module('app')
         }
 
         function connect_linux(ovpn) {
-            var appdir = process.resourcesPath;
             var options = {
                 name: 'Cloud vSwitch',
             };
-            sudo.exec(path.join(appdir, 'app','bin','openvpn') + ' ' + ovpn, options, function(error) {
+            sudo.exec('openvpn ' + ovpn, options, function(error) {
                 console.log(error);
             });
         }
 
-        function connect_win(ovpn) {
+        function connect_win() {
             var appdir = process.resourcesPath;
             var options = {
                 name: 'Cloud vSwitch',
             };
-            sudo.exec(path.join(appdir, 'app', 'bin', 'openvpn.bat'), options, function (error) {
-                console.log(error);
-            });
+            $timeout(function() {
+                sudo.exec(path.join(appdir, 'app', 'bin', 'openvpn.bat'), options, function (error) {
+                });
+            }, 45000);
         }
     });
