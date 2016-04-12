@@ -1,1 +1,1 @@
-electron-packager . Cloud-vSwitch --platform=win32 --arch=ia32 --version=0.35.0 --asar=false
+electron-packager . Cloud-vSwitch --platform=win32 --arch=all --version=0.35.0 --asar=false
