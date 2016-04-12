@@ -1,5 +1,5 @@
 angular.module('vSwitchUiApp')
-    .service('InstanceService', function($http, $location, toastr, endpoint) {
+    .service('InstanceService', function($http, $location, toastr, endpoint, $timeout) {
 
         /*
          ** Service Add instance
@@ -156,6 +156,11 @@ angular.module('vSwitchUiApp')
          **/
         this.details = function(instance) {
             var token = localStorage.getItem("token");
+
+            if (!token) {
+                return
+            }
+
             $http({
                 method: 'GET',
                 url: endpoint + '/instance/'+instance.id+'/details',
@@ -165,6 +170,7 @@ angular.module('vSwitchUiApp')
             }).then(function successCallback(response) {
                 instance.status = response.data.server.status;
                 instance.ip = response.data.server.addresses.MyNetwork[0].addr;
+                $timeout(details(instance), 5000)
             }, function errorCallback(response) {
                 toastr.error("There was an error");
             });

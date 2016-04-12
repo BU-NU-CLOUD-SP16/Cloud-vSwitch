@@ -199,6 +199,9 @@ angular.module('vSwitchUiApp')
          **/
         this.details = function(org, callback) {
             var token = localStorage.getItem("token");
+            if (!token) {
+                return;
+            }
             $http({
                 method: 'GET',
                 url: endpoint + '/organization/'+org.id+'/details',

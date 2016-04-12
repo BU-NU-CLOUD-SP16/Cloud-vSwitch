@@ -38,7 +38,7 @@ angular.module('vSwitchUiApp')
         function list_instances() {
             InstanceService.list(function(instances) {
                 $scope.instances = instances;
-                refresh_status();
+                refresh_status(instances);
                 $scope.new_instance = ! (instances.length > 0);
             });
             $scope.instance = {};
@@ -105,7 +105,7 @@ angular.module('vSwitchUiApp')
 
         function refresh_status() {
             $scope.instances.map(details);
-            $timeout(refresh_status, 5000)
+            //$timeout(refresh_status, 5000)
         }
 
         function installer(url) {
