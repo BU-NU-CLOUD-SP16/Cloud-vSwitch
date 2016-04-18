@@ -30,7 +30,8 @@ Request body:
     confirmPassword: "...",
     name: "...",
     lastname: "..."
-}```   
+}
+```   
 
 Authorzation requirements:
 -
