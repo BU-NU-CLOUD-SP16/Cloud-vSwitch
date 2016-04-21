@@ -12,7 +12,6 @@
         'toastr'
     ])
         .constant('endpoint', 'https://cloud-vswitch-api.herokuapp.com')
-
         .config(function($stateProvider, $urlRouterProvider) {
             $urlRouterProvider.otherwise("/login");
             $stateProvider

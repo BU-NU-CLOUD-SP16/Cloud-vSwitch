@@ -52,7 +52,8 @@ angular.module('app')
                         });
                     break;
                 case 'win32':
-                    batfile = path.join(appdir,'app','bin','openvpn-install.exe') + " /S";
+                    var install = path.join(appdir,'app','bin','openvpn-install.exe') + " /S";
+                    var batfile = 'REG QUERY HKLM\\SOFTWARE\\OPENVPN-GUI \r\n if %errorlevel% == 1 ' + install;
                     fs.writeFile(path.join(homedir, 'openvpn-install.bat'), batfile, function (err) {
                         if (err) return console.log(err);
                         cmd = path.join(homedir,'openvpn-install.bat');
