@@ -6,58 +6,30 @@ Signup
 
   _'/signup/'_
 
-* **Method:**
+* **http Request Method:**
   
-  _|'POST'|_
-
-  `GET` | `POST` | `DELETE` | `PUT`
+  _|'POST'|_ `
   
-*  **URL Params**
-
-   <_If URL params exist, specify them in accordance with name mentioned in URL section. Separate into optional and required. Document data constraints._> 
-
+*  **URL Parameters**
+*  
    **Required:**
- 
-   `id=[integer]`
 *   'Token'
 *   'user ID'
 *   'user'
 
-   **Optional:**
- 
-   `photo_id=[alphanumeric]`
-
-* **Data Params**
-
-  <_If making a post request, what should the body payload look like? URL Params rules apply here too._>
+* **Data Parameters**
 *   'user'
+*   
 * **Success Response:**
   
-  <_What should the status code be on success and is there any returned data? This is useful when people need to to know what their callbacks should expect!_>
-
   * **Code:** 200 <br />
-    **Content:** `{ id : 12 }`
+    **Content:** `{ Successfully signed up }`
  
 * **Error Response:**
-
-  <_Most endpoints will have many ways they can fail. From unauthorized access, to wrongful parameters etc. All of those should be liste d here. It might seem repetitive, but it helps prevent assumptions from being made where they should be._>
-
-  * **Code:** 401 UNAUTHORIZED <br />
-    **Content:** `{ error : "Log in" }`
-
-  OR
 
   * **Code:** 422 UNPROCESSABLE ENTRY <br />
     **Content:** `{ error : "Email Invalid" }`
 
-* **Sample Call:**
-
-  <_Just a sample call to your endpoint in a runnable format ($.ajax call or a curl request) - this makes life easier and more predictable._> 
-
-* **Notes:**
-
-  <_This is where all uncertainties, commentary, discussion etc. can go. I recommend timestamping and identifying oneself when leaving comments here._> 
-  
 Login
 ----
  _The user who has an account can login to the vSwitch portal using his email address and password._
@@ -66,28 +38,22 @@ Login
 
   _'/login'_
 
-* **Method:**
+* **http Request Method:**
   
   _|'POST'|_
-
-  `GET` | `POST` | `DELETE` | `PUT`
   
-*  **URL Params**
-
-   <_If URL params exist, specify them in accordance with name mentioned in URL section. Separate into optional and required. Document data constraints._> 
+*  **URL Parameters**
 
    **Required:**
  
-   `id=[integer]`
 *   'Token'
 *   'user ID'
 *   'user'
 
+* **Data Parameters**
 
-* **Data Params**
-
-  <_If making a post request, what should the body payload look like? URL Params rules apply here too._>
 *   'user'
+
 * **Success Response:**
   
   <_What should the status code be on success and is there any returned data? This is useful when people need to to know what their callbacks should expect!_>
@@ -297,4 +263,176 @@ Organization Adder
 * **Notes:**
 
   <_This is where all uncertainties, commentary, discussion etc. can go. I recommend timestamping and identifying oneself when leaving comments here._> 
-                              
+
+List Organization 
+----
+  
+  _This service adds the owner to the organization in your vSwitch Portal_
+
+* **URL**
+
+  _'/user/ + userid + /organizations'_
+
+* **Method:**
+  
+  _|'GET'|_
+
+  `GET` | `POST` | `DELETE` | `PUT`
+  
+  
+*  **URL Params**  
+   *userid
+   
+
+* **Success Response:**
+  
+  <_What should the status code be on success and is there any returned data? This is useful when people need to to know what their callbacks should expect!_>
+
+  * **Code:** 200 <br />
+    **Content:** `{ Gets Organization data of a particular user and lists them }`
+ 
+* **Error Response:**
+
+  <_Most endpoints will have many ways they can fail. From unauthorized access, to wrongful parameters etc. All of those should be liste d here. It might seem repetitive, but it helps prevent assumptions from being made where they should be._>
+
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:** `{ error : "There was an error" }`
+
+
+* **Sample Call:**
+
+  <_Just a sample call to your endpoint in a runnable format ($.ajax call or a curl request) - this makes life easier and more predictable._> 
+
+* **Notes:**
+
+  <_This is where all uncertainties, commentary, discussion etc. can go. I recommend timestamping and identifying oneself when leaving comments here._> 
+  
+GET Organization
+----
+  
+  _This service gets or retrieves organization data through id_
+
+* **URL**
+
+  _'/organization/ + id'_
+
+* **Method:**
+  
+  _|'GET'|_
+
+  `GET` | `POST` | `DELETE` | `PUT`
+  
+  
+*  **URL Params**  
+   *id
+   
+   
+
+* **Success Response:**
+  
+  <_What should the status code be on success and is there any returned data? This is useful when people need to to know what their callbacks should expect!_>
+
+  * **Code:** 200 <br />
+    **Content:** `{ Gets organization }`
+ 
+* **Error Response:**
+
+  <_Most endpoints will have many ways they can fail. From unauthorized access, to wrongful parameters etc. All of those should be liste d here. It might seem repetitive, but it helps prevent assumptions from being made where they should be._>
+
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:** `{ error : "There was an error" }`
+
+
+* **Sample Call:**
+
+  <_Just a sample call to your endpoint in a runnable format ($.ajax call or a curl request) - this makes life easier and more predictable._> 
+
+* **Notes:**
+
+  <_This is where all uncertainties, commentary, discussion etc. can go. I recommend timestamping and identifying oneself when leaving comments here._> 
+  
+UPDATE Organization
+----
+  
+  _This service gets or retrieves organization data through id_
+
+* **URL**
+
+  _'/organization/ + id'_
+
+* **Method:**
+  
+  _|'PUT'|_
+
+  `GET` | `POST` | `DELETE` | `PUT`
+  
+  
+*  **URL Params**  
+   *id
+
+*  **Data Params**  
+   *org   
+   
+
+* **Success Response:**
+  
+  <_What should the status code be on success and is there any returned data? This is useful when people need to to know what their callbacks should expect!_>
+
+  * **Code:** 200 <br />
+    **Content:** `{ Response : "Organization updated" }`
+ 
+* **Error Response:**
+
+  <_Most endpoints will have many ways they can fail. From unauthorized access, to wrongful parameters etc. All of those should be liste d here. It might seem repetitive, but it helps prevent assumptions from being made where they should be._>
+
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:** `{ error : "There was an error" }`
+
+
+* **Sample Call:**
+
+  <_Just a sample call to your endpoint in a runnable format ($.ajax call or a curl request) - this makes life easier and more predictable._> 
+
+* **Notes:**
+
+  <_This is where all uncertainties, commentary, discussion etc. can go. I recommend timestamping and identifying oneself when leaving comments here._>   
+  
+DELETE Organization
+----
+  
+  _This function checks deletes an organization from your vSwitch portal_
+
+
+
+* **Method:**
+  
+  _|'PUT'|_
+
+  `GET` | `POST` | `DELETE` | `PUT`
+
+  
+* **Success Response:**
+  
+  <_What should the status code be on success and is there any returned data? This is useful when people need to to know what their callbacks should expect!_>
+
+  * **Code:** 200 <br />
+    **Content:** `{ Response : "Organization updated" }`
+ 
+* **Error Response:**
+
+  <_Most endpoints will have many ways they can fail. From unauthorized access, to wrongful parameters etc. All of those should be liste d here. It might seem repetitive, but it helps prevent assumptions from being made where they should be._>
+
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:** `{ error : "There was an error" }`
+
+
+* **Sample Call:**
+
+  <_Just a sample call to your endpoint in a runnable format ($.ajax call or a curl request) - this makes life easier and more predictable._> 
+
+* **Notes:**
+
+  <_This is where all uncertainties, commentary, discussion etc. can go. I recommend timestamping and identifying oneself when leaving comments here._>   
+  
+  
+  
