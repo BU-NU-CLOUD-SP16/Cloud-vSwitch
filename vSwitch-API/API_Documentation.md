@@ -98,7 +98,8 @@ GET User
     
 UPDATE User
 ----
-    _The get function acquires the user information to connect to the vSwitchUI App._
+
+  _This function updates the profile information of the user_
 
 * **URL**
 
@@ -161,14 +162,14 @@ Organization Adder
 
   _'/organization/ + org.id + /members/ + userid'_
 
-* **Method:**
+* **http Request Method:**
   
   _|'POST'|_
   
 *  **URL Parameters**
 
    {'org.id'<br/>
-   'userid'}
+    'userid'}
    
 * **Success Response:**
 
@@ -188,7 +189,7 @@ List Organization
 
   _'/user/ + userid + /organizations'_
 
-* **Method:**
+* **http Request Method:**
   
   _|'GET'|_
   
@@ -205,142 +206,79 @@ List Organization
 
   * **Code:** 401 UNAUTHORIZED <br />
     **Content:** `{ error : "There was an error" }`
-
-
-* **Sample Call:**
-
-  <_Just a sample call to your endpoint in a runnable format ($.ajax call or a curl request) - this makes life easier and more predictable._> 
-
-* **Notes:**
-
-  <_This is where all uncertainties, commentary, discussion etc. can go. I recommend timestamping and identifying oneself when leaving comments here._> 
   
 GET Organization
 ----
-  
   _This service gets or retrieves organization data through id_
 
 * **URL**
 
   _'/organization/ + id'_
 
-* **Method:**
+* **http Request Method:**
   
   _|'GET'|_
-
-  `GET` | `POST` | `DELETE` | `PUT`
   
-  
-*  **URL Params**  
-   *id
-   
-   
+*  **URL Parameters**
 
+   {'id'}
+  
 * **Success Response:**
   
-  <_What should the status code be on success and is there any returned data? This is useful when people need to to know what their callbacks should expect!_>
-
   * **Code:** 200 <br />
     **Content:** `{ Gets organization }`
  
 * **Error Response:**
 
-  <_Most endpoints will have many ways they can fail. From unauthorized access, to wrongful parameters etc. All of those should be liste d here. It might seem repetitive, but it helps prevent assumptions from being made where they should be._>
-
   * **Code:** 401 UNAUTHORIZED <br />
     **Content:** `{ error : "There was an error" }`
-
-
-* **Sample Call:**
-
-  <_Just a sample call to your endpoint in a runnable format ($.ajax call or a curl request) - this makes life easier and more predictable._> 
-
-* **Notes:**
-
-  <_This is where all uncertainties, commentary, discussion etc. can go. I recommend timestamping and identifying oneself when leaving comments here._> 
   
 UPDATE Organization
 ----
-  
   _This service gets or retrieves organization data through id_
 
 * **URL**
 
   _'/organization/ + id'_
 
-* **Method:**
+* **http Request Method:**
   
   _|'PUT'|_
-
-  `GET` | `POST` | `DELETE` | `PUT`
   
-  
-*  **URL Params**  
-   *id
+*  **URL Parameters**  
+   {'id'}
 
 *  **Data Params**  
-   *org   
+   {'org'}   
    
-
 * **Success Response:**
-  
-  <_What should the status code be on success and is there any returned data? This is useful when people need to to know what their callbacks should expect!_>
 
   * **Code:** 200 <br />
     **Content:** `{ Response : "Organization updated" }`
  
 * **Error Response:**
 
-  <_Most endpoints will have many ways they can fail. From unauthorized access, to wrongful parameters etc. All of those should be liste d here. It might seem repetitive, but it helps prevent assumptions from being made where they should be._>
-
   * **Code:** 401 UNAUTHORIZED <br />
     **Content:** `{ error : "There was an error" }`
-
-
-* **Sample Call:**
-
-  <_Just a sample call to your endpoint in a runnable format ($.ajax call or a curl request) - this makes life easier and more predictable._> 
-
-* **Notes:**
-
-  <_This is where all uncertainties, commentary, discussion etc. can go. I recommend timestamping and identifying oneself when leaving comments here._>   
   
 DELETE Organization
 ----
-  
   _This function checks deletes an organization from your vSwitch portal_
 
-
-
-* **Method:**
+* **http Request Method:**
   
   _|'PUT'|_
-
-  `GET` | `POST` | `DELETE` | `PUT`
-
   
 * **Success Response:**
-  
-  <_What should the status code be on success and is there any returned data? This is useful when people need to to know what their callbacks should expect!_>
 
   * **Code:** 200 <br />
     **Content:** `{ Response : "Organization updated" }`
  
 * **Error Response:**
 
-  <_Most endpoints will have many ways they can fail. From unauthorized access, to wrongful parameters etc. All of those should be liste d here. It might seem repetitive, but it helps prevent assumptions from being made where they should be._>
-
   * **Code:** 401 UNAUTHORIZED <br />
     **Content:** `{ error : "There was an error" }`
 
-
-* **Sample Call:**
-
-  <_Just a sample call to your endpoint in a runnable format ($.ajax call or a curl request) - this makes life easier and more predictable._> 
-
-* **Notes:**
-
-  <_This is where all uncertainties, commentary, discussion etc. can go. I recommend timestamping and identifying oneself when leaving comments here._>   
   
   
   
