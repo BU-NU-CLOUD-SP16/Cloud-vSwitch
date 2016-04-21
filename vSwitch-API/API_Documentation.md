@@ -12,13 +12,13 @@ Signup
   
 *  **URL Parameters**
   
-*   'Token'
-*   'user ID'
-*   'user'
+   {'Token'<br/>
+    'user ID'<br/>
+    'user'}
 
 * **Data Parameters**
 
-*   'user'
+   {'user'}
 
 * **Success Response:**
   
@@ -43,27 +43,21 @@ Login
   _|'POST'|_
   
 *  **URL Parameters**
-
-   **Required:**
  
-*   'Token'
-*   'user ID'
-*   'user'
+   {'Token'<br/>
+    'user ID'<br/>
+    'user'}
 
 * **Data Parameters**
 
-*   'user'
+*   {'user'}
 
 * **Success Response:**
-  
-  <_What should the status code be on success and is there any returned data? This is useful when people need to to know what their callbacks should expect!_>
 
   * **Code:** 200 <br />
-    **Content:** `{ id : 12 }`
+    **Content:** `{ Successfully logged in }`
  
 * **Error Response:**
-
-  <_Most endpoints will have many ways they can fail. From unauthorized access, to wrongful parameters etc. All of those should be liste d here. It might seem repetitive, but it helps prevent assumptions from being made where they should be._>
 
   * **Code:** 401 UNAUTHORIZED <br />
     **Content:** `{ error : "Wrong email or password" }`
@@ -73,13 +67,6 @@ Login
   * **Code:** 422 UNPROCESSABLE ENTRY <br />
     **Content:** `{ error : "Email Invalid" }`
 
-* **Sample Call:**
-
-  <_Just a sample call to your endpoint in a runnable format ($.ajax call or a curl request) - this makes life easier and more predictable._> 
-
-* **Notes:**
-
-  <_This is where all uncertainties, commentary, discussion etc. can go. I recommend timestamping and identifying oneself when leaving comments here._> 
 
 GET User
 ----
@@ -94,76 +81,47 @@ GET User
   
   _|'GET'|_
 
-  `GET` | `POST` | `DELETE` | `PUT`
   
 *  **URL Params**
-
-   <_If URL params exist, specify them in accordance with name mentioned in URL section. Separate into optional and required. Document data constraints._> 
-
-   **Required:**
  
-   `id=[integer]`
+   {`id`}
 
 * **Success Response:**
-  
-  <_What should the status code be on success and is there any returned data? This is useful when people need to to know what their callbacks should expect!_>
 
   * **Code:** 200 <br />
-    **Content:** `{ id : 12 }`
+    **Content:** `{ Retrieve user data using id }`
  
 * **Error Response:**
 
-  <_Most endpoints will have many ways they can fail. From unauthorized access, to wrongful parameters etc. All of those should be liste d here. It might seem repetitive, but it helps prevent assumptions from being made where they should be._>
-
   * **Code:** 401 UNAUTHORIZED <br />
     **Content:** `{ error : "There was an error" }`
-
-
-* **Sample Call:**
-
-  <_Just a sample call to your endpoint in a runnable format ($.ajax call or a curl request) - this makes life easier and more predictable._> 
-
-* **Notes:**
-
-  <_This is where all uncertainties, commentary, discussion etc. can go. I recommend timestamping and identifying oneself when leaving comments here._> 
     
 UPDATE User
 ----
-  
-  _The get function acquires the user information to connect to the vSwitchUI App._
+    _The get function acquires the user information to connect to the vSwitchUI App._
 
 * **URL**
 
   _'/user/' + userid_
 
-* **Method:**
+* **http Request Method:**
   
   _|'PUT'|_
 
-  `GET` | `POST` | `DELETE` | `PUT`
-  
-*  **URL Params**
-
-   <_If URL params exist, specify them in accordance with name mentioned in URL section. Separate into optional and required. Document data constraints._> 
-
-   **Required:**
+*  **URL Parameters**
  
-   `userid`
+   {`userid`}
 
-*  **Data Params**
+*  **Data Parameters**
 
-    `user`
+    {`user`}
     
 * **Success Response:**
-  
-  <_What should the status code be on success and is there any returned data? This is useful when people need to to know what their callbacks should expect!_>
 
   * **Code:** 200 <br />
     **Content:** `{ "Profile updated" }`
  
 * **Error Response:**
-
-  <_Most endpoints will have many ways they can fail. From unauthorized access, to wrongful parameters etc. All of those should be liste d here. It might seem repetitive, but it helps prevent assumptions from being made where they should be._>
 
   * **Code:** 401 UNAUTHORIZED <br />
     **Content:** `{ error : "There was an error" }`
