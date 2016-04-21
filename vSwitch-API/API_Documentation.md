@@ -50,7 +50,7 @@ Login
 
 * **Data Parameters**
 
-*   {'user'}
+   {'user'}
 
 * **Success Response:**
 
@@ -82,7 +82,7 @@ GET User
   _|'GET'|_
 
   
-*  **URL Params**
+*  **URL Parameters**
  
    {`id`}
 
@@ -125,15 +125,6 @@ UPDATE User
 
   * **Code:** 401 UNAUTHORIZED <br />
     **Content:** `{ error : "There was an error" }`
-
-
-* **Sample Call:**
-
-  <_Just a sample call to your endpoint in a runnable format ($.ajax call or a curl request) - this makes life easier and more predictable._> 
-
-* **Notes:**
-
-  <_This is where all uncertainties, commentary, discussion etc. can go. I recommend timestamping and identifying oneself when leaving comments here._> 
         
 ADD Organization
 ----
@@ -144,43 +135,26 @@ ADD Organization
 
   _'/organization'_
 
-* **Method:**
+* **http Request Method:**
   
   _|'POST'|_
 
-  `GET` | `POST` | `DELETE` | `PUT`
-  
+*  **Data Parameters**
 
-*  **Data Params**
-
-    `org`
+    {`org`}
     
 * **Success Response:**
-  
-  <_What should the status code be on success and is there any returned data? This is useful when people need to to know what their callbacks should expect!_>
 
   * **Code:** 200 <br />
     **Content:** `{ Organization data }`
  
 * **Error Response:**
 
-  <_Most endpoints will have many ways they can fail. From unauthorized access, to wrongful parameters etc. All of those should be liste d here. It might seem repetitive, but it helps prevent assumptions from being made where they should be._>
-
   * **Code:** 401 UNAUTHORIZED <br />
     **Content:** `{ error : "There was an error" }`
-
-
-* **Sample Call:**
-
-  <_Just a sample call to your endpoint in a runnable format ($.ajax call or a curl request) - this makes life easier and more predictable._> 
-
-* **Notes:**
-
-  <_This is where all uncertainties, commentary, discussion etc. can go. I recommend timestamping and identifying oneself when leaving comments here._> 
                
 Organization Adder
 ----
-  
   _This service adds the owner to the organization in your vSwitch Portal_
 
 * **URL**
@@ -190,41 +164,24 @@ Organization Adder
 * **Method:**
   
   _|'POST'|_
+  
+*  **URL Parameters**
 
-  `GET` | `POST` | `DELETE` | `PUT`
-  
-  
-*  **URL Params**  
-   *org.id
-   *userid
+   {'org.id'<br/>
+   'userid'}
    
-
 * **Success Response:**
-  
-  <_What should the status code be on success and is there any returned data? This is useful when people need to to know what their callbacks should expect!_>
 
   * **Code:** 200 <br />
     **Content:** `{ "Organization added successfully" }`
  
 * **Error Response:**
 
-  <_Most endpoints will have many ways they can fail. From unauthorized access, to wrongful parameters etc. All of those should be liste d here. It might seem repetitive, but it helps prevent assumptions from being made where they should be._>
-
   * **Code:** 401 UNAUTHORIZED <br />
     **Content:** `{ error : "There was an error" }`
 
-
-* **Sample Call:**
-
-  <_Just a sample call to your endpoint in a runnable format ($.ajax call or a curl request) - this makes life easier and more predictable._> 
-
-* **Notes:**
-
-  <_This is where all uncertainties, commentary, discussion etc. can go. I recommend timestamping and identifying oneself when leaving comments here._> 
-
 List Organization 
 ----
-  
   _This service adds the owner to the organization in your vSwitch Portal_
 
 * **URL**
@@ -234,24 +191,17 @@ List Organization
 * **Method:**
   
   _|'GET'|_
-
-  `GET` | `POST` | `DELETE` | `PUT`
   
+*  **URL Parameters**
   
-*  **URL Params**  
-   *userid
+   {'userid'}
    
-
 * **Success Response:**
-  
-  <_What should the status code be on success and is there any returned data? This is useful when people need to to know what their callbacks should expect!_>
 
   * **Code:** 200 <br />
     **Content:** `{ Gets Organization data of a particular user and lists them }`
  
 * **Error Response:**
-
-  <_Most endpoints will have many ways they can fail. From unauthorized access, to wrongful parameters etc. All of those should be liste d here. It might seem repetitive, but it helps prevent assumptions from being made where they should be._>
 
   * **Code:** 401 UNAUTHORIZED <br />
     **Content:** `{ error : "There was an error" }`
