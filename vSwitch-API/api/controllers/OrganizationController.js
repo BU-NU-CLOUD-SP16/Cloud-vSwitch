@@ -5,7 +5,7 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
-var moc = require('../services/MOC.js');
+var moc = require('../services/MOC2.js');
 var ca = require('../services/CA.js');
 var script = require('../services/ConfigScript.js');
 
@@ -18,12 +18,15 @@ module.exports = {
 
             var callback = function(err, organization) {
                 if (err) {
-                    return res.status(400).json();
+                    return res.status(400).json({
+                        error: err
+                    });
                 }
                 Organization.create(organization).exec(function(err,organization) {
                     if (err) {
+                        moc.terminate(organization, callback);
                         return res.json(err.status, {
-                            err: err
+                            error: err
                         });
                     }
                     return res.status(200).json(organization);
@@ -46,7 +49,12 @@ module.exports = {
 
                 script.server(cert, key, cacert, dh, function(user_data) {
                     // MOC create instance
-                    moc.create(organization, user_data, callback)
+                    var options = {
+                        user_data: user_data,
+                        flavorRef: 2,
+                        imageRef: '3dfb6cd0-9bf8-4106-b6ef-e735542fb669'
+                    };
+                    moc.create(organization, options, callback);
                     //callback(null, organization);
                 })
 
@@ -72,6 +80,45 @@ module.exports = {
                 }
             })
         });
-    }
+    },
+
+    destroy:
+        function(req, res) {
+            console.log(req.params.id);
+            Organization.findOne({
+                id: req.params.id
+            }).exec(function(err, organization) {
+                console.log(organization);
+                if (err) {
+                    return res.status(400).json()
+                }
+                if (!organization) {
+                    return res.status(404).json()
+                }
+
+                var callback = function(err,organization) {
+                    if (err) {
+                        return res.status(400).json({
+                            err: {error: err}
+                        })
+                    }
+                    console.log(organization);
+                    Organization.destroy({id: req.params.id}).exec(function(err,organization) {
+                        console.log(err);
+                        console.log(organization);
+                        if (err) {
+                            return res.status(400).json({
+                                err: {error: err}
+                            });
+                        } else {
+                            return res.status(200).json(organization)
+                        }
+                    })
+                };
+
+                // MOC terminate instance
+                moc.terminate(organization, callback);
+            })
+        },
 };
 

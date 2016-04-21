@@ -82,6 +82,9 @@ module.exports.routes = {
     cors: {origin: "*"}
   },
 
+  // Flavors
+  'get /flavors' : "InstanceController.flavors",
+  'get /images' : "InstanceController.images"
 
 
   /***************************************************************************
