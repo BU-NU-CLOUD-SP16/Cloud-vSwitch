@@ -263,16 +263,25 @@ UPDATE Organization
   
 DELETE Organization
 ----
-  _This function checks deletes an organization from your vSwitch portal_
+  _This function deletes an organization from your vSwitch portal_
+ 
+* **Error Response:**
+
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:** `{ error : "Permision denied", "You are not the owner" }`
+
+DELETE Organization Helper Function 
+----
+  _This function sends a http request to delete an organization from your vSwitch portal_
 
 * **http Request Method:**
   
-  _|'PUT'|_
+  _|'DELETE'|_
   
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `{ Response : "Organization updated" }`
+    **Content:** `{ Response : "Organization deleted successfully" }`
  
 * **Error Response:**
 
