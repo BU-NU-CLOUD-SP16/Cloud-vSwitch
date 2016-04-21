@@ -4,22 +4,22 @@ Signup
 
 * **URL**
 
-  _'/signup/'_
+   _'/signup/'_
 
 * **http Request Method:**
   
-  _|'POST'|_ `
+   _|'POST'|_ `
   
 *  **URL Parameters**
-*  
-   **Required:**
+  
 *   'Token'
 *   'user ID'
 *   'user'
 
 * **Data Parameters**
+
 *   'user'
-*   
+
 * **Success Response:**
   
   * **Code:** 200 <br />
