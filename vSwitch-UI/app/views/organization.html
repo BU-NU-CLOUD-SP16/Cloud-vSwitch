@@ -16,13 +16,14 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li role="presentation" ng-class="active==2 || !active ? 'active': ''"><a ng-click="active=2" href="#/dashboard"><i class="fa fa-reorder"/> Organizations</a></li>
-                    <li role="presentation" ng-class="active==3 ? 'active': ''"><a ng-click="active=3"><i class="fa fa-user"/> Client Installer</a></li>
+                    <li role="presentation" ng-class="active==3 ? 'active': ''"><a ng-click="active=3"><i class="fa fa-user"/> Client App</a></li>
                     <li role="presentation" ng-class="active==1 || !active ? 'active': ''"><a ng-click="active=1"><i class="fa fa-reorder"/> Instances</a></li>
+                    <li role="presentation" ng-class="active==6 || !active ? 'active': ''"><a ng-click="active=6"><i class="fa fa-group"/> Users</a></li>
                     <li role="presentation" ng-class="active==5 ? 'active': ''"><a ng-click="active=5"><i class="fa fa-server"/>  Invite</a></li>
                     <li role="presentation" ng-class="active==4 ? 'active': ''"><a ng-click="active=4"><i class="fa fa-user"/> Profile</a></li>
 
                 </ul>
-                <ul class="nav navbar-top-links navbar-right" >
+                <ul class="nav navbar-nav navbar-right" >
                     <li ng-controller="SessionCtrl">
                         <a ng-click="logout()"><i class="fa fa-fw fa-power-off" ></i> Log Out</a>
                     </li>
@@ -56,6 +57,10 @@
 
             <div ng-if="active==5">
                 <div ui-view="invite"></div>
+            </div>
+
+            <div ng-if="active==6">
+                <div ui-view="users"></div>
             </div>
 
 

@@ -19,7 +19,8 @@ angular
         'ngMessages',
         'toastr'
     ])
-    .constant('endpoint', 'https://cloud-vswitch-api.herokuapp.com')
+    //.constant('endpoint', 'https://cloud-vswitch-api.herokuapp.com')
+    .constant('endpoint', 'http://localhost:1337')
     .config(function(toastrConfig) {
         angular.extend(toastrConfig, {
             preventDuplicates: true,
@@ -69,6 +70,7 @@ angular
                     '' : {templateUrl: '../views/organization.html'},
                     'instances@auth.organization' : {templateUrl: '../views/instances.html', controller: "OrgCtrl"},
                     'uinstaller@auth.organization' : {templateUrl: '../views/uinstaller.html',controller: "OrgCtrl"},
+                    'users@auth.organization': {templateUrl: '../views/users.html', controller: "OrgCtrl"},
                     'invite@auth.organization': {templateUrl: '../views/invite.html', controller: "InvitationCtrl"},
                     'profile@auth.organization' : {templateUrl: '../views/profile.html'}
                 },

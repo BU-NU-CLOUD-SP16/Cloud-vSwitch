@@ -134,7 +134,7 @@ angular.module('vSwitchUiApp')
          **/
         this.delete = function(instance,callback) {
             var id = instance.id;
-            var token = localStorage.getItem("token")
+            var token = localStorage.getItem("token");
             $http({
                 method: 'DELETE',
                 url: endpoint + '/instance/' + id,
@@ -156,6 +156,10 @@ angular.module('vSwitchUiApp')
          * @callback: function to be executed when done
          **/
         this.details = function(instance) {
+            if (!instance) {
+                return
+            }
+            var details = this.details;
             var token = localStorage.getItem("token");
             if (!token) {
                 return
@@ -168,10 +172,42 @@ angular.module('vSwitchUiApp')
                 }
             }).then(function successCallback(response) {
                 instance.status = response.data.server.status;
-                instance.ip = response.data.server.addresses.MyNetwork[0].addr;
-                $timeout(details(instance), 5000)
+                if (instance.status == "ACTIVE") {
+                    instance.ip = response.data.server.addresses.MyNetwork[0].addr;
+                }
+
             }, function errorCallback(response) {
                 toastr.error("There was an error");
+            });
+        };
+
+        this.flavors = function(callback) {
+            var token = localStorage.getItem("token");
+            $http({
+                method: 'GET',
+                url: endpoint + '/flavors',
+                headers: {
+                    'Authorization': "Bearer " + token
+                }
+            }).then(function successCallback(response) {
+                callback(response.data);
+            }, function errorCallback(response) {
+
+            });
+        };
+
+        this.images = function(callback) {
+            var token = localStorage.getItem("token");
+            $http({
+                method: 'GET',
+                url: endpoint + '/images',
+                headers: {
+                    'Authorization': "Bearer " + token
+                }
+            }).then(function successCallback(response) {
+                callback(response.data);
+            }, function errorCallback(response) {
+
             });
         }
     });

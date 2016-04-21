@@ -1,7 +1,7 @@
 <!-- Page Heading -->
 <div>
   <div class="row" ng-show="!new_instance">
-    <div class="col-lg-3 col-md-3 col-sm-4" ng-repeat="i in instances track by $index">
+    <div class="col-lg-3 col-md-4 col-sm-5" ng-repeat="i in instances track by $index">
       <div class="panel panel-default">
         <div class="panel-heading">
           <div style="float: left">
@@ -23,7 +23,7 @@
       </div>
     </div>
 
-    <div class="col-lg-3 col-md-3 col-sm-4">
+    <div class="col-lg-3 col-md-4 col-sm-5">
       <div class="panel panel-default">
         <div class="panel-heading" style="height:40px;">
           <div style="float: left">
@@ -67,6 +67,40 @@
         </div>
         <div ng-messages="instance.name.$error">
           <div ng-message="required">This field is required</div>
+        </div>
+        <div class="form-group">
+          <select class="form-control" ng-model="flavor_i" required>
+            <option value="" selected disabled> Select type of instance</option>
+            <option ng-repeat="i in flavors track by $index" value={{$index}}>{{i.name}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <select class="form-control" ng-model="image_i" required>
+            <option value="" selected disabled>Select type of image</option>
+            <option ng-repeat="i in images track by $index" value={{$index}}>{{i.name}}</option>
+          </select>
+        </div>
+        <div>
+          <div>
+          <h2><small>Details:</small></h2>
+          </div>
+          <table class="table table-striped">
+            <tr>
+              <td>VCPUs</td>
+              <td>{{flavors[flavor_i].vcpus}}</td>
+            </tr>
+            <tr>
+              <td>Root Disk	</td>
+              <td>{{flavors[flavor_i].disk}}</td>
+            </tr>
+            <tr>
+              <td>Total Disk</td>
+              <td>{{flavors[flavor_i].disk}}</td>
+            </tr>
+            <tr>
+              <td>RAM</td>
+              <td>{{flavors[flavor_i].ram}}</td>            </tr>
+          </table>
         </div>
         <button type=submit class="btn btn-success">Create</button>
         <button ng-click="new_instance=false" class="btn btn-danger">Cancel</button>

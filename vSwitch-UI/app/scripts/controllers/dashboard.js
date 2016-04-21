@@ -27,7 +27,14 @@ angular.module('vSwitchUiApp')
                 $scope.new_organization = !(orgs.length > 0);
                 orgs.map(details);
             })
+
         }
+
+        OrgService.geo(function(geo) {
+            $scope.organization.providence = geo.region;
+            $scope.organization.city = geo.city;
+            $scope.organization.country = geo.country;
+        });
 
         function new_org() {
             $scope.new_organization = true;

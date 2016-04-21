@@ -1,5 +1,5 @@
 angular.module('vSwitchUiApp')
-    .service('OrgService', function($http, $location, toastr, endpoint) {
+    .service('OrgService', function($http, $location, toastr, endpoint, $timeout) {
         /**
          ** Service Add organization
          ** @org: organization object
@@ -141,6 +141,7 @@ angular.module('vSwitchUiApp')
                     'Authorization': "Bearer " + token
                 }
             }).then(function successCallback(response) {
+                console.log(response)
                 toastr.success("Organization deleted successfully");
                 callback();
             }, function errorCallback(response) {
@@ -197,9 +198,12 @@ angular.module('vSwitchUiApp')
          ** @org: organization object
          ** @callback: function to be executed when done
          **/
-        this.details = function(org, callback) {
+        this.details = function(org) {
             var token = localStorage.getItem("token");
             if (!token) {
+                return;
+            }
+            if (!org) {
                 return;
             }
             $http({
@@ -210,9 +214,10 @@ angular.module('vSwitchUiApp')
                 }
             }).then(function successCallback(response) {
                 org.status = response.data.server.status;
-                org.ip = response.data.server.addresses.MyNetwork[0].addr;
-                org.float_ip = response.data.server.addresses.MyNetwork[1].addr;
-
+                if (org.status == 'ACTIVE') {
+                    org.ip = response.data.server.addresses.MyNetwork[0].addr;
+                    org.float_ip = response.data.server.addresses.MyNetwork[1].addr;
+                }
             }, function errorCallback(response) {
                 toastr.error("There was an error");
             });
@@ -227,7 +232,6 @@ angular.module('vSwitchUiApp')
                 method: 'GET',
                 url: 'http://ipinfo.io',
             }).then(function successCallback(response) {
-                console.log(response);
                 callback(response.data)
             }, function errorCallback(response) {
                 toastr.error("There was an error");

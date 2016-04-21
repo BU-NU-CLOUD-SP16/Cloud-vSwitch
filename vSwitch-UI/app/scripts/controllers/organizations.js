@@ -21,7 +21,12 @@ angular.module('vSwitchUiApp')
         $scope.ovpn = ovpn;
         $scope.installer = installer;
 
-
+        InstanceService.flavors(function(flavors) {
+            $scope.flavors = flavors;
+        });
+        InstanceService.images(function(images) {
+            $scope.images = images;
+        });
 
         get_organization();
 
@@ -31,7 +36,7 @@ angular.module('vSwitchUiApp')
             var id = localStorage.getItem("current");
             OrgService.get(id, function(org) {
                 $scope.organization = org;
-                OrgService.details(org)
+                //OrgService.details(org)
             });
 
             list_instances();
@@ -48,6 +53,8 @@ angular.module('vSwitchUiApp')
 
         function add_instance() {
             var instance = $scope.instance;
+            instance.flavor = $scope.flavors[$scope.flavor_i].id;
+            instance.image = $scope.images[$scope.image_i].id;
             InstanceService.add(instance, list_instances);
             $scope.new_instance = false;
         }
@@ -107,7 +114,9 @@ angular.module('vSwitchUiApp')
 
         function refresh_status() {
             $scope.instances.map(details);
-            //$timeout(refresh_status, 5000)
+            $timeout(function() {
+                $scope.instances.map(details);
+            }, 5000)
         }
 
         function installer(url) {

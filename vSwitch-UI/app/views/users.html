@@ -1,0 +1,17 @@
+<div>
+
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-sm-10 col-sm-offset-1">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>User connected</th>
+                </tr>
+                </thead>
+                <tr ng-repeat="n in organization.connected">
+                    <td>{{n.name}} {{n.lastname}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
