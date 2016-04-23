@@ -3,7 +3,19 @@
         <h2> <small><a ui-sref="dashboard">My Organizations</a> / {{organization.name}}</small></h2>
     </div>
     <div class="row" style="margin-top: 40px;">
-
+        <div class="col-sm-8 col-sm-offset-2  col-xs-8 col-xs-offset-2 list-group" ng-if="instances.length==0 ">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div style="float: left">
+                        <a class="pointer"><i class="fa fa-circle " ng-class="!i.status ? 'unkown' : ''"></i></a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel-body">
+                    <h3><small>Your organization does not have any Instances yet</small></h3>
+                </div>
+            </div>
+        </div>
         <div class="col-sm-8 col-sm-offset-2  col-xs-8 col-xs-offset-2 list-group" ng-repeat="i in instances track by $index">
             <div class="panel panel-default">
                 <div class="panel-heading">

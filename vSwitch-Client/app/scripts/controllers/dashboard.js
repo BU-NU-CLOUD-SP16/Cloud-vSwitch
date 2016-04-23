@@ -23,7 +23,9 @@ angular.module('app')
         }
 
         function details(organization) {
-            OrgService.details(organization);
+            if (organization) {
+                OrgService.details(organization);
+            }
         }
 
         function connect(organization) {

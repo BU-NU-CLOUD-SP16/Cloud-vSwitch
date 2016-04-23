@@ -219,7 +219,6 @@ angular.module('vSwitchUiApp')
                     org.float_ip = response.data.server.addresses.MyNetwork[1].addr;
                 }
             }, function errorCallback(response) {
-                toastr.error("There was an error");
             });
         };
 

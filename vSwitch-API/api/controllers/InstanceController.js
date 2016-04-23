@@ -111,7 +111,7 @@ module.exports = {
                 return res.status(400).json()
             }
             if (!instance) {
-                return res.status(408).json()
+                return res.status(404).json()
             }
             moc.details(instance, function (error, response) {
                 if (error) {

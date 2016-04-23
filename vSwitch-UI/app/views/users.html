@@ -5,11 +5,11 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>User connected</th>
+                    <th>Connected Users</th>
                 </tr>
                 </thead>
-                <tr ng-repeat="n in organization.connected">
-                    <td>{{n.name}} {{n.lastname}}</td>
+                <tr ng-repeat="n in ['Tony Stark', 'Bruce Wayne', 'Peter Parker', 'Lois Lane', 'Clark Kent']">
+                    <td><i class="fa fa-circle ACTIVE"/> {{n}}</td>
                 </tr>
             </table>
         </div>

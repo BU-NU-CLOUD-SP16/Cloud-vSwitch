@@ -23,7 +23,7 @@ angular.module('app')
 
 
         this.details = function(instance, callback) {
-            var token = localStorage.getItem("token")
+            var token = localStorage.getItem("token");
             $http({
                 method: 'GET',
                 url: endpoint + '/instance/'+instance.id+'/details',
@@ -34,7 +34,6 @@ angular.module('app')
                 instance.status = response.data.server.status;
                 instance.ip = response.data.server.addresses.MyNetwork[0].addr;
             }, function errorCallback(response) {
-                toastr.error("There was an error");
             });
         }
     })

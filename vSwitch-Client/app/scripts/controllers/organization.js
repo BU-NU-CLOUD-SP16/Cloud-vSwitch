@@ -32,7 +32,9 @@ angular.module('app')
         }
 
         function details(instance) {
-            InstanceService.details(instance);
+            if (instance) {
+                InstanceService.details(instance);
+            }
         }
 
         });

@@ -155,7 +155,8 @@ angular.module('vSwitchUiApp')
          * @org: instance object
          * @callback: function to be executed when done
          **/
-        this.details = function(instance) {
+        this.details = function(instance, callback) {
+            var delete_instance = this.delete;
             if (!instance) {
                 return
             }
@@ -173,11 +174,15 @@ angular.module('vSwitchUiApp')
             }).then(function successCallback(response) {
                 instance.status = response.data.server.status;
                 if (instance.status == "ACTIVE") {
-                    instance.ip = response.data.server.addresses.MyNetwork[0].addr;
+                    return instance.ip = response.data.server.addresses.MyNetwork[0].addr;
+                }
+
+                if (instance.status == "ERROR") {
+                    toastr.error("There was an error creating the instance");
+                    return delete_instance(instance, callback)
                 }
 
             }, function errorCallback(response) {
-                toastr.error("There was an error");
             });
         };
 

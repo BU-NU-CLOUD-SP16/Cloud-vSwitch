@@ -88,7 +88,7 @@ angular.module('vSwitchUiApp')
         }
 
         function details(instance) {
-            InstanceService.details(instance);
+            InstanceService.details(instance, list_instances);
         }
 
         function ovpn(organization) {
@@ -115,7 +115,7 @@ angular.module('vSwitchUiApp')
         function refresh_status() {
             $scope.instances.map(details);
             $timeout(function() {
-                $scope.instances.map(details);
+                refresh_status();
             }, 5000)
         }
 

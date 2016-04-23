@@ -227,6 +227,13 @@ module.exports = {
      * Error: 1006
      */
     details: function(instance, callback) {
+        if (!instance) {
+            error = {
+                code: "1005",
+                msg: "Failed to get instance"
+            };
+            callback(error, null)
+        }
         var id = instance.instance_id;
         var details_fn = function(err, token, tenant) {
             if (err) {
