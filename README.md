@@ -76,7 +76,7 @@ $ npm install
 # setup environment variables
 ##  CA 
 $ export CACERT=`cat cacert.pem`
-$ export CAKEY='cat cakey.pem'
+$ export CAKEY=`cat cakey.pem`
 $ export DH='cat dh.pem'
 
 ## Mongo
@@ -121,6 +121,7 @@ $ sudo node index.js
  
  **Generate Client Apps**
 ```sh
+$ npm install electron-packger
 $ git clone https://github.com/BU-NU-CLOUD-SP16/Cloud-vSwitch.git
 $ cd vSwitch-Client
 $ sh build
