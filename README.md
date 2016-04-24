@@ -44,7 +44,13 @@ Before you start the default install process, make sure you have access to ```np
 
 The deployment of Cloud vSwitch requires a cloud environment and a portal to place your own vSwitch portal. After the deployment, you can easily and directly get access to the virtual LAN in the cloud! 
 
-Here's a reference-style link to [Google][1]
+**Creating Openssl CA**
+```sh 
+$ git clone https://github.com/BU-NU-CLOUD-SP16/Cloud-vSwitch.git
+$ cd CA
+$ sh ca.sh
+```
+This will generate cacert.pem, cakey.pem and dh files required by Cloud vSwitch API
 
 **Setup the vSwitch API** 
 ```sh 
@@ -54,9 +60,9 @@ $ npm install
 
 # setup environment variables
 ##  CA 
-$ export CACERT='...'
-$ export CAKEY='...'
-$ export DH='...'
+$ export CACERT=`cat cacert.pem`
+$ export CAKEY='cat cakey.pem'
+$ export DH='cat dh.pem'
 
 ## Mongo
 $ export MONGO_URI='mongodb://user@host:port/database'
@@ -117,10 +123,6 @@ After successfully setting up the vSwitch API launching the vSwitch Portal, now 
 1. Register and create your organization.    
 2. Choose the platform you are working on and follow the client side application process.   
 3. Now you should be able to both access and modify. The dashboard should be working, too.   
-
-# FAQ
-
-TODO: add FAQ
 
 # Contributors
 
