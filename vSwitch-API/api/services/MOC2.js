@@ -82,7 +82,7 @@ module.exports = {
                         //TODO: get networks
                         'user_data': options.user_data,
                         'networks': [{
-                            'uuid': '95c65624-b11a-4fb0-a46c-fa7b957fdbaa'
+                            'uuid': process.env.MOC_NETWORK
                         }],
 
                         'key_name': 'cloud'
