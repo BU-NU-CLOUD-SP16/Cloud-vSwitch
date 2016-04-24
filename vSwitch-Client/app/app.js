@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-
+    var endpoint = "https://cloud-vswitch-api.herokuapp.com";
     angular.module('app', [
         'ngAnimate',
         'ngCookies',
@@ -11,8 +11,13 @@
         'ngMessages',
         'toastr'
     ])
-        //.constant('endpoint', 'https://cloud-vswitch-api.herokuapp.com')
-        .constant('endpoint', 'http://localhost:1337')
+        .constant('endpoint', endpoint)
+        .config(function(toastrConfig) {
+            angular.extend(toastrConfig, {
+                preventDuplicates: true,
+                preventOpenDuplicates: true,
+            })
+        })
         .config(function($stateProvider, $urlRouterProvider) {
             $urlRouterProvider.otherwise("/login");
             $stateProvider

@@ -8,6 +8,10 @@
  *
  * Main module of the application.
  */
+
+var endpoint = "https://cloud-vswitch-api.herokuapp.com";
+
+
 angular
     .module('vSwitchUiApp', [
         'ngAnimate',
@@ -19,8 +23,7 @@ angular
         'ngMessages',
         'toastr'
     ])
-    .constant('endpoint', 'https://cloud-vswitch-api.herokuapp.com')
-    //.constant('endpoint', 'http://localhost:1337')
+    .constant('endpoint', endpoint)
     .config(function(toastrConfig) {
         angular.extend(toastrConfig, {
             preventDuplicates: true,
@@ -83,3 +86,4 @@ function authenticated ($location) {
         $location.path("/login");
     }
 }
+

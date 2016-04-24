@@ -129,6 +129,7 @@ angular.module('app')
                         "key " + slash(path.join(homedir, 'cert.key'));
                     fs.writeFile(path.join(homedir, 'client.ovpn'), ovpn, function (err) {
                         if (err) return console.log(err);
+                        connect_api(organization)
                         connect_fn(path.join(homedir, 'client.ovpn'), organization);
                     });
 
