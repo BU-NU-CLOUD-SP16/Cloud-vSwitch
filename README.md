@@ -52,6 +52,13 @@ $ sh ca.sh
 ```
 This will generate cacert.pem, cakey.pem and dh files required by Cloud vSwitch API
 
+**Set up MongoDB database**
+```sh 
+$ sudo apt-get install mongodb-server
+```
+Also, Cloud vSwitch can use services like mongolab. It only requires to set the proper env variable as shown below.
+
+
 **Setup the vSwitch API** 
 ```sh 
 $ git clone https://github.com/BU-NU-CLOUD-SP16/Cloud-vSwitch.git
@@ -96,6 +103,12 @@ $ git clone https://github.com/BU-NU-CLOUD-SP16/Cloud-vSwitch.git
 $ cd vSwitch-UI
 $ npm install
 $ bower install
+```
+
+**Update API endpoint**
+```sh 
+$ vim app/scripts/app.js
+  var endpoint = 'https://xxxxxx';
 ```
  
 To run:
