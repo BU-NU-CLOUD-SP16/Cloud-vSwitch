@@ -4,7 +4,7 @@
 var express  = require('express');
 var app      = express();                               // create our app w/ express
 var http = require("http")
-var port = process.env.PORT || 5000
+var port = process.env.PORT || 80
 
 // configuration =================
 

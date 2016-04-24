@@ -9,7 +9,8 @@
  * Main module of the application.
  */
 
-var endpoint = "https://cloud-vswitch-api.herokuapp.com";
+// Please update this line
+var endpoint = "https://xxxx";
 
 
 angular
