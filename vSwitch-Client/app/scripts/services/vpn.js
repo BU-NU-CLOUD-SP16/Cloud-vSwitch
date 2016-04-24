@@ -129,7 +129,7 @@ angular.module('app')
                         "key " + slash(path.join(homedir, 'cert.key'));
                     fs.writeFile(path.join(homedir, 'client.ovpn'), ovpn, function (err) {
                         if (err) return console.log(err);
-                        connect_fn(path.join(homedir, 'client.ovpn'));
+                        connect_fn(path.join(homedir, 'client.ovpn'), organization);
                     });
 
                 }, function errorCallback(response) {
@@ -140,7 +140,8 @@ angular.module('app')
 
         };
 
-        this.disconnect = function() {
+        this.disconnect = function(organization) {
+            var token = localStorage.getItem("token");
             var options = {
                 name: 'Cloud vSwitch'
             };
@@ -158,6 +159,9 @@ angular.module('app')
                     break;
             };
             sudo.exec(cmd, options, function(error) {
+                if (!error) {
+                    disconnect_api(organization)
+                }
             });
         };
 
@@ -167,8 +171,43 @@ angular.module('app')
             });
         };
 
+        function connect_api(organization) {
+            var token = localStorage.getItem("token");
+            console.log("connect_api")
+            var userid = localStorage.getItem('userid');
+            $http({
+                method: 'POST',
+                url: endpoint + '/organization/'+organization.id+'/connected/'+userid,
+                headers: {
+                    'Authorization': "Bearer " + token
+                }
+            }).then(function successCallback(response) {
+                console.log(response)
+            }, function errorCallback(response) {
+                console.log(response)
+            });
+        }
 
-        function connect_apple(ovpn) {
+        function disconnect_api(organization) {
+            console.log("disconnect");
+            var token = localStorage.getItem("token");
+            var userid = localStorage.getItem('userid');
+            $http({
+                method: 'DELETE',
+                url: endpoint + '/organization/'+organization.id+'/connected/'+userid,
+                headers: {
+                    'Authorization': "Bearer " + token
+                }
+            }).then(function successCallback(response) {
+                console.log(response)
+            }, function errorCallback(response) {
+                console.log(response)
+
+            });
+        }
+
+
+        function connect_apple(ovpn, organization) {
             var appdir = process.resourcesPath;
             var options = {
                 name: 'Cloud vSwitch',
@@ -179,27 +218,38 @@ angular.module('app')
                 if (error) {
                     sudo.exec('./bin/openvpn ' + ovpn, options, function(error) {
                         console.log(error);
+                            connect_api(organization)
                     })
+                }
+
+                if (!error) {
+                    connect_api(organization)
                 }
             });
         }
 
-        function connect_linux(ovpn) {
+        function connect_linux(ovpn, organization) {
             var options = {
                 name: 'Cloud vSwitch',
             };
             sudo.exec('openvpn ' + ovpn, options, function(error) {
                 console.log(error);
+                if (!error) {
+                    connect_api(organization)
+                }
             });
         }
 
-        function connect_win() {
+        function connect_win(ovpn, organization) {
             var appdir = process.resourcesPath;
             var options = {
                 name: 'Cloud vSwitch',
             };
             $timeout(function() {
                 sudo.exec(path.join(appdir, 'app', 'bin', 'openvpn.bat'), options, function (error) {
+                    if (!error) {
+                        connect_api(organization)
+                    }
                 });
             }, 45000);
         }

@@ -8,8 +8,11 @@
                     <th>Connected Users</th>
                 </tr>
                 </thead>
-                <tr ng-repeat="n in ['Tony Stark', 'Bruce Wayne', 'Peter Parker', 'Lois Lane', 'Clark Kent']">
+                <!--<tr ng-repeat="n in ['Tony Stark', 'Bruce Wayne', 'Peter Parker', 'Lois Lane', 'Clark Kent']">
                     <td><i class="fa fa-circle ACTIVE"/> {{n}}</td>
+                </tr>-->
+                <tr ng-repeat="n in organization.connected">
+                    <td><i class="fa fa-circle ACTIVE"/> {{n.name}} {{n.lastname}}</td>
                 </tr>
             </table>
         </div>

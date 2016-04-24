@@ -35,7 +35,7 @@ angular.module('app')
         }
 
         function disconnect(organization) {
-            VpnService.disconnect();
+            VpnService.disconnect(organization);
             organization.connecting = false;
             organization.connected = false;
         }
