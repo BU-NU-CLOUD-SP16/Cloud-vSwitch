@@ -44,6 +44,13 @@ Before you start the default install process, make sure you have access to ```np
 
 The deployment of Cloud vSwitch requires a cloud environment and a portal to place your own vSwitch portal. After the deployment, you can easily and directly get access to the virtual LAN in the cloud! 
 
+**Preparing the system (Ubuntu)**
+```sh 
+$ sudo apt-get install build-essential git
+$ curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -
+$ sudo apt-get install -y nodejs
+```
+
 **Creating Openssl CA**
 ```sh 
 $ git clone https://github.com/BU-NU-CLOUD-SP16/Cloud-vSwitch.git
@@ -92,17 +99,12 @@ To deploy the API, run:
 ```sh
 $ npm start
 ```
-or
-```sh
-$ sails lift
-```
 
  **Setup and configure the vSwitch Portal, aka UI**
 ```sh 
 $ git clone https://github.com/BU-NU-CLOUD-SP16/Cloud-vSwitch.git
 $ cd vSwitch-UI
 $ npm install
-$ bower install
 ```
 
 **Update API endpoint**
@@ -113,11 +115,7 @@ $ vim app/scripts/app.js
  
 To run:
 ```sh
-$ grunt serve
-```
-or
-```sh
-$ node index.js
+$ sudo node index.js
 ```
  
  **Generate Client Apps**
