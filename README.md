@@ -46,6 +46,7 @@ The deployment of Cloud vSwitch requires a cloud environment and a portal to pla
 
 **Preparing the system (Ubuntu)**
 ```sh 
+$ sudo apt-get update
 $ sudo apt-get install build-essential git
 $ curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -
 $ sudo apt-get install -y nodejs
