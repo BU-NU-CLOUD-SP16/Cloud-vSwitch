@@ -9,6 +9,7 @@
     - [Architecture](#architecture)
     - [Key Designs](#key-designs)
 - [Installation](#installation)
+- [Documentation](#documentation)
 - [Usage](#usage)
 - [Contributors](#contributors)
 - [License](#license)
@@ -91,9 +92,9 @@ $ npm install
 
 # setup environment variables
 ##  CA 
-$ export CACERT='cat cacert.pem'
-$ export CAKEY='cat cakey.pem'
-$ export DH='cat dh.pem'
+$ export CACERT=`cat cacert.pem`
+$ export CAKEY=`cat cakey.pem`
+$ export DH=`cat dh.pem`
 
 ## Mongo
 $ export MONGO_URI='mongodb://user@host:port/database'
@@ -143,6 +144,11 @@ $ cd vSwitch-Client
 $ sh build
 ```
 
+# Documentation
+
+One important part of Cloud vSwitch is the vSwitch API. Taking advantage of [Sails.js](http://sailsjs.org/), RESTful API is automated generated and ready to use. 
+
+For possible search or trouble with API design philosophy, see [REST API doc](https://github.com/BU-NU-CLOUD-SP16/Cloud-vSwitch/blob/master/vSwitch-API/REST_API.md)
 
 
 # Usage
@@ -157,10 +163,10 @@ After successfully setting up the vSwitch API launching the vSwitch Portal, now 
 
 **Cloud vSwitch Team**:
 
-Javier Arguello jas91[at]bu.edu   
-Shuwen Sun shwsun[at]bu.edu   
-Xuanyi Chen troychen[at]bu.edu   
-Varshith Hakkithimmanahalli Anilkumar varshith[at]bu.edu   
+Javier Arguello: jas91[at]bu.edu   
+Shuwen Sun: shwsun[at]bu.edu   
+Xuanyi Chen: troychen[at]bu.edu   
+Varshith Hakkithimmanahalli Anilkumar: varshith[at]bu.edu   
 
 
 **Mentors**:
