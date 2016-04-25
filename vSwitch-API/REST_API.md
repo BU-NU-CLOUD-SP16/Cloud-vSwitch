@@ -62,7 +62,33 @@ Authorization requirements:
 * No special access.
 
 Possible errors:
-* 409 if <email> not exits.
+* 409 if 
+  * <email> not exits.
+  * <password> not match.
+
+### user_profile
+
+```GET /user/user_id```
+
+Get user profile. This api call will retrieve the user profile.
+
+Authorization requirements:
+* No special access.
+
+Possible errors:
+* 404 if user not exists.
+
+### user_update 
+
+```PUT /user/user_id```
+
+Update user. User use this api call to update his information.
+
+Authorization requirements:
+* No special access.
+
+Possible errors:
+* 404 if user not exists.
 
 
 ### show_user_organization
@@ -111,12 +137,12 @@ Request body:
 
 ```
 {
-    name: "...",
-    ou: "...",
-    email: "...",
-    country: "...",
-    province: "...",
-    city: "..."
+    name: "<name>",
+    ou: "<ou>",
+    email: "<email>",
+    country: "<country>",
+    province: "<province>",
+    city: "<city>"
 }
 ```   
 
@@ -138,6 +164,15 @@ Organization add member.
 Authorization requirements:
 - No special access.
 
+### organization_delete_member
+
+```DELETE /organization/:id/members/:user```   
+
+Organization delete member. 
+
+Authorization requirements:
+- No special access.
+
 
 ### organization_delete
 
@@ -145,7 +180,7 @@ Authorization requirements:
  
 Organization delete. This api call will delete this organization.
 
-Authorzation requirements:
+Authorization requirements:
 - Ownership required.
 
 Possible errors:
@@ -178,7 +213,7 @@ Request body:
 }
 ```   
 
-Authorzation requirements:
+Authorization requirements:
 
 * Ownership of this of this organization required.
 
@@ -187,34 +222,143 @@ Possible errors:
 * 409 if <name> already exists.
 
 
-### organization_join
+### organization_show_details
 
-```ADD /organization```   
+```GET /organization/:id/details```   
 
-Request body:   
+Authorization requirements:
+* Membership of the organization is required.
+
+Possible errors:
+* 404 no details about the organization.
+
+
+## Instances 
+
+### instance_create 
+
+```POST /instance```
+
+Request body:
 
 ```
 {
-   
+    name: "<name>"
 }
-```   
+```
 
-Authorzation requirements:
+Authorization requirements:
 * No special access.
 
 Possible errors:
-* 409 if 
+* 409 if <name> already exists.
 
+### instance_addto_organization
 
-### organization_show_details
+```POST /organization/:id/instance/:id```
 
-```Get /organization/:id/details```   
-
-Authorzation requirements:
-
-*
+Authorization requirements:
+* No special access.
 
 Possible errors:
+* 409 if <name> already exists.
 
-*
 
+### instance_update
+
+```PUT /instance/:id```
+
+Request body:
+
+```
+{
+    name: "<name>"
+}
+```
+
+Authorization requirements:
+* No special access.
+
+Possible errors:
+* 409 if <name> already exists.
+
+
+### instance_start
+
+```POST /instance/start```
+
+Request body:
+```
+{
+    id: "<id>"
+}
+```
+
+Authorization requirements:
+* No special access.
+
+Possible errors:
+* 404 if <id> not exists.
+
+### instance_list 
+
+```GET /organization/:id/instances```
+
+
+Authorization requirements:
+* No special access.
+
+Possible errors:
+* 404 if <id> not exists.
+
+
+### instance_stop
+
+```POST /instance/stop```
+
+Request body:
+```
+{
+    id: "<id>"
+}
+```
+
+Authorization requirements:
+* No special access.
+
+Possible errors:
+* 404 if <id> not exists.
+
+
+### instance_delete
+    
+```DELETE /instance/:id```
+
+Authorization requirements:
+* No special access.
+
+Possible errors:
+* 404 if <id> not exists.
+
+
+## Else
+
+### image_show
+```GET /images```
+
+Authorization requirements:
+* No special access.
+
+Possible errors:
+* 404 if no images exist.
+
+
+### flavors_show
+
+```GET /flavors```
+
+Authorization requirements:
+* No special access.
+
+Possible errors:
+* 404 if no exist.
