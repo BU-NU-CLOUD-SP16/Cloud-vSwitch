@@ -175,7 +175,10 @@ Karl Redgate
 
 # License
 
-The license is GPLv3.
+The license is GPLv3 for all parts specific to Cloud vSwitch, this includes:
+
+* the core files
+* the documentation
 
 Copyright (C) 2016-2017 by Cloud vSwitch(See Contributors). 
 
