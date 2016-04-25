@@ -1,5 +1,21 @@
 # Cloud vSwitch
 
+<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-generate-toc again -->
+**Table of Contents**
+
+- [Cloud vSwitch](#cloud-vswitch)
+- [Introduction](#introduction)
+- [Features](#features)
+    - [Architecture](#architecture)
+    - [Key Designs](#key-designs)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributors](#contributors)
+- [License](#license)
+
+<!-- markdown-toc end -->
+
+
 # Introduction
 
 Cloud vSwitch seeks to provide a secure and streamlined IT independent VPN as a service in the cloud, targeted to organizations with no IT department or users without VPN experience.
@@ -170,4 +186,3 @@ Copyright (C) 2016-2017 by Cloud vSwitch(See Contributors).
 	
 	You should have received a copy of the GNU General Public License
 	along with Cloud vSwitch.  If not, see <http://www.gnu.org/licenses/>.
-
