@@ -75,8 +75,8 @@ $ npm install
 
 # setup environment variables
 ##  CA 
-$ export CACERT=`cat cacert.pem`
-$ export CAKEY=`cat cakey.pem`
+$ export CACERT='cat cacert.pem'
+$ export CAKEY='cat cakey.pem'
 $ export DH='cat dh.pem'
 
 ## Mongo
