@@ -166,7 +166,7 @@ After successfully setting up the vSwitch API launching the vSwitch Portal, now 
 
 Requirements: 
     
-    * Node module: Newman
+    Node module: Newman
     
 Run: 
 
