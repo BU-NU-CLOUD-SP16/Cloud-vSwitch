@@ -11,6 +11,7 @@
 - [Installation](#installation)
 - [Documentation](#documentation)
 - [Usage](#usage)
+- [Automated Tests](#automated-tests)
 - [Contributors](#contributors)
 - [License](#license)
 
@@ -158,6 +159,22 @@ After successfully setting up the vSwitch API launching the vSwitch Portal, now 
 1. Register and create your organization.    
 2. Choose the platform you are working on and follow the client side application process.   
 3. Now you should be able to both access and modify. The dashboard should be working, too.   
+
+# Automated Tests
+
+*Note: this part is implemented but combined and released on April 26, 2016*
+
+Requirements: 
+    
+    * Node module: Newman
+    
+Run: 
+
+```$ Newman -c collection.json -e env.json -h report html```
+
+This will allow the deployment sending email to the destionation address, e.g. the deploy party. In case some modification or release error occurred.
+
+One simple thing to point out is that: [Travis.CI] is easy to use and Github enable its webhooks, and it is also the way we do our release tests.
 
 # Contributors
 
