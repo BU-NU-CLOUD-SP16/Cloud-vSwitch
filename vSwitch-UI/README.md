@@ -5,7 +5,7 @@ version 0.15.1.
 
 ## To Use vSwitch UI
 
-See [README]() for [Cloud vSwitch Project]().
+See [README](https://github.com/BU-NU-CLOUD-SP16/Cloud-vSwitch/blob/master/README.md) for [Cloud vSwitch Project](http://bu-nu-cloud-sp16.github.io/Cloud-vSwitch/).
 
 ## Hacking 
 ### Build & development

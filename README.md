@@ -20,7 +20,7 @@
 
 # Introduction
 
-Cloud vSwitch seeks to provide a secure and streamlined IT independent VPN as a service in the cloud, targeted to organizations with no IT department or users without VPN experience.
+[Cloud vSwitch Project](http://bu-nu-cloud-sp16.github.io/Cloud-vSwitch/) seeks to provide a secure and streamlined IT independent VPN as a service in the cloud, targeted to organizations with no IT department or users without VPN experience.
 
 # Features
 
@@ -166,11 +166,7 @@ After successfully setting up the vSwitch API launching the vSwitch Portal, now 
 
 Requirements: 
     
-<<<<<<< HEAD
 ```$ npm install Newman```
-=======
-    Node module: Newman
->>>>>>> 31897a668e91149153afe59c25fca97eb6d9fc75
     
 Run: 
 
