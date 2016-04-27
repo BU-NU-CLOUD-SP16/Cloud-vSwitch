@@ -174,7 +174,7 @@ Run:
 
 This will allow the deployment sending email to the destionation address, e.g. the deploy party. In case some modification or release error occurred.
 
-One simple thing to point out is that: [Travis.CI] is easy to use and Github enable its webhooks, and it is also the way we do our release tests.
+One simple thing to point out is that: [Travis.CI](https://travis-ci.org/) is easy to use and Github enable its webhooks, and it is also the way we do our release tests.
 
 # Contributors
 
