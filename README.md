@@ -12,6 +12,7 @@
 - [Documentation](#documentation)
 - [Usage](#usage)
 - [Automated Tests](#automated-tests)
+- [Possible future extensions](#possible-future-extensions)
 - [Contributors](#contributors)
 - [License](#license)
 
@@ -31,23 +32,23 @@
 ## Key Designs
 
 - **vSwitch Portal**   
-Cloud vSwitch portal is a key point in architecture. It allows users to easily create an organization and setup a VPN environment with a few clicks. It is a fully responsive web App built with AngularJS and Bootstrap.
+Cloud vSwitch portal is a key point in the architecture. It allows users to easily create an organization and setup a VPN environment with a few clicks. It is a fully responsive web App built with AngularJS and Bootstrap.
 
 - **vSwitch API**  
 vSwitch API is a **RESTful API** to support all Cloud vSwitch operations. We took advantage of [Sails.js](https://github.com/balderdashy/sails), a framework that makes it easy to build custom Node.js apps.
 
 - **OpenVPN**   
-To provide a stable VPN service, we choose to adopt [OpenVPN]() as our choice of VPN service provider. Why build a VPN tool from ground when we have open source solutions?
+To provide a stable VPN service, we choose to adopt [OpenVPN](https://openvpn.net/) as our choice of VPN service provider. Why build a VPN tool from ground when we already have open source solutions?
 
 - **Instances and vSwitch instance**   
-Difference between these two terms are "vSwitch instance" is actually the instance that provide the service in the cloud. "Instance" is just simple virtual machine and later it can support any local senstive service such as NFS.
+Difference between these two terms are "vSwitch instance" is actually the virtual machine that provides the service in the cloud. "Instance" is just simple virtual machine and later it can support any local senstive service such as NFS.
 
 **Users and Organizations**   
 <p align="center"><img src="doc/img/organization.png" alt="Organization" width="650"></p>
 
 
 - **Cross-platform applications**   
-Usage of the VPN as a Service is cross-platform, which means you can access from any main distribution of OS, Mac OS, Linux, and Windows.
+Usage of the VPN as a Service is cross-platform, which means you can access from any main distribution of OS, OS X, Linux, and Windows.
 
 <p align="center"><img src="doc/img/different-distro.png" alt="dif-distro" width="800"></p>
 
@@ -154,7 +155,7 @@ For possible search or trouble with API design philosophy, see [REST API doc](ht
 
 # Usage
 
-After successfully setting up the vSwitch API launching the vSwitch Portal, now you are able to visit the web portal and start to manage your Cloud!   
+After successfully setting up the vSwitch API and launching the vSwitch Portal, now you are able to visit the web portal and start to manage your Cloud!   
 
 1. Register and create your organization.    
 2. Choose the platform you are working on and follow the client side application process.   
@@ -166,15 +167,20 @@ After successfully setting up the vSwitch API launching the vSwitch Portal, now 
 
 Requirements: 
     
-```$ npm install Newman```
+```$ npm install newman```
     
 Run: 
 
-```$ Newman -c collection.json -e env.json -h report html```
+```$ newman -c collection.json -e env.json -h report html```
 
 This will allow the deployment sending email to the destionation address, e.g. the deploy party. In case some modification or release error occurred.
 
-One simple thing to point out is that: [Travis.CI](https://travis-ci.org/) is easy to use and Github enable its webhooks, and it is also the way we do our release tests.
+One simple thing to point out is that: [Travis.CI](https://travis-ci.org/) is easy to use and Github enable its webhooks, it is also the way we do our release tests.
+
+# Possible future extensions
+
+In this final release of the project, Cloud vSwitch just enables a virtual LAN inside the cloud environment. In this case, users can only have access to the cloud resources via VPN. One good question is, is there any area this kind of VPN service is needed? The answer is yes, as the data center, private cloud or hybrid cloud are envolving, connecting is becoming much more important, expecially connections with the ability of network isolation. Comparing to IPsec or other tunneling technologies, VPN has its stength and limitations. Can we adopt this Cloud vSwitch kind of idea to large scale systems? If positive, how can we achieve it? If not, what are those limitations causing it?
+
 
 # Contributors
 
