@@ -53,9 +53,7 @@ Usage of the VPN as a Service is cross-platform, which means you can access from
 <p align="center"><img src="doc/img/different-distro.png" alt="dif-distro" width="800"></p>
 
 
-
 # Installation
-
 
 **Prerequisies**
 
